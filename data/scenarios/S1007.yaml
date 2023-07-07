@@ -1,0 +1,11 @@
+---
+display_name: Host Persistence Audit
+type: scenario
+description: >
+  Once an attacker is on a system, a main goal becomes trying to maintain that
+  access. Persistence mechanisms give the attacker the ability to run malware
+  that will survive reboots and credential changes.
+id: S1007
+version: 1.0.0
+tags:
+ - TA0003

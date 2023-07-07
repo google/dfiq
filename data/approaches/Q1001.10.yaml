@@ -1,0 +1,57 @@
+---
+display_name: Collect download records from local browser artifacts
+type: approach
+id: Q1001.10
+version: 1.0.0
+tags:
+  - web-browser
+  - sqlite
+  - google-chrome
+  - apple-safari
+description:
+  summary: Parse download records from web browsers' own databases.
+  details: >
+    Most web browsers track file downloads (at least in non-Incognito/private
+    sessions) in local artifacts on the system. We can collect and review
+    these records. This approach is useful when you have remote access to a
+    system (via GRR for example) or a disk image.
+  references:
+    - "[Chrome](https://forensics.wiki/google_chrome/#downloadsstart_time),
+      [Firefox](https://forensics.wiki/mozilla_firefox/#downloads), and
+      [Safari](https://forensics.wiki/apple_safari/#downloads) downloads on
+      ForensicsWiki"
+    - "[Web Browsers on ForensicArtifacts](https://github.com/ForensicArtifacts/artifacts/blob/main/data/webbrowser.yaml)"
+view:
+  data:
+    - type: artifact
+      value: BrowserHistory
+    - type: description
+      value: Collect local browser history artifacts. These are often in the
+        form of SQLite databases and JSON files in multiple directories.
+  notes:
+    covered:
+      - Chrome downloads (beyond "stable" Chrome, this also includes
+        Chromium, Chrome Canary, & Chrome Beta) on Windows, macOS, and Linux
+      - Includes downloads from all Chrome profiles
+      - Safari downloads on Windows and macOS
+    not_covered:
+      - Firefox downloads
+      - Downloads on any other browsers
+  processors:
+    - name: plaso
+      options:
+        - type: parsers
+          value: webhist
+      analysis: &plaso-analysis
+        - name: OpenSearch
+          steps:
+            - description: &filter-desc Filter the results to just file downloads
+              type: opensearch-query
+              value: data_type:"chrome:history:file_downloaded"
+        - name: Python Notebook
+          steps:
+            - description: *filter-desc
+              type: pandas
+              value: query('data_type == "chrome:history:file_downloaded"')
+    - name: hindsight
+      analysis: *plaso-analysis

@@ -1,0 +1,11 @@
+---
+display_name: What files were downloaded through a web browser to a computer?
+type: question
+description:
+id: Q1001
+version: 1.0.0
+tags:
+ - web-browser
+parent_ids:
+ - F1008
+ - F1002
