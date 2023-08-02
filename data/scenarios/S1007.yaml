@@ -11,6 +11,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+
 ---
 display_name: Host Persistence Audit
 type: scenario
@@ -19,6 +20,6 @@ description: >
   access. Persistence mechanisms give the attacker the ability to run malware
   that will survive reboots and credential changes.
 id: S1007
-version: 1.0.0
+dfiq_version: 1.0.0
 tags:
  - TA0003

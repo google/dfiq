@@ -13,12 +13,19 @@
 # limitations under the License.
 
 ---
-display_name: What files were downloaded using a web browser?
+display_name: Have there been any executions of PsExec?
 type: question
-description:
-id: Q1001
+description: >
+  PsExec is a command-line tool that allows you to execute commands on remote
+  computers. It is part of the Sysinternals suite of tools, which are a
+  collection of free and open-source utilities for Windows system
+  administration.  It works by establishing a remote connection to the target
+  computer and then executing the specified command. The command can be
+  anything that you would normally run on a local computer, such as a batch
+  file, a PowerShell script, or a simple command-line instruction.
+id: Q1036
 dfiq_version: 1.0.0
 tags:
+ - Windows
 parent_ids:
- - F1008
- - F1002
+ - F1027

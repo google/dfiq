@@ -13,12 +13,14 @@
 # limitations under the License.
 
 ---
-display_name: What files were downloaded using a web browser?
-type: question
+display_name: >
+  Are there any signs of an attacker trying to maintain access to the cloud
+  project? (Persistence)
+type: facet
 description:
-id: Q1001
+id: F1014
 dfiq_version: 1.0.0
 tags:
+ - TA0003
 parent_ids:
- - F1008
- - F1002
+ - S1005

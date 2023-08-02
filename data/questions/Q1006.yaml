@@ -13,12 +13,12 @@
 # limitations under the License.
 
 ---
-display_name: What files were downloaded using a web browser?
+display_name: What files are present on a computer?
 type: question
 description:
-id: Q1001
+id: Q1006
 dfiq_version: 1.0.0
 tags:
 parent_ids:
+ - F1001
  - F1008
- - F1002

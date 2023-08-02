@@ -13,12 +13,16 @@
 # limitations under the License.
 
 ---
-display_name: What files were downloaded using a web browser?
-type: question
-description:
-id: Q1001
+display_name: Are there signs of staging data for future exfiltration?
+type: facet
+description: >
+  "Staging" refers to the collection of data of interest onto a local system,
+  as a precursor step for future exfiltration of that data. When reviewing
+  data from Questions in this Facet, look for unusual volumes of results
+  (number or size of files downloaded or sent, for example).
+id: F1008
 dfiq_version: 1.0.0
 tags:
+ - TA0009
 parent_ids:
- - F1008
- - F1002
+ - S1001

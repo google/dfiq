@@ -11,13 +11,14 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+
 ---
 display_name: >
    Are there any suspicious files running at system boot or login autoruns?
 type: facet
 description:
 id: F1023
-version: 1.0.0
+dfiq_version: 1.0.0
 tags:
  - T1547
 parent_ids:

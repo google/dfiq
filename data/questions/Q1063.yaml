@@ -13,12 +13,12 @@
 # limitations under the License.
 
 ---
-display_name: What files were downloaded using a web browser?
+display_name: What periodic scripts are configured?
 type: question
 description:
-id: Q1001
+id: Q1063
 dfiq_version: 1.0.0
 tags:
+ - macOS
 parent_ids:
- - F1008
- - F1002
+ - F1022

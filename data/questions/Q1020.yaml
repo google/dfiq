@@ -13,12 +13,12 @@
 # limitations under the License.
 
 ---
-display_name: What files were downloaded using a web browser?
+display_name: What pages did web browsers visit?
 type: question
 description:
-id: Q1001
+id: Q1020
 dfiq_version: 1.0.0
 tags:
+ - Web Browser
 parent_ids:
- - F1008
- - F1002
+ - F1005

@@ -13,12 +13,14 @@
 # limitations under the License.
 
 ---
-display_name: What files were downloaded using a web browser?
+display_name: Are there any indications of dynamic linker hijacking?
 type: question
 description:
-id: Q1001
+id: Q1071
 dfiq_version: 1.0.0
 tags:
+ - T1574.006
+ - macOS
+ - Linux
 parent_ids:
- - F1008
- - F1002
+ - F1025

@@ -13,12 +13,12 @@
 # limitations under the License.
 
 ---
-display_name: What files were downloaded using a web browser?
+display_name: What process made the DNS query?
 type: question
 description:
-id: Q1001
+id: Q1018
 dfiq_version: 1.0.0
 tags:
+ - DNS
 parent_ids:
- - F1008
- - F1002
+ - F1004

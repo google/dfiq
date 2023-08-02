@@ -13,12 +13,13 @@
 # limitations under the License.
 
 ---
-display_name: What files were downloaded using a web browser?
+display_name: Is a given Chrome extension associated with a given domain?
 type: question
 description:
-id: Q1001
+id: Q1023
 dfiq_version: 1.0.0
 tags:
+ - T1176
+ - Chrome
 parent_ids:
- - F1008
- - F1002
+ - F1006

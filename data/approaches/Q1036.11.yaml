@@ -1,0 +1,55 @@
+# Copyright 2023 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# https://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+---
+display_name: Examine Windows Event Logs for PsExec executions
+type: approach
+id: Q1036.11
+dfiq_version: 1.0.0
+tags:
+  - Windows
+  - Event Logs
+description:
+  summary: Parse the Windows Security Event Log and look for PsExec processes being created.
+  details: >
+    Windows systems can be set to log new process creation events to the Security event log. The
+    logs contain the new process name, process ID, parent process name, process creation time, and
+    many more useful fields.
+  references:
+    - "[4688(S): A new process has been created](https://learn.microsoft.com/en-us/windows/security/threat-protection/auditing/event-4688)"
+    - "[PsExec on MITRE ATT&CK](https://attack.mitre.org/software/S0029/)"
+view:
+  data:
+    - type: artifact
+      value: WindowsEventLogs
+    - type: description
+      value: Windows Event Log files
+  notes:
+    covered:
+      - Executions of PsExec on Windows systems with logging enabled.
+    not_covered:
+      - Many factors can impact log retention; if the event log containing the relevant event has
+        been deleted, it won't be found by this approach.
+      - Instances when the PsExec executable has been renamed.
+  processors:
+    - name: plaso
+      options:
+        - type: parsers
+          value: winevtx
+      analysis:
+        - name: OpenSearch
+          steps:
+            - description: &filter-desc Filter the results to Process Creation events containing "psexec.exe"
+              type: opensearch-query
+              value: data_type:"windows:evtx:record" event_identifier:4688 source_name:Microsoft-Windows-Security-Auditing xml_string:"psexec.exe"

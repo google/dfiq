@@ -13,27 +13,29 @@
 # limitations under the License.
 
 ---
-display_name: Collect download records from local browser artifacts
+display_name: Collect URL visit records from local browser artifacts
 type: approach
-id: Q1001.10
+id: Q1020.10
 dfiq_version: 1.0.0
 tags:
   - Web Browser
   - SQLite
   - Chrome
   - Safari
+  - Firefox
   - Edge
+  - Internet Explorer
 description:
-  summary: Parse download records from web browsers' own databases.
+  summary: Parse URL visit records from web browsers' own databases.
   details: >
-    Most web browsers track file downloads (at least in non-Incognito/private
+    Most web browsers track URL visits (at least in non-Incognito/private
     sessions) in local artifacts on the system. We can collect and review
     these records. This approach is useful when you have remote access to a
     system (via GRR for example) or a disk image.
   references:
-    - "[Chrome](https://forensics.wiki/google_chrome/#downloadsstart_time),
-      [Firefox](https://forensics.wiki/mozilla_firefox/#downloads), and
-      [Safari](https://forensics.wiki/apple_safari/#downloads) downloads on
+    - "[Chrome](https://forensics.wiki/google_chrome/#history),
+      [Firefox](https://forensics.wiki/mozilla_firefox/#history), and
+      [Safari](https://forensics.wiki/apple_safari/#history) History on
       ForensicsWiki"
     - "[Web Browsers on ForensicArtifacts](https://github.com/ForensicArtifacts/artifacts/blob/main/data/webbrowser.yaml)"
 view:
@@ -45,16 +47,17 @@ view:
         form of SQLite databases and JSON files in multiple directories.
   notes:
     covered:
-      - Chrome downloads. Beyond "stable" Chrome, this also includes
+      - Chrome URL visits. Beyond "stable" Chrome, this also includes
         Chromium, Chrome Canary, Chrome Beta, and other Chromium-based browsers
         (Microsoft Edge, Brave, and Opera) on Windows, macOS, and Linux
-      - Safari downloads
-      - Includes downloads from all Chrome profiles
+      - Includes URL visits from all Chrome profiles
+      - Firefox URL visits
+      - Safari URL vists on Windows and macOS
+      - Internet Explorer (4 - 10) URL visits
     not_covered:
-      - Firefox downloads
-      - Downloads on any other browsers
+      - Other Chromium-based browsers not specified above
       - Browsers installed in non-standard paths
-      - Downloads made during Incognito sessions
+      - Visits made in Incognito/Private sessions
   processors:
     - name: plaso
       options:
@@ -63,14 +66,14 @@ view:
       analysis:
         - name: OpenSearch
           steps:
-            - description: &filter-desc Filter the results to just file downloads
+            - description: &filter-desc Filter the results to just URL page visits
               type: opensearch-query
-              value: data_type:("chrome:history:file_downloaded" OR "safari:downloads:entry")
+              value: data_type:("chrome:history:page_visited" OR "firefox:places:page_visited" OR "safari:history:visit_sqlite")
         - name: Python Notebook
           steps:
             - description: *filter-desc
               type: pandas
-              value: query('data_type in ("chrome:history:file_downloaded", "safari:downloads:entry")')
+              value: query('data_type in ("chrome:history:page_visited", "firefox:places:page_visited", "safari:history:visit_sqlite")')
     - name: hindsight
       options:
         - type: format
@@ -79,12 +82,12 @@ view:
         - name: OpenSearch
           steps:
             - description: &filter-desc-hindsight > 
-                Filter the results to just file downloads. Hindsight only supports Chromium-based
+                Filter the results to just URL page visits. Hindsight only supports Chromium-based
                 browsers (including Microsoft Edge) and not Firefox or Safari.
               type: opensearch-query
-              value: data_type:"chrome:history:file_downloaded"
+              value: data_type:"chrome:history:page_visited")
         - name: Python Notebook
           steps:
             - description: *filter-desc-hindsight
               type: pandas
-              value: query('data_type == "chrome:history:file_downloaded"')
+              value: query('data_type == "chrome:history:page_visited"')

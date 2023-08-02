@@ -13,12 +13,12 @@
 # limitations under the License.
 
 ---
-display_name: What files were downloaded using a web browser?
+display_name: Are there any detections of exposed service account credentials?
 type: question
 description:
-id: Q1001
+id: Q1039
 dfiq_version: 1.0.0
 tags:
 parent_ids:
- - F1008
- - F1002
+ - F1013
+ - F1018

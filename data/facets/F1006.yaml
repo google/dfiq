@@ -13,12 +13,16 @@
 # limitations under the License.
 
 ---
-display_name: What files were downloaded using a web browser?
-type: question
-description:
-id: Q1001
+display_name: Was a browser extension responsible for a DNS query?
+type: facet
+description: >
+  A malicious (or potentially unwanted) extension may generate DNS queries
+  itself, inject or modify legitimate requests, or manipulate the user's
+  browsing experience in some other way.
+id: F1006
 dfiq_version: 1.0.0
 tags:
+ - Browser Extension
+ - DNS
 parent_ids:
- - F1008
- - F1002
+ - S1003

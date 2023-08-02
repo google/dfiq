@@ -13,12 +13,13 @@
 # limitations under the License.
 
 ---
-display_name: What files were downloaded using a web browser?
-type: question
-description:
-id: Q1001
+display_name: Cloud Project Compromise Assessment
+type: scenario
+description: >
+  Evaluate a cloud project for malicious or unknown activities and determine
+  if the cloud project is compromised. This is distinct from evaluating
+  whether a particular instance in that cloud project is compromised.
+id: S1005
 dfiq_version: 1.0.0
 tags:
-parent_ids:
- - F1008
- - F1002
+ - Cloud

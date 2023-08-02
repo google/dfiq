@@ -13,12 +13,13 @@
 # limitations under the License.
 
 ---
-display_name: What files were downloaded using a web browser?
+display_name: What Launch Agents are configured?
 type: question
 description:
-id: Q1001
+id: Q1053
 dfiq_version: 1.0.0
 tags:
+ - T1543.001
+ - macOS
 parent_ids:
- - F1008
- - F1002
+ - F1020

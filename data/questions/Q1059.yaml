@@ -13,12 +13,15 @@
 # limitations under the License.
 
 ---
-display_name: What files were downloaded using a web browser?
+display_name: What local accounts have been created?
 type: question
 description:
-id: Q1001
+id: Q1059
 dfiq_version: 1.0.0
 tags:
+ - T1136.001
+ - Windows
+ - macOS
+ - Linux
 parent_ids:
- - F1008
- - F1002
+ - F1021

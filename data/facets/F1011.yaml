@@ -13,12 +13,12 @@
 # limitations under the License.
 
 ---
-display_name: What files were downloaded using a web browser?
-type: question
+display_name: Was any sensitive data exfiltrated via a web service?
+type: facet
 description:
-id: Q1001
+id: F1011
 dfiq_version: 1.0.0
 tags:
+ - T1567
 parent_ids:
- - F1008
- - F1002
+ - S1001

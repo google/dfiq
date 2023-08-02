@@ -13,12 +13,11 @@
 # limitations under the License.
 
 ---
-display_name: What files were downloaded using a web browser?
+display_name: Have there been any modifications to the "hosts" file?
 type: question
-description:
-id: Q1001
+description: Check whether there is suspicious routing in the /etc/hosts file.
+id: Q1073
 dfiq_version: 1.0.0
 tags:
 parent_ids:
- - F1008
- - F1002
+ - F1004

@@ -13,12 +13,13 @@
 # limitations under the License.
 
 ---
-display_name: What files were downloaded using a web browser?
-type: question
+display_name: >
+  Has an attacker gained access to the cloud project? (Initial Access)
+type: facet
 description:
-id: Q1001
+id: F1013
 dfiq_version: 1.0.0
 tags:
+ - TA0001
 parent_ids:
- - F1008
- - F1002
+ - S1005

@@ -13,12 +13,15 @@
 # limitations under the License.
 
 ---
-display_name: What files were downloaded using a web browser?
+display_name: What data was uploaded to a website via a web browser?
 type: question
-description:
-id: Q1001
+description: >
+  Web browsers are most often used to browse (or receive) data, but are
+  perfectly capable of uploading data as well. This may take the form of file
+  attachments on a website or pasting blocks of content (text, images, etc)
+  into a web application.
+id: Q1084
 dfiq_version: 1.0.0
 tags:
 parent_ids:
- - F1008
- - F1002
+ - F1011

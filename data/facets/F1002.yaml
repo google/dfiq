@@ -13,12 +13,13 @@
 # limitations under the License.
 
 ---
-display_name: What files were downloaded using a web browser?
-type: question
+display_name: >
+  Has the actor introduced any ExternalCompany files to Company assets via
+  downloading?
+type: facet
 description:
-id: Q1001
+id: F1002
 dfiq_version: 1.0.0
 tags:
 parent_ids:
- - F1008
- - F1002
+ - S1002

@@ -13,12 +13,17 @@
 # limitations under the License.
 
 ---
-display_name: What files were downloaded using a web browser?
-type: question
-description:
-id: Q1001
+display_name: Was a user's web browsing the cause of a given DNS query?
+type: facet
+description: >
+  Understanding if a user's actions in a web browser caused a particular DNS
+  query is valuable context when investigating a suspicious DNS query. If the
+  query is related to the user's actions, closer scrutiny of their browser
+  activity may make sense. If the DNS doesn't appear related, you may need to
+  look into the actions of other non-browser processes.
+id: F1005
 dfiq_version: 1.0.0
 tags:
+ - Web Browser
 parent_ids:
- - F1008
- - F1002
+ - S1003

@@ -13,12 +13,16 @@
 # limitations under the License.
 
 ---
-display_name: What files were downloaded using a web browser?
-type: question
-description:
-id: Q1001
+display_name: What application was responsible for the DNS query?
+type: facet
+description: >
+  What application made a DNS request is important for determining if it is
+  likely legitimate or not. The source also impacts further investigative
+  steps (depending on if `powershell.exe` or `chrome.exe` were responsible,
+  different artifacts would be useful).
+id: F1004
 dfiq_version: 1.0.0
 tags:
+ - DNS
 parent_ids:
- - F1008
- - F1002
+ - S1003

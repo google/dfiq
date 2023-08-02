@@ -13,12 +13,15 @@
 # limitations under the License.
 
 ---
-display_name: What files were downloaded using a web browser?
-type: question
-description:
-id: Q1001
+display_name: Are there indications of an attacker moving between resources?
+type: facet
+description: >
+  This may take the form of an attacker moving between cloud resources within
+  the project or between the cloud project and on-prem systems.
+id: F1016
 dfiq_version: 1.0.0
 tags:
+ - TA0008
+ - Cloud
 parent_ids:
- - F1008
- - F1002
+ - S1005
