@@ -17,7 +17,7 @@ display_name: How much network traffic was there to/from a machine?
 type: question
 description: >
   Information about the volume, type, and sources/destinations of network data
-  transfered to/from a host can give insights into activity on that host.
+  transferred to/from a host can give insights into activity on that host.
 id: Q1031
 dfiq_version: 1.0.0
 tags:
