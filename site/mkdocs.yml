@@ -1,0 +1,39 @@
+site_name: DFIQ (Digital Forensics Investigative Questions)
+repo_url: https://github.com/google/dfiq
+theme:
+  name: material
+  favicon: assets/dfiq-square.png
+  icon:
+    repo: fontawesome/brands/github
+  features:
+    - navigation.tabs
+    - navigation.top
+    - navigation.indexes
+  logo: assets/dfiq.png
+  palette:
+    primary: custom
+    accent: custom
+  font:
+    text: Ubuntu
+plugins:
+  - search
+  - tags:
+      tags_file: tags.md
+markdown_extensions:
+  - pymdownx.betterem
+  - admonition
+  - pymdownx.details
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.superfences
+  - toc:
+      toc_depth: 2-3
+  - def_list
+  - attr_list
+extra:
+  generator: false
+extra_javascript:
+  - https://unpkg.com/tablesort@5.3.0/dist/tablesort.min.js
+  - javascripts/tablesort.js
+extra_css:
+  - stylesheets/extra.css
