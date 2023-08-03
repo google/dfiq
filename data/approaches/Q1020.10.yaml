@@ -52,7 +52,7 @@ view:
         (Microsoft Edge, Brave, and Opera) on Windows, macOS, and Linux
       - Includes URL visits from all Chrome profiles
       - Firefox URL visits
-      - Safari URL vists on Windows and macOS
+      - Safari URL visits on Windows and macOS
       - Internet Explorer (4 - 10) URL visits
     not_covered:
       - Other Chromium-based browsers not specified above
