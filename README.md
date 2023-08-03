@@ -1,11 +1,13 @@
-# DFIQ (Digital Forensics Investigative Questions)
+# Digital Forensics Investigative Questions
+  
+<img src="/site/docs/assets/dfiq-blue.png" width="400" alt="DFIQ Logo">
 
-DFIQ is fundamentally a collection of investigative questions and the various
-approaches to answering those questions. The purpose of DFIQ is to drive
-consistent, thorough, and explainable investigations. It aims to do this by:
-- Deconstructing large, ambiguous, open-ended questions into multiple smaller,
-  well-defined ones
-- Creating and maintaining an ever-evolving catalog of investigative knowledge
-  ("Questions" and "Approaches" to answer them)
-- Building investigation plans ("Scenarios") for frequent case types, providing
-- a common starting point for similar cases
+DFIQ is a collection of Digital Forensics Investigative Questions and the approaches to answering them.
+The goal of the project is to build a comprehensive catalog of investigative knowledge to help drive 
+consistent, thorough, and explainable investigations.
+
+## Key Aspects of DFIQ:
+
+* DFIQ is a catalog of investigative knowledge, centered on [Questions](https://dfiq.org/questions)
+* Uses the concept of [Scenarios](https://dfiq.org/scenarios) to logically group Questions and help structure investigations
+* Stores [data](/data) in an easily-readable, tool-agnostic format (YAML) to be used by others
