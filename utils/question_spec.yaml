@@ -1,0 +1,9 @@
+---
+display_name: str()
+type: enum('question')
+description: str(required=False)
+id: regex('Q\d{4}')
+dfiq_version: regex('\d{1,2}\.\d{1,2}\.\d{1,2}')
+tags: list(str(), required=False)
+contributors: list(str(), required=False)
+parent_ids: list(regex('F\d{4}'))
