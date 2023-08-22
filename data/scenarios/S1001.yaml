@@ -19,7 +19,7 @@ description: >
   An employee is suspected of unauthorized copying of sensitive data (code,
   trade secrets, etc) from internal systems to those outside of the company's
   control.
-id: S1001xxx
+id: S1001
 dfiq_version: 1.0.0
 tags:
   - Insider

@@ -1,4 +1,4 @@
-name: Validate DFIQ Components' YAML
+name: Validate DFIQ YAML
 
 on:
   [push]
@@ -19,3 +19,6 @@ jobs:
     - name: Validate Scenarios YAML
       run: |
         yamale -s utils/scenario_spec.yaml ./data/scenarios
+        yamale -s utils/facet_spec.yaml ./data/facets
+        yamale -s utils/question_spec.yaml ./data/questions
+        yamale -s utils/approach_spec.yaml ./data/approaches
