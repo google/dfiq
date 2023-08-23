@@ -15,10 +15,12 @@
 ---
 display_name: What files were downloaded using a web browser?
 type: question
-description:
+description: Downloading files via a web browser is a common way to introduce files to a computer. Determining what
+  files were downloaded can be helpful in variety of scenarios, ranging from malware investigations to insider cases.
 id: Q1001
 dfiq_version: 1.0.0
 tags:
+ - Web Browser
 parent_ids:
  - F1008
  - F1002

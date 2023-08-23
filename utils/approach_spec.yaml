@@ -1,0 +1,33 @@
+---
+display_name: str()
+type: enum('approach')
+description:
+  summary: str()
+  details: str()
+  references: list(str(), required=False)
+  references_internal: list(str(), required=False)
+id: regex('^Q\d{4}\.\d{2}$')
+dfiq_version: regex('\d{1,2}\.\d{1,2}\.\d{1,2}')
+tags: list(str(), required=False)
+contributors: list(str(), required=False)
+view:
+  data: list(include('string_type_and_value'))
+  notes:
+    covered: list(str())
+    not_covered: list(str())
+  processors: list(include('processor'))
+---
+string_type_and_value:
+  type: str()
+  value: str()
+processor:
+  name: str()
+  options: list(include('string_type_and_value'))
+  analysis: list(include('analysis_object'))
+analysis_object:
+  name: str()
+  steps: list(include('analysis_step'))
+analysis_step:
+  description: str()
+  type: str()
+  value: str()

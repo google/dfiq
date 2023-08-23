@@ -1,0 +1,8 @@
+---
+display_name: str()
+type: enum('scenario')
+description: str()
+id: regex('^S\d{4}$')
+dfiq_version: regex('\d{1,2}\.\d{1,2}\.\d{1,2}')
+tags: list(str(), required=False)
+contributors: list(str(), required=False)
