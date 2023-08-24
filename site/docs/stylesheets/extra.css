@@ -19,3 +19,7 @@
   --md-primary-fg-color--light: #3EC1F0;
   --md-primary-fg-color--dark:  #3EC1F0;
 }
+
+.md-typeset__table td code {
+    word-break: keep-all;
+}
