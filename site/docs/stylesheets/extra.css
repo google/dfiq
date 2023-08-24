@@ -23,3 +23,7 @@
 .md-typeset__table td code {
     word-break: keep-all;
 }
+
+.md-typeset code {
+    word-break: keep-all;
+}
