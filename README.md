@@ -1,6 +1,6 @@
 # Digital Forensics Investigative Questions
   
-<img src="/site/docs/assets/dfiq-blue.png" width="400" alt="DFIQ Logo">
+<img src="/site/docs/assets/dfiq-blue.png" width="100" alt="DFIQ Logo">
 
 DFIQ is a collection of Digital Forensics Investigative Questions and the approaches to answering them.
 The goal of the project is to build a comprehensive catalog of investigative knowledge to help drive 
