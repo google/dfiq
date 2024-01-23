@@ -1,4 +1,4 @@
-{# templates/external_questions_index_md #}
+{# templates/questions_index #}
 ---
 hide:
   - navigation
@@ -26,7 +26,7 @@ Some quick facts about Questions in DFIQ:
 | ID          | Question                             | Tags | Approaches |
 | ----------- | ------------------------------------ | ---- | ---------- |
 {% for id, q in components.items() | sort %}
-{%   if q.type == 'question' and q.is_internal == False %}
+{%   if q.type == 'question' and (q.is_internal == False or allow_internal == True) %}
 | <span class="dfiqIdTag">{{ id }}</span> | {% if q.approaches|length %}<a href="/questions/{{ id }}">{{ q.name }}</a>{% else %}{{ q.name }}{% endif %} | {% if q.all_tags|length %}<span class="dfiqTag">{{ q.all_tags|join('</span> <span class="dfiqTag">') }}</span>{% endif %} | {{ q.approaches|length }} |
 {%   endif %}
 {% endfor %}

@@ -22,7 +22,7 @@ string_type_and_value:
   value: str()
 processor:
   name: str()
-  options: list(include('string_type_and_value'))
+  options: list(include('string_type_and_value'), required=False)
   analysis: list(include('analysis_object'))
 analysis_object:
   name: str()

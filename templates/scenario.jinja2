@@ -1,5 +1,5 @@
-{# templates/external_scenario_md #}
-{% if not scenario.is_internal %}
+{# templates/scenario #}
+{% if not scenario.is_internal or allow_internal == True %}
 # {{ scenario.name }}
 
 **ID**: {{ scenario.id }}
@@ -9,14 +9,14 @@
 {% endif %}
 
 {% for facet in scenario.facets %}
-{%   if not components[facet].is_internal %}
+{%   if not components[facet].is_internal or allow_internal == True %}
 ## {{ components[facet].name }} <span class="dfiqIdTag">{{ facet }}</span>
 {%     if components[facet].description %}
 {{ components[facet].description }}
 {%     endif %}
 
 {%   for question in components[facet].questions %}
-{%     if not components[question].is_internal %}
+{%     if not components[question].is_internal or allow_internal == True %}
 {%       if components[question].approaches|length %}
  - <a href="/questions/{{ question }}"><span class="dfiqIdTag">{{ question }}</span> &nbsp;{{ components[question].name }}</a>
 {%       else %}

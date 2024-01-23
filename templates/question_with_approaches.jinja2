@@ -1,4 +1,4 @@
-{# templates/external_question_with_approaches_md #}
+{# templates/question_with_approaches #}
 ---
 {% if question.all_tags %}
 tags:
@@ -23,7 +23,7 @@ hide:
 **Approaches to Answer**
 
 {% for approach in question.approaches %}
-{% if components[approach].is_internal == False %}
+{% if components[approach].is_internal == False or allow_internal == True %}
 -  [{{ components[approach].name }} [{{ approach }}]](#{{ components[approach].name.replace(' ','-').lower() }})
     - {{ components[approach]['description']['summary'] }}
     - Tags: <span class="dfiqTag">{{ components[approach]['tags']|join('</span> <span class="dfiqTag">') }}</span>
@@ -39,7 +39,7 @@ hide:
     and cons. They can be used individually or in conjunction.
 
 {% for approach in question.approaches %}
-{%   if components[approach].is_internal == False %}
+{%   if components[approach].is_internal == False or allow_internal == True %}
 {% set a =  components[approach] %}
 ## {{ a.name }}
 ### 🗂️ Explanation
@@ -50,6 +50,13 @@ hide:
 {%     if a.description.get('references') %}
 #### References
 {%       for reference in a.description['references'] %}
+ - {{ reference }}
+{%       endfor %}
+{%     endif %}
+{%     if a.description.get('references_internal') and allow_internal == True %}
+
+##### References (Internal)
+{%       for reference in a.description['references_internal'] %}
  - {{ reference }}
 {%       endfor %}
 {%     endif %}
@@ -106,17 +113,6 @@ The following data source(s) are needed for this approach to the question.
 
 **Value**
 :  {{ d['value'] }} ([view on GitHub](https://github.com/ForensicArtifacts/artifacts/search?q={{ d['value'] }}))
-{%   elif d['type'] == 'dftimewolf-recipe' %}
-**Type**
-: dftimewolf Recipe
-
-**Command**
-
-  ```
-  dftimewolf {{ d['value'] }}
-  ```
-
-  More on [{{ d['value'] }}](https://g3doc.corp.google.com/ops/security/incident_tools/dftimewolf/g3doc/recipe-list.md#{{ d['value'] }})
 {%   elif d['type'] != 'description' %}
   - {{ d['type'] }}: {{ d['value'] }}
 {%   endif %}
@@ -138,19 +134,8 @@ relevant configuration options are.
 
 
 {%   for p in a.view['processors'] %}
-{%     if p.name == 'logs' %}
-=== "Logs"
-    In some instances, such as when querying a centralized log source, a processor
-    may not be needed as the query or command specified in the [data](💾-data)
-    section is sufficient. However, those results still may need to be filtered down
-    to only the data relevant to the question at hand using the steps in the
-    [analysis](#📊-analysis) section.
-
-{%     else %}
 === "{{ p.name.title() }}"
     More information on [{{ p['name'].title() }}](https://forensics.wiki/{{ p.name }}).
-
-{%     endif %}
 
 {%     if p.get('options') %}
     Recommended options:
@@ -170,8 +155,6 @@ relevant configuration options are.
     question.
 
 {%       for a in p['analysis'] %}
-
-    <section class="zippy{% if loop.index == 1 %} open{% endif %}" markdown="1">
 
     {{ a['name'] }}
 {%         for step in a.steps %}
