@@ -197,7 +197,7 @@ class DFIQ:
         yaml_data_path="data",
         markdown_output_path=None,
         templates_path="templates",
-    ):
+    ) -> None:
         self.yaml_data_path = yaml_data_path
         self.markdown_output_path = markdown_output_path
         self.plural_map = {
@@ -220,37 +220,45 @@ class DFIQ:
 
         logging.info(f'"yaml_data_path" set to "{self.yaml_data_path}"')
 
-        self.load_dfiq_schema()
+        self._load_dfiq_schema()
         self.load_dfiq_items_from_yaml()
         self.build_graph()
         self.add_child_ids()
         self.add_child_tags()
 
-    def scenarios(self):
+    def scenarios(self) -> list[Scenario]:
         return sorted(
             [c for c in self.components.values() if isinstance(c, Scenario)],
             key=lambda x: x.id,
         )
 
-    def facets(self):
+    def facets(self) -> list[Facet]:
         return sorted(
             [c for c in self.components.values() if isinstance(c, Facet)],
             key=lambda x: x.id,
         )
 
-    def questions(self):
+    def questions(self) -> list[Question]:
         return sorted(
             [c for c in self.components.values() if isinstance(c, Question)],
             key=lambda x: x.id,
         )
 
-    def approaches(self):
+    def approaches(self) -> list[Approach]:
         return sorted(
             [c for c in self.components.values() if isinstance(c, Approach)],
             key=lambda x: x.id,
         )
 
-    def add_child_ids(self):
+    def add_child_ids(self) -> None:
+        """Adds the list of their child IDs to a component.
+
+        This is necessary due to how DFIQ components are designed. Instead of specifying a component's
+        children in it directly (allowing a "top-down" view of the DFIQ hierarchy), only the component's
+        parent(s) are. This enables filtering out "internal" components without leaking references to
+        those components. Because of this, DFIQ takes a "bottom-up" approach to construct the hierarchy
+        at the time of initialization (using a networkx DiGraph).
+        """
         if not self.graph:
             raise ValueError("DFIQ Graph needed before adding children.")
 
@@ -258,7 +266,8 @@ class DFIQ:
             children = sorted(list(nx.DiGraph.successors(self.graph, dfiq_id)))
             self.components[dfiq_id].set_children(children)
 
-    def add_child_tags(self):
+    def add_child_tags(self) -> None:
+        """Adds tags from a Question's Approaches to that Question."""
         if not self.graph:
             raise ValueError("DFIQ Graph needed before adding children.")
 
@@ -271,7 +280,10 @@ class DFIQ:
                     ].all_tags.union(self.components[dfiq_id].tags)
 
     @staticmethod
-    def convert_yaml_object_to_dfiq_component(yaml_object):
+    def convert_yaml_object_to_dfiq_component(
+        yaml_object,
+    ) -> Scenario | Facet | Question | Approach:
+        """Takes a dict, loaded from a DFIQ YAML file, and converts to the appropriate dfiq.Component object."""
         if yaml_object["type"] == "scenario":
             return Scenario(
                 yaml_object["id"],
@@ -307,7 +319,17 @@ class DFIQ:
                 yaml_object.get("view"),
             )
 
-    def load_yaml_files_by_type(self, dfiq_type, yaml_data_path=None):
+    def load_yaml_files_by_type(self, dfiq_type, yaml_data_path=None) -> dict:
+        """Load all DFIQ YAML files of a given type from the appropriate path.
+
+        Given the yaml_data_path, locate the correct sub-directory for that
+        dfiq_type, validate any YAML files there, and load them into a dict.
+
+        Args:
+            dfiq_type (str): The component type (Scenario, Facet, Question, or Approach).
+            yaml_data_path (str, optional): The base path holding the YAML files.
+
+        """
         if not yaml_data_path:
             yaml_data_path = self.yaml_data_path
         component_dict = {}
@@ -336,7 +358,8 @@ class DFIQ:
         return component_dict
 
     @staticmethod
-    def validate_yaml_file(yaml_file_path):
+    def validate_yaml_file(yaml_file_path) -> bool:
+        """Validate that a YAML file can be parsed by pyYAML."""
         with open(yaml_file_path, mode="r") as file:
             try:
                 _ = yaml.safe_load(file)
@@ -345,13 +368,14 @@ class DFIQ:
                 return False
             return True
 
-    def load_dfiq_schema(self):
+    def _load_dfiq_schema(self) -> None:
         self.schemas["Scenario"] = yamale.make_schema("utils/scenario_spec.yaml")
         self.schemas["Facet"] = yamale.make_schema("utils/facet_spec.yaml")
         self.schemas["Question"] = yamale.make_schema("utils/question_spec.yaml")
         self.schemas["Approach"] = yamale.make_schema("utils/approach_spec.yaml")
 
-    def validate_dfiq_schema(self, yaml_file_path, component_type):
+    def validate_dfiq_schema(self, yaml_file_path, component_type) -> bool:
+        """Validate that a YAML file adheres to the appropriate DFIQ Schema."""
         try:
             yaml_to_validate = yamale.make_data(yaml_file_path)
             yamale.validate(self.schemas[component_type], yaml_to_validate)
@@ -360,7 +384,8 @@ class DFIQ:
             return False
         return True
 
-    def load_dfiq_items_from_yaml(self, yaml_data_path=None):
+    def load_dfiq_items_from_yaml(self, yaml_data_path=None) -> None:
+        """Load all four types of DFIQ components from a base path."""
         if not yaml_data_path:
             yaml_data_path = self.yaml_data_path
 
@@ -370,7 +395,8 @@ class DFIQ:
                 self.load_yaml_files_by_type(dfiq_component, yaml_data_path)
             )
 
-    def build_graph(self):
+    def build_graph(self) -> None:
+        """Create a nx.DiGraph linking all loaded DFIQ components."""
         self.graph = nx.DiGraph()
         for dfiq_id, content in self.components.items():
             self.graph.add_node(dfiq_id)
@@ -382,10 +408,10 @@ class DFIQ:
                     self.graph.add_edge(parent_id, dfiq_id)
                     logging.debug(f"added edge: {parent_id} -> {dfiq_id}")
 
-    def display_graph(self):
+    def display_graph(self) -> None:
         nx.draw(self.graph, with_labels=True, font_weight="bold")
 
-    def generate_scenario_md(self, scenario_id, allow_internal=False):
+    def generate_scenario_md(self, scenario_id, allow_internal=False) -> None:
         """Generates Markdown for a Scenario page.
 
         Args:
@@ -401,7 +427,7 @@ class DFIQ:
             logging.warning(
                 f"Will not generate Scenario page for internal Scenario {scenario_id}"
             )
-            return False
+            return
 
         template = self.jinja_env.get_template("scenario.jinja2")
         context = {
@@ -418,7 +444,7 @@ class DFIQ:
 
     def generate_question_md(
         self, question_id, skip_if_no_approaches=True, allow_internal=False
-    ):
+    ) -> None:
         """Generates Markdown for a Question page.
 
         Args:
@@ -436,7 +462,7 @@ class DFIQ:
             logging.warning(
                 f"Will not generate Question page for internal Question {question_id}"
             )
-            return False
+            return
 
         if skip_if_no_approaches and not q.approaches:
             logging.debug(
@@ -459,7 +485,7 @@ class DFIQ:
 
         logging.info(f"Wrote Markdown for Question {question_id} to {output_path}")
 
-    def generate_question_index_md(self, allow_internal=False):
+    def generate_question_index_md(self, allow_internal=False) -> None:
         """Generates Markdown for the index page listing all Questions.
 
         Args:
