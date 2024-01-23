@@ -19,6 +19,9 @@ plugins:
   - search
   - tags:
       tags_file: tags.md
+  - redirects:
+      redirect_maps:
+        'spec.md': 'contributing/specification.md'
 markdown_extensions:
   - pymdownx.betterem
   - admonition
