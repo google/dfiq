@@ -282,8 +282,16 @@ class DFIQ:
     @staticmethod
     def convert_yaml_object_to_dfiq_component(
         yaml_object,
-    ) -> Scenario | Facet | Question | Approach:
+    ) -> Scenario | Facet | Question | Approach | None:
         """Takes a dict, loaded from a DFIQ YAML file, and converts to the appropriate dfiq.Component object."""
+
+        assert yaml_object["type"] in (
+            "scenario",
+            "facet",
+            "question",
+            "approach",
+        ), "Object must be of known DFIQ type"
+
         if yaml_object["type"] == "scenario":
             return Scenario(
                 yaml_object["id"],
@@ -319,6 +327,9 @@ class DFIQ:
                 yaml_object.get("view"),
             )
 
+        else:
+            return None
+
     def load_yaml_files_by_type(self, dfiq_type, yaml_data_path=None) -> dict:
         """Load all DFIQ YAML files of a given type from the appropriate path.
 
@@ -351,10 +362,12 @@ class DFIQ:
 
             with open(file_to_open, mode="r") as file:
                 component_from_yaml = yaml.safe_load(file)
-                component_dict[
-                    component_from_yaml["id"]
-                ] = self.convert_yaml_object_to_dfiq_component(component_from_yaml)
+                converted = self.convert_yaml_object_to_dfiq_component(
+                    component_from_yaml
+                )
 
+                if converted:
+                    component_dict[component_from_yaml["id"]] = converted
         return component_dict
 
     @staticmethod
@@ -423,6 +436,9 @@ class DFIQ:
 
         s = self.components.get(scenario_id)
 
+        if not s:
+            raise Exception(f"Unable to find {scenario_id} in components dictionary")
+
         if s.is_internal and not allow_internal:
             logging.warning(
                 f"Will not generate Scenario page for internal Scenario {scenario_id}"
@@ -457,6 +473,9 @@ class DFIQ:
             raise ValueError("Markdown output path not specified")
 
         q = self.components.get(question_id)
+
+        if not q:
+            raise Exception(f"Unable to find {question_id} in components dictionary")
 
         if q.is_internal and not allow_internal:
             logging.warning(
