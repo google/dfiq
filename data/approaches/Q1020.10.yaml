@@ -81,11 +81,11 @@ view:
       analysis:
         - name: OpenSearch
           steps:
-            - description: &filter-desc-hindsight > 
+            - description: &filter-desc-hindsight >
                 Filter the results to just URL page visits. Hindsight only supports Chromium-based
                 browsers (including Microsoft Edge) and not Firefox or Safari.
               type: opensearch-query
-              value: data_type:"chrome:history:page_visited")
+              value: data_type:"chrome:history:page_visited"
         - name: Python Notebook
           steps:
             - description: *filter-desc-hindsight
