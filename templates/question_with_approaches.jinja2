@@ -23,7 +23,7 @@ hide:
 **Approaches to Answer**
 
 {% for approach in question.approaches %}
-{% if components[approach].is_internal == False or allow_internal == True %}
+{%   if components[approach].is_internal == False or allow_internal == True %}
 -  [{{ components[approach].name }} [{{ approach }}]](#{{ components[approach].name.replace(' ','-').lower() }})
     - {{ components[approach]['description']['summary'] }}
     - Tags: <span class="dfiqTag">{{ components[approach]['tags']|join('</span> <span class="dfiqTag">') }}</span>
@@ -38,31 +38,31 @@ hide:
     benefits or drawbacks to each. All these approaches have different pros
     and cons. They can be used individually or in conjunction.
 
-{% for approach in question.approaches %}
-{%   if components[approach].is_internal == False or allow_internal == True %}
-{% set a =  components[approach] %}
-## {{ a.name }}
+{% for _approach in question.approaches %}
+{%   if components[_approach].is_internal == False or allow_internal == True %}
+{%     set approach = components[_approach] %}
+## {{ approach.name }}
 ### 🗂️ Explanation
-{%   if a.description %}
-{%     if a.description.get('details') %}
-{{ a.description['details'] }}
-{%     endif %}
-{%     if a.description.get('references') %}
+{%     if approach.description %}
+{%       if approach.description.get('details') %}
+{{ approach.description['details'] }}
+{%       endif %}
+{%       if approach.description.get('references') %}
 #### References
-{%       for reference in a.description['references'] %}
+{%         for reference in approach.description['references'] %}
  - {{ reference }}
-{%       endfor %}
-{%     endif %}
-{%     if a.description.get('references_internal') and allow_internal == True %}
+{%         endfor %}
+{%       endif %}
+{%       if approach.description.get('references_internal') and allow_internal == True %}
 
 ##### References (Internal)
-{%       for reference in a.description['references_internal'] %}
+{%         for reference in approach.description['references_internal'] %}
  - {{ reference }}
-{%       endfor %}
+{%         endfor %}
+{%       endif %}
 {%     endif %}
-{%   endif %}
 
-{% if a.view.get('notes') %}
+{%     if approach.view.get('notes') %}
 ### 📝 Notes
 
 Each approach comes with certain caveats or limitations. These can often
@@ -73,52 +73,52 @@ ambiguity.
 
 !!! success "Covered"
 
-    {% for note in a.view['notes']['covered'] %}
+{%       for note in approach.view['notes']['covered'] %}
      - {{ note }}
-    {% endfor %}
+{%       endfor %}
 
 !!! failure "Not Covered"
 
-    {% for note in a.view['notes']['not_covered'] %}
+{%       for note in approach.view['notes']['not_covered'] %}
      - {{ note }}
-    {% endfor %}
+{%       endfor %}
 
-{% endif %}
+{%     endif %}
 
 ### 💾 Data
 
 The following data source(s) are needed for this approach to the question.
 
-{% for d in a.view['data'] %}
-{%   if d['type'] == 'description' %}
+{%     for data in approach.view['data'] %}
+{%       if data['type'] == 'description' %}
 **Description**
-:  {{ d['value'] }}
-{%   endif %}
-{% endfor %}
+:  {{ data['value'] }}
+{%      endif %}
+{%     endfor %}
 
-{% for d in a.view['data'] %}
-{%   if d['type'] == 'googlesql-query' %}
+{%    for data in approach.view['data'] %}
+{%      if data['type'] == 'googlesql-query' %}
 **Type**
 :  GoogleSQL Query
 
 **Query**
 
 ```googlesql
-{{ d['value'] }}
+{{ data['value'] }}
 ```
-{%   elif d['type'] == 'artifact' %}
+{%     elif data['type'] == 'artifact' %}
 
 **Type**
 :  [ForensicArtifact](https://github.com/ForensicArtifacts/artifacts#digital-forensics-artifacts-repository)
 
 **Value**
-:  {{ d['value'] }} ([view on GitHub](https://github.com/ForensicArtifacts/artifacts/search?q={{ d['value'] }}))
-{%   elif d['type'] != 'description' %}
-  - {{ d['type'] }}: {{ d['value'] }}
-{%   endif %}
-{% endfor %}
+:  {{ data['value'] }} ([view on GitHub](https://github.com/ForensicArtifacts/artifacts/search?q={{ data['value'] }}))
+{%     elif data['type'] != 'description' %}
+  - {{ data['type'] }}: {{ data['value'] }}
+{%     endif %}
+{%   endfor %}
 
-{% if a.view.get('processors') %}
+{%   if approach.view.get('processors') %}
 ### ⚙️ Processors
 
 A processor is what takes the [data](#💾-data) collected and processes it in
@@ -133,32 +133,32 @@ instructions on how to run the processor are *not* included here, but any
 relevant configuration options are.
 
 
-{%   for p in a.view['processors'] %}
-=== "{{ p.name.title() }}"
-    More information on [{{ p['name'].title() }}](https://forensics.wiki/{{ p.name }}).
+{%     for processor in approach.view['processors'] %}
+=== "{{ processor.name.title() }}"
+    More information on [{{ processor['name'].title() }}](https://forensics.wiki/{{ processor.name }}).
 
-{%     if p.get('options') %}
+{%       if processor.get('options') %}
     Recommended options:
 
     ```
-{%       for o in p['options'] %}     --{{ o['type'] }} {{ o['value'] }}{% endfor %}
+{%         for option in processor['options'] %}     --{{ option['type'] }} {{ option['value'] }}{% endfor %}
 
     ```
-{%     endif %}
-{%     if p.get('analysis') %}
+{%       endif %}
+{%       if processor.get('analysis') %}
 
     #### 📊 Analysis
 
     After processing the raw data, further analysis steps are necessary to answer
-    the question. After loading {{ p.name.title() }}'s output into one of these
+    the question. After loading {{ processor.name.title() }}'s output into one of these
     analysis platforms, use the following steps to refine the data to answer the
     question.
 
-{%       for a in p['analysis'] %}
+{%         for analysis in processor['analysis'] %}
 
-    {{ a['name'] }}
-{%         for step in a.steps %}
-{%           if step.type == 'opensearch-query' %}
+    {{ analysis['name'] }}
+{%           for step in analysis.steps %}
+{%             if step.type == 'opensearch-query' %}
 
     1. {{ step.description }}
        - OpenSearch query:
@@ -166,7 +166,7 @@ relevant configuration options are.
          ```
          {{ step.value }}
          ```
-{%           elif step.type == 'pandas' %}
+{%             elif step.type == 'pandas' %}
 
     1. {{ step.description }}
        - Python code:
@@ -174,24 +174,18 @@ relevant configuration options are.
          ```
          df.{{ step.value }}
          ```
-{%           else %}
+{%             else %}
 
     1. {{ step.description }}
       - Type: {{ step.type}}
       - Value: {{ step.value }}
 
-{%           endif %}
+{%             endif %}
+{%           endfor %}
 {%         endfor %}
-
-{%       endfor %}
+{%       endif %}
+{%     endfor %}
 {%     endif %}
-
-
-
-
-{%   endfor %}
-
-{% endif %}
-{% endif  %}
+{%   endif  %}
 {% endfor %}
 {# ... #}

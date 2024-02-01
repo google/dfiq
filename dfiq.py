@@ -1,3 +1,17 @@
+# Copyright 2024 Google Inc. All rights reserved.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
 import jinja2
 import logging
 import networkx as nx
@@ -23,17 +37,24 @@ class Component(object):
         description (str, optional): A few sentence description of the component.
         type (str, optional): The type of component.
         tags (set[str], optional): A set of tags associated with the component.
-        parent_ids (tuple[str], optional): A tuple of IDs of the component's parents.
-        child_ids (tuple[str], optional): A tuple of IDs of the component's children.
+        parent_ids (set[str], optional): A set of IDs of the component's parents.
+        child_ids (set[str], optional): A set of IDs of the component's children.
         is_internal (bool): Whether the component is private and for internal use only.
 
     Methods:
-        set_children(child_ids: tuple[str]): Sets the component's children.
+        set_children(child_ids: set[str]): Sets the component's children.
     """
 
-    def __init__(self, dfiq_id, name, description=None, tags=None, parent_ids=None):
+    def __init__(
+        self,
+        dfiq_id: str,
+        name: str,
+        description: str | None = None,
+        tags: set[str] | None = None,
+        parent_ids: set[str] | None = None,
+    ) -> None:
         self.id = dfiq_id
-        self.name = name
+        self.name = name.rstrip()
         self.description = description
         self.type = None
         self.tags = tags
@@ -47,10 +68,7 @@ class Component(object):
         self.all_tags = set(self.tags)
 
         if not self.parent_ids:
-            self.parent_ids = ()
-
-        if name:
-            self.name = name.rstrip()
+            self.parent_ids = set()
 
         if description:
             if isinstance(description, str):
@@ -59,7 +77,8 @@ class Component(object):
         if self.id[1] == "0":
             self.is_internal = True
 
-    def set_children(self, child_ids):
+    def set_children(self, child_ids: list) -> None:
+        """Set the component's `child_ids` attribute to a list of its children."""
         self.child_ids = child_ids
 
 
@@ -76,8 +95,17 @@ class Approach(Component):
         type (str): The type of component, which is always "approach".
     """
 
-    def __init__(self, dfiq_id, name, description, tags, view):
-        super().__init__(dfiq_id, name, description, tags, [dfiq_id.split(".")[0]])
+    def __init__(
+        self,
+        dfiq_id: str,
+        name: str,
+        description: str,
+        tags: set[str] | None,
+        view: dict,
+    ) -> None:
+        super().__init__(
+            dfiq_id, name, description, tags, parent_ids={dfiq_id.split(".")[0]}
+        )
         self.view = view
         self.type = "approach"
 
@@ -96,12 +124,20 @@ class Question(Component):
         type (str): The type of component, which is always "question".
     """
 
-    def __init__(self, dfiq_id, name, description, tags, parent_ids):
+    def __init__(
+        self,
+        dfiq_id: str,
+        name: str,
+        description: str | None,
+        tags: set[str] | None,
+        parent_ids: set[str],
+    ) -> None:
         super().__init__(dfiq_id, name, description, tags, parent_ids)
         self.type = "question"
 
     @property
-    def approaches(self):
+    def approaches(self) -> set[str]:
+        """All Approaches associated with a given Question."""
         return self.child_ids
 
 
@@ -117,12 +153,20 @@ class Facet(Component):
         type (str): The type of component, which is always "facet".
     """
 
-    def __init__(self, dfiq_id, name, description, tags, parent_ids):
+    def __init__(
+        self,
+        dfiq_id: str,
+        name: str,
+        description: str | None,
+        tags: set[str] | None,
+        parent_ids: set[str],
+    ) -> None:
         super().__init__(dfiq_id, name, description, tags, parent_ids)
         self.type = "facet"
 
     @property
-    def questions(self):
+    def questions(self) -> set[str]:
+        """All Questions associated with a given Facet."""
         return self.child_ids
 
 
@@ -137,12 +181,15 @@ class Scenario(Component):
         type (str): The type of component, which is always "scenario".
     """
 
-    def __init__(self, dfiq_id, name, description, tags):
+    def __init__(
+        self, dfiq_id: str, name: str, description: str, tags: set[str] | None
+    ):
         super().__init__(dfiq_id, name, description, tags)
         self.type = "scenario"
 
     @property
-    def facets(self):
+    def facets(self) -> set[str]:
+        """All Facets associated with a given Scenario."""
         return self.child_ids
 
 
@@ -165,38 +212,13 @@ class DFIQ:
             between DFIQ components.
         jinja_env (jinja2.Environment): A Jinja2 environment used to generate Markdown
             files.
-
-    Methods:
-        scenarios(): Returns a list of all Scenarios in the DFIQ knowledge base.
-        facets(): Returns a list of all Facets in the DFIQ knowledge base.
-        questions(): Returns a list of all Questions in the DFIQ knowledge base.
-        approaches(): Returns a list of all Approaches in the DFIQ knowledge base.
-        add_child_ids(): Sets the `child_ids` attribute of each DFIQ component to a
-            list of the IDs of its child components.
-        add_child_tags(): Adds the tags of all child components to the `all_tags`
-            attribute of the parent DFIQ component.
-        convert_yaml_object_to_dfiq_component(yaml_object): Converts a YAML DFIQ object
-            to a Python DFIQ component.
-        load_yaml_files_by_type(dfiq_type, yaml_data_path=None): Loads all DFIQ
-            components of the given type from the given YAML data path.
-        load_dfiq_items_from_yaml(yaml_data_path=None): Loads all DFIQ components from
-            the given YAML data path.
-        build_graph(): Builds a directed graph representing the relationships between
-            DFIQ components.
-        display_graph(): Displays the DFIQ graph.
-        generate_scenario_md(scenario_id, allow_internal=False): Generates a Markdown file for the
-            given Scenario (by default, only for external Scenarios).
-        generate_question_md(question_id, skip_if_no_approaches=True, allow_internal=False):
-            Generates a Markdown file for the given Question (by default, only for external Questions).
-        generate_question_index_md(allow_internal=False):
-            Generates a Markdown file for the index page listing all Questions (by default, only for external Questions).
     """
 
     def __init__(
         self,
-        yaml_data_path="data",
-        markdown_output_path=None,
-        templates_path="templates",
+        yaml_data_path: str = "data",
+        markdown_output_path: str | None = None,
+        templates_path: str = "templates",
     ) -> None:
         self.yaml_data_path = yaml_data_path
         self.markdown_output_path = markdown_output_path
@@ -227,31 +249,35 @@ class DFIQ:
         self.add_child_tags()
 
     def scenarios(self) -> list[Scenario]:
+        """Returns a list of all Scenarios in the DFIQ knowledge base."""
         return sorted(
             [c for c in self.components.values() if isinstance(c, Scenario)],
             key=lambda x: x.id,
         )
 
     def facets(self) -> list[Facet]:
+        """Returns a list of all Facets in the DFIQ knowledge base."""
         return sorted(
             [c for c in self.components.values() if isinstance(c, Facet)],
             key=lambda x: x.id,
         )
 
     def questions(self) -> list[Question]:
+        """Returns a list of all Questions in the DFIQ knowledge base."""
         return sorted(
             [c for c in self.components.values() if isinstance(c, Question)],
             key=lambda x: x.id,
         )
 
     def approaches(self) -> list[Approach]:
+        """Returns a list of all Approaches in the DFIQ knowledge base."""
         return sorted(
             [c for c in self.components.values() if isinstance(c, Approach)],
             key=lambda x: x.id,
         )
 
     def add_child_ids(self) -> None:
-        """Adds the list of their child IDs to a component.
+        """Adds the list of their child IDs to a component's `child_ids` attribute.
 
         This is necessary due to how DFIQ components are designed. Instead of specifying a component's
         children in it directly (allowing a "top-down" view of the DFIQ hierarchy), only the component's
@@ -267,7 +293,7 @@ class DFIQ:
             self.components[dfiq_id].set_children(children)
 
     def add_child_tags(self) -> None:
-        """Adds tags from a Question's Approaches to that Question."""
+        """Adds tags from a Question's Approaches to that Question's `all_tags attribute."""
         if not self.graph:
             raise ValueError("DFIQ Graph needed before adding children.")
 
@@ -281,7 +307,7 @@ class DFIQ:
 
     @staticmethod
     def convert_yaml_object_to_dfiq_component(
-        yaml_object,
+        yaml_object: dict,
     ) -> Scenario | Facet | Question | Approach | None:
         """Takes a dict, loaded from a DFIQ YAML file, and converts to the appropriate dfiq.Component object."""
 
@@ -330,7 +356,9 @@ class DFIQ:
         else:
             return None
 
-    def load_yaml_files_by_type(self, dfiq_type, yaml_data_path=None) -> dict:
+    def load_yaml_files_by_type(
+        self, dfiq_type: str, yaml_data_path: str | None = None
+    ) -> dict:
         """Load all DFIQ YAML files of a given type from the appropriate path.
 
         Given the yaml_data_path, locate the correct sub-directory for that
@@ -371,7 +399,7 @@ class DFIQ:
         return component_dict
 
     @staticmethod
-    def validate_yaml_file(yaml_file_path) -> bool:
+    def validate_yaml_file(yaml_file_path: str) -> bool:
         """Validate that a YAML file can be parsed by pyYAML."""
         with open(yaml_file_path, mode="r") as file:
             try:
@@ -382,12 +410,13 @@ class DFIQ:
             return True
 
     def _load_dfiq_schema(self) -> None:
+        """Load Yamale 'spec' files to use for validation."""
         self.schemas["Scenario"] = yamale.make_schema("utils/scenario_spec.yaml")
         self.schemas["Facet"] = yamale.make_schema("utils/facet_spec.yaml")
         self.schemas["Question"] = yamale.make_schema("utils/question_spec.yaml")
         self.schemas["Approach"] = yamale.make_schema("utils/approach_spec.yaml")
 
-    def validate_dfiq_schema(self, yaml_file_path, component_type) -> bool:
+    def validate_dfiq_schema(self, yaml_file_path: str, component_type: str) -> bool:
         """Validate that a YAML file adheres to the appropriate DFIQ Schema."""
         try:
             yaml_to_validate = yamale.make_data(yaml_file_path)
@@ -397,7 +426,7 @@ class DFIQ:
             return False
         return True
 
-    def load_dfiq_items_from_yaml(self, yaml_data_path=None) -> None:
+    def load_dfiq_items_from_yaml(self, yaml_data_path: str | None = None) -> None:
         """Load all four types of DFIQ components from a base path."""
         if not yaml_data_path:
             yaml_data_path = self.yaml_data_path
@@ -422,9 +451,12 @@ class DFIQ:
                     logging.debug(f"added edge: {parent_id} -> {dfiq_id}")
 
     def display_graph(self) -> None:
+        """Display the DFIQ graph."""
         nx.draw(self.graph, with_labels=True, font_weight="bold")
 
-    def generate_scenario_md(self, scenario_id, allow_internal=False) -> None:
+    def generate_scenario_md(
+        self, scenario_id: str, allow_internal: bool = False
+    ) -> None:
         """Generates Markdown for a Scenario page.
 
         Args:
@@ -434,12 +466,12 @@ class DFIQ:
         if not self.markdown_output_path:
             raise ValueError("Markdown output path not specified")
 
-        s = self.components.get(scenario_id)
+        scenario = self.components.get(scenario_id)
 
-        if not s:
+        if not scenario:
             raise Exception(f"Unable to find {scenario_id} in components dictionary")
 
-        if s.is_internal and not allow_internal:
+        if scenario.is_internal and not allow_internal:
             logging.warning(
                 f"Will not generate Scenario page for internal Scenario {scenario_id}"
             )
@@ -447,7 +479,7 @@ class DFIQ:
 
         template = self.jinja_env.get_template("scenario.jinja2")
         context = {
-            "scenario": s,
+            "scenario": scenario,
             "components": self.components,
             "allow_internal": allow_internal,
         }
@@ -459,7 +491,10 @@ class DFIQ:
             file.write(content)
 
     def generate_question_md(
-        self, question_id, skip_if_no_approaches=True, allow_internal=False
+        self,
+        question_id: str,
+        skip_if_no_approaches: bool = True,
+        allow_internal: bool = False,
     ) -> None:
         """Generates Markdown for a Question page.
 
@@ -472,18 +507,18 @@ class DFIQ:
         if not self.markdown_output_path:
             raise ValueError("Markdown output path not specified")
 
-        q = self.components.get(question_id)
+        question = self.components.get(question_id)
 
-        if not q:
+        if not question:
             raise Exception(f"Unable to find {question_id} in components dictionary")
 
-        if q.is_internal and not allow_internal:
+        if question.is_internal and not allow_internal:
             logging.warning(
                 f"Will not generate Question page for internal Question {question_id}"
             )
             return
 
-        if skip_if_no_approaches and not q.approaches:
+        if skip_if_no_approaches and not question.approaches:
             logging.debug(
                 f"Skipped writing Markdown for {question_id}; it had no Approaches"
             )
@@ -491,7 +526,7 @@ class DFIQ:
 
         template = self.jinja_env.get_template("question_with_approaches.jinja2")
         context = {
-            "question": q,
+            "question": question,
             "components": self.components,
             "allow_internal": allow_internal,
         }
@@ -504,7 +539,7 @@ class DFIQ:
 
         logging.info(f"Wrote Markdown for Question {question_id} to {output_path}")
 
-    def generate_question_index_md(self, allow_internal=False) -> None:
+    def generate_question_index_md(self, allow_internal: bool = False) -> None:
         """Generates Markdown for the index page listing all Questions.
 
         Args:
