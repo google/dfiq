@@ -1,0 +1,33 @@
+{# templates/questions_index #}
+---
+hide:
+  - navigation
+  - toc
+---
+# Questions
+
+**Questions are the core of DFIQ.** All other DFIQ components are relative to Questions: Approaches
+describe how to answer the Questions, and Scenarios and Facets organize the Questions logically. Below
+is an index of all the Questions that are defined as part of DFIQ.
+
+Some quick facts about Questions in DFIQ:
+
+- Questions should be small enough in scope that they can be readily answered
+- A single Question can be reused in multiple different Facets
+- If a Question has any Approaches defined, it will render as a link to the detailed Question page
+
+!!! Note
+    Not all the Questions have Approaches defined; in fact, most don't at the moment.
+    If you'd like to contribute an idea for a new Question, or a new Approach for answering an
+    existing Question, please [open an issue on GitHub](https://github.com/google/dfiq/issues).
+
+## Questions Index
+
+| ID          | Question                             | Tags | Approaches |
+| ----------- | ------------------------------------ | ---- | ---------- |
+{% for id, q in components.items() | sort %}
+{%   if q.type == 'question' and (q.is_internal == False or allow_internal == True) %}
+| <span class="dfiqIdTag">{{ id }}</span> | {% if q.approaches|length %}<a href="/questions/{{ id }}">{{ q.name }}</a>{% else %}{{ q.name }}{% endif %} | {% if q.all_tags|length %}<span class="dfiqTag">{{ q.all_tags|join('</span> <span class="dfiqTag">') }}</span>{% endif %} | {{ q.approaches|length }} |
+{%   endif %}
+{% endfor %}
+

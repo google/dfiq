@@ -1,0 +1,191 @@
+{# templates/question_with_approaches #}
+---
+{% if question.all_tags %}
+tags:
+{% for tag in question.all_tags|sort %}
+  - {{ tag }}
+{% endfor %}
+{% endif %}
+
+hide:
+  - navigation
+  - tags
+---
+
+# {{ question.name }}
+
+**ID**: {{ question.id }}
+
+{% if question.description %}
+**Description**: {{ question.description }}
+{% endif %}
+
+**Approaches to Answer**
+
+{% for approach in question.approaches %}
+{%   if components[approach].is_internal == False or allow_internal == True %}
+-  [{{ components[approach].name }} [{{ approach }}]](#{{ components[approach].name.replace(' ','-').lower() }})
+    - {{ components[approach]['description']['summary'] }}
+    - Tags: <span class="dfiqTag">{{ components[approach]['tags']|join('</span> <span class="dfiqTag">') }}</span>
+{%   endif  %}
+{% endfor %}
+
+# Approaches
+
+!!! Note
+    There are often multiple ways to approach answering a question.
+    This section explains the approaches considered, how they work, and any
+    benefits or drawbacks to each. All these approaches have different pros
+    and cons. They can be used individually or in conjunction.
+
+{% for _approach in question.approaches %}
+{%   if components[_approach].is_internal == False or allow_internal == True %}
+{%     set approach = components[_approach] %}
+## {{ approach.name }}
+### 🗂️ Explanation
+{%     if approach.description %}
+{%       if approach.description.get('details') %}
+{{ approach.description['details'] }}
+{%       endif %}
+{%       if approach.description.get('references') %}
+#### References
+{%         for reference in approach.description['references'] %}
+ - {{ reference }}
+{%         endfor %}
+{%       endif %}
+{%       if approach.description.get('references_internal') and allow_internal == True %}
+
+##### References (Internal)
+{%         for reference in approach.description['references_internal'] %}
+ - {{ reference }}
+{%         endfor %}
+{%       endif %}
+{%     endif %}
+
+{%     if approach.view.get('notes') %}
+### 📝 Notes
+
+Each approach comes with certain caveats or limitations. These can often
+be tacit knowledge or assumed that "everyone knows that" (even though they
+don't). This can lead to incorrect assumptions and analysis.
+Explicitly stating what is covered and not covered by the approach reduces
+ambiguity.
+
+!!! success "Covered"
+
+{%       for note in approach.view['notes']['covered'] %}
+     - {{ note }}
+{%       endfor %}
+
+!!! failure "Not Covered"
+
+{%       for note in approach.view['notes']['not_covered'] %}
+     - {{ note }}
+{%       endfor %}
+
+{%     endif %}
+
+### 💾 Data
+
+The following data source(s) are needed for this approach to the question.
+
+{%     for data in approach.view['data'] %}
+{%       if data['type'] == 'description' %}
+**Description**
+:  {{ data['value'] }}
+{%      endif %}
+{%     endfor %}
+
+{%    for data in approach.view['data'] %}
+{%      if data['type'] == 'googlesql-query' %}
+**Type**
+:  GoogleSQL Query
+
+**Query**
+
+```googlesql
+{{ data['value'] }}
+```
+{%     elif data['type'] == 'artifact' %}
+
+**Type**
+:  [ForensicArtifact](https://github.com/ForensicArtifacts/artifacts#digital-forensics-artifacts-repository)
+
+**Value**
+:  {{ data['value'] }} ([view on GitHub](https://github.com/ForensicArtifacts/artifacts/search?q={{ data['value'] }}))
+{%     elif data['type'] != 'description' %}
+  - {{ data['type'] }}: {{ data['value'] }}
+{%     endif %}
+{%   endfor %}
+
+{%   if approach.view.get('processors') %}
+### ⚙️ Processors
+
+A processor is what takes the [data](#💾-data) collected and processes it in
+some way to produce structured data for an investigator to review. Multiple
+processor options can be defined, as there are often multiple programs capable
+of doing similar processing. Plaso is an example of a processor (it processes
+raw artifacts into a timeline). After the data is processed, additional analysis
+steps may be needed to answer the question.
+
+The following processors can process the raw data specified above. Explicit
+instructions on how to run the processor are *not* included here, but any
+relevant configuration options are.
+
+
+{%     for processor in approach.view['processors'] %}
+=== "{{ processor.name.title() }}"
+    More information on [{{ processor['name'].title() }}](https://forensics.wiki/{{ processor.name }}).
+
+{%       if processor.get('options') %}
+    Recommended options:
+
+    ```
+{%         for option in processor['options'] %}     --{{ option['type'] }} {{ option['value'] }}{% endfor %}
+
+    ```
+{%       endif %}
+{%       if processor.get('analysis') %}
+
+    #### 📊 Analysis
+
+    After processing the raw data, further analysis steps are necessary to answer
+    the question. After loading {{ processor.name.title() }}'s output into one of these
+    analysis platforms, use the following steps to refine the data to answer the
+    question.
+
+{%         for analysis in processor['analysis'] %}
+
+    {{ analysis['name'] }}
+{%           for step in analysis.steps %}
+{%             if step.type == 'opensearch-query' %}
+
+    1. {{ step.description }}
+       - OpenSearch query:
+
+         ```
+         {{ step.value }}
+         ```
+{%             elif step.type == 'pandas' %}
+
+    1. {{ step.description }}
+       - Python code:
+
+         ```
+         df.{{ step.value }}
+         ```
+{%             else %}
+
+    1. {{ step.description }}
+      - Type: {{ step.type}}
+      - Value: {{ step.value }}
+
+{%             endif %}
+{%           endfor %}
+{%         endfor %}
+{%       endif %}
+{%     endfor %}
+{%     endif %}
+{%   endif  %}
+{% endfor %}
+{# ... #}
