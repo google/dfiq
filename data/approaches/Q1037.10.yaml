@@ -1,4 +1,4 @@
-# Copyright 2023 Google LLC
+# Copyright 2024 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -31,7 +31,7 @@ description:
     - "[PsExec on MITRE ATT&CK](https://attack.mitre.org/software/S0029/)"
 view:
   data:
-    - type: artifact
+    - type: ForensicArtifact
       value: WindowsPrefetchFiles
     - type: description
       value: Files used by the Windows Prefetch service.
@@ -46,7 +46,7 @@ view:
       - Instances when the PsExeSvc executable has been renamed.
       - Non-Windows systems, as the Prefetch service is Windows-only.
   processors:
-    - name: plaso
+    - name: Plaso
       options:
         - type: parsers
           value: prefetch

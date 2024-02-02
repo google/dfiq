@@ -1,0 +1,53 @@
+# Copyright 2024 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# https://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+---
+display_name: Examine Windows Event Logs for Audit Log cleared
+type: approach
+id: Q1074.11
+dfiq_version: 1.0.0
+tags:
+  - Windows
+  - Event Logs
+description:
+  summary: Parse the Windows Security Event Log and look for "the audit log was cleared" event.
+  details: >
+    On Windows systems, log clearance events for Security event log will be logged with event ID
+    1102. The logs contain the actor account name, domain name, logon id fields.
+  references:
+    - "[1102(S): The audit log was cleared.](https://learn.microsoft.com/en-us/windows/security/threat-protection/auditing/event-1102)"
+    - "[Indicator Removal: Clear Windows Event Logs on MITRE ATT&CK](https://attack.mitre.org/techniques/T1070/001/)"
+view:
+  data:
+    - type: ForensicArtifact
+      value: WindowsEventLogs
+    - type: description
+      value: Windows Event Log files
+  notes:
+    covered:
+      - Security event log clearance events on Windows systems.
+    not_covered:
+      - If the log is deleted or otherwise altered, this event may not be logged.
+      - Only applies to Windows Security audit logs.
+  processors:
+    - name: Plaso
+      options:
+        - type: parsers
+          value: winevtx
+      analysis:
+        - name: OpenSearch
+          steps:
+            - description: Filter the results to events containing audit log clearance.
+              type: opensearch-query
+              value: data_type:"windows:evtx:record" event_identifier:1102 source_name:"Microsoft-Windows-Security-Auditing"

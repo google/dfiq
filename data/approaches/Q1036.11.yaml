@@ -1,4 +1,4 @@
-# Copyright 2023 Google LLC
+# Copyright 2024 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -31,7 +31,7 @@ description:
     - "[PsExec on MITRE ATT&CK](https://attack.mitre.org/software/S0029/)"
 view:
   data:
-    - type: artifact
+    - type: ForensicArtifact
       value: WindowsEventLogs
     - type: description
       value: Windows Event Log files
@@ -43,7 +43,7 @@ view:
         been deleted, it won't be found by this approach.
       - Instances when the PsExec executable has been renamed.
   processors:
-    - name: plaso
+    - name: Plaso
       options:
         - type: parsers
           value: winevtx

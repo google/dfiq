@@ -1,4 +1,4 @@
-# Copyright 2023 Google LLC
+# Copyright 2024 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -40,7 +40,7 @@ description:
     - "[Web Browsers on ForensicArtifacts](https://github.com/ForensicArtifacts/artifacts/blob/main/data/webbrowser.yaml)"
 view:
   data:
-    - type: artifact
+    - type: ForensicArtifact
       value: BrowserHistory
     - type: description
       value: Collect local browser history artifacts. These are often in the
@@ -59,7 +59,7 @@ view:
       - Browsers installed in non-standard paths
       - Visits made in Incognito/Private sessions
   processors:
-    - name: plaso
+    - name: Plaso
       options:
         - type: parsers
           value: webhist
@@ -74,7 +74,7 @@ view:
             - description: *filter-desc
               type: pandas
               value: query('data_type in ("chrome:history:page_visited", "firefox:places:page_visited", "safari:history:visit_sqlite")')
-    - name: hindsight
+    - name: Hindsight
       options:
         - type: format
           value: jsonl
