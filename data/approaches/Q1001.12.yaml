@@ -1,4 +1,4 @@
-# Copyright 2023 Google LLC
+# Copyright 2024 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -47,7 +47,7 @@ description:
     - "[Change Journals](https://learn.microsoft.com/en-gb/windows/win32/fileio/change-journals)"
 view:
   data:
-    - type: artifact
+    - type: ForensicArtifact
       value: NTFSUSNJournal
     - type: description
       value: The NTFS $UsnJnrl file system metadata file. This ForensicArtifact definition
@@ -63,7 +63,7 @@ view:
       - Downloads that would be covered, but happened long enough ago that the USN Journal
         records that would show it have been deleted.
   processors:
-    - name: plaso
+    - name: Plaso
       options:
         - type: parsers
           value: usnjrnl
@@ -77,5 +77,5 @@ view:
             - description: Select and search for the `file_reference` value for an event of interest
                 from the previous query. There should be one with the same timestamp as your
                 previous event and its `filename` value is the download's final name.
-              type: opensearch-query-variable
+              type: opensearch-query
               value: data_type:"fs:ntfs:usn_change" {file_reference value} "USN_REASON_RENAME_NEW_NAME"

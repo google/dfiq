@@ -1,4 +1,4 @@
-# Copyright 2023 Google LLC
+# Copyright 2024 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -17,7 +17,11 @@ display_name: >
   Are any ExternalCompany-related files on the actor’s assigned Company
   assets?
 type: facet
-description:
+description: >
+  An actor may bring unauthorized external intellectual property onto Company
+  “end user” devices (like laptops or desktops). Depending on the time frame
+  under consideration, past devices that the actor no longer actively uses may
+  need to be examined as well.
 id: F1001
 dfiq_version: 1.0.0
 tags:

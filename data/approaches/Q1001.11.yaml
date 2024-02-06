@@ -1,4 +1,4 @@
-# Copyright 2023 Google LLC
+# Copyright 2024 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -43,7 +43,7 @@ description:
 
 view:
   data:
-    - type: artifact
+    - type: ForensicArtifact
       value: SantaLogs
     - type: description
       value: Santa logs stored on the local disk; they may also be centralized off-system,
@@ -58,7 +58,7 @@ view:
       - Downloads that occurred on macOS with Santa, but during a time period for which 
         there are no Santa logs (out of retention or Santa was disabled).
   processors:
-    - name: plaso
+    - name: Plaso
       options:
         - type: parsers
           value: santa
