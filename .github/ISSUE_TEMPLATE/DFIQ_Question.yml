@@ -7,6 +7,8 @@ body:
     attributes:
       value: >
         # DFIQ Questions
+
+        
         Questions are the fundamental "building blocks" of DFIQ. All other DFIQ 
         components are relative to Questions: Approaches describe how to answer 
         the Questions, and Scenarios and Facets organize the Questions logically.
@@ -74,10 +76,17 @@ body:
       placeholder: F1234, F5678
     validations:
       required: false
+  - type: markdown
+    attributes:
+      value: |
+        ## Helpful Additional Information
+        The following fields are not part of the DFIQ Specification for Questions, but
+        are extra information that's useful when building out the Approaches to answer
+        the proposed Question. 
   - type: textarea
     id: approach_ideas
     attributes:
-      label: Ideas for Apporaches to answer this Question
+      label: Ideas for Approaches to answer this Question
       description: >
         "How would someone answer this Question? Even a sentance or two capturing the key parts of how to answer is very helpful. You can provide multiple different Approach suggestions."
 
@@ -88,4 +97,25 @@ body:
         - Detect browser downloads via file system events (downloads by some web browsers create a specific pattern of events on the file system).
         - ... 
     validations:
-      required: false 
+      required: false
+  - type: textarea
+    id: references
+    attributes:
+      label: Links to any references
+      description: |
+        Links to any research papers, blog posts, presentations, or other resources useful for either providing background for the Question,
+        or potentially useful when creating an Approach to answer the Question.
+      placeholder: |
+        - https://example.com/exampe
+        - "[Example using Markdown](https://another.example.com/paper)."
+        - ... 
+    validations:
+      required: false
+  - type: textarea
+    id: comments
+    attributes:
+      label: Anything else?
+      description: |
+        Any extra information that you'd like to provide - questions, comments, feedback, etc.
+    validations:
+      required: false
