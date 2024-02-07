@@ -1,4 +1,4 @@
-name: New DFIQ Question
+name: "New DFIQ Question"
 description: A template for new DFIQ Questions with fields and descriptions 
 title: "[New Question]: "
 labels: ["DFIQ Question", "📝 Triage"]
