@@ -29,7 +29,7 @@ body:
     id: display_name
     attributes:
       label: Display Name
-      description: The question, in natural language. Example: "What files were downloaded using a web browser?"
+      description: "The question, in natural language. Example: _What files were downloaded using a web browser?_"
     validations:
       required: true
   - type: input
