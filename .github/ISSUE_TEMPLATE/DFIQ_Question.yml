@@ -20,6 +20,8 @@ body:
         multiple different Facets.
 
         ## Fields from the DFIQ Specification
+
+        
         The following fields are based on the [DFIQ Specification](https://dfiq.org/spec). 
         The required fields are marked, but filling out as many as you can now will make 
         creating the DFIQ YAML file easier later.
@@ -27,8 +29,7 @@ body:
     id: display_name
     attributes:
       label: Display Name
-      description: The Question, in natural language.
-      placeholder: "example: What files were downloaded using a web browser?"
+      description: The question, in natural language. Example: "What files were downloaded using a web browser?"
     validations:
       required: true
   - type: input
@@ -93,7 +94,7 @@ body:
     attributes:
       label: Ideas for Approaches to answer this Question
       description: >
-        "How would someone answer this Question? Even a sentance or two capturing the key parts of how to answer is very helpful. You can provide multiple different Approach suggestions."
+        How would someone answer this Question? Even a sentance or two capturing the key parts of how to answer is very helpful. You can provide multiple different Approach suggestions.
 
 
         Examples above apply to the Question "What files were downloaded using a web browser?")
