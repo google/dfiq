@@ -2,7 +2,6 @@ name: "New DFIQ Question"
 description: A template for new DFIQ Questions with fields and descriptions 
 title: "[New Question]: "
 labels: ["DFIQ Question", "📝 Triage"]
-
 body:
   - type: markdown
     attributes:
@@ -73,16 +72,16 @@ body:
       placeholder: F1234, F5678
     validations:
       required: false
-- type: textarea
-  id: approach_ideas
-  attributes:
-    label: Ideas for Apporaches to answer this Question
-    description: | 
-      "How would someone answer this Question? Even a sentance or two capturing the key parts of how to answer is very helpful. You can provide multiple different Approach suggestions."
-    placeholder: |
-      (examples below apply to the Question "What files were downloaded using a web browser?")
-      - Parse download records from web browsers' own databases, using one of several open source tools.
-      - Detect browser downloads via file system events (downloads by some web browsers create a specific pattern of events on the file system).
-      - ... 
-  validations:
-    required: false 
+  - type: textarea
+    id: approach_ideas
+    attributes:
+      label: Ideas for Apporaches to answer this Question
+      description: | 
+        "How would someone answer this Question? Even a sentance or two capturing the key parts of how to answer is very helpful. You can provide multiple different Approach suggestions."
+      placeholder: |
+        (examples below apply to the Question "What files were downloaded using a web browser?")
+        - Parse download records from web browsers' own databases, using one of several open source tools.
+        - Detect browser downloads via file system events (downloads by some web browsers create a specific pattern of events on the file system).
+        - ... 
+    validations:
+      required: false 
