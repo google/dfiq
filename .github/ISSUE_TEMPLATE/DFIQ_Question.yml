@@ -20,7 +20,7 @@ body:
     attributes:
       label: Display Name
       description: The Question, in natural language.
-      placeholder: example: What files were downloaded using a web browser?
+      placeholder: "example: What files were downloaded using a web browser?"
     validations:
       required: true
   - type: input
