@@ -5,7 +5,7 @@ labels: ["DFIQ Question", "📝 Triage"]
 body:
   - type: markdown
     attributes:
-      value: |
+      value: >
         Questions are the fundamental "building blocks" of DFIQ. All other DFIQ 
         components are relative to Questions: Approaches describe how to answer 
         the Questions, and Scenarios and Facets organize the Questions logically.
@@ -76,10 +76,11 @@ body:
     id: approach_ideas
     attributes:
       label: Ideas for Apporaches to answer this Question
-      description: | 
+      description: >
         "How would someone answer this Question? Even a sentance or two capturing the key parts of how to answer is very helpful. You can provide multiple different Approach suggestions."
+
+        Examples above apply to the Question "What files were downloaded using a web browser?")
       placeholder: |
-        (examples below apply to the Question "What files were downloaded using a web browser?")
         - Parse download records from web browsers' own databases, using one of several open source tools.
         - Detect browser downloads via file system events (downloads by some web browsers create a specific pattern of events on the file system).
         - ... 
