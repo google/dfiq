@@ -6,7 +6,7 @@ body:
   - type: markdown
     attributes:
       value: >
-        # DFIQ Questions
+        # DFIQ: Questions
 
         
         Questions are the fundamental "building blocks" of DFIQ. All other DFIQ 
@@ -18,6 +18,11 @@ body:
         and not easily divided into multiple parts (if it can be, it likely 
         should be multiple Questions). A single Question can be reused in 
         multiple different Facets.
+
+        ## Fields from the DFIQ Specification
+        The following fields are based on the [DFIQ Specification](https://dfiq.org/spec). 
+        The required fields are marked, but filling out as many as you can now will make 
+        creating the DFIQ YAML file easier later.
   - type: input
     id: display_name
     attributes:
@@ -71,7 +76,7 @@ body:
   - type: input
     id: parent_ids
     attributes:
-      label: List of tags
+      label: Parent IDs
       description: List of DFIQ facet IDs that this question belongs to. Optional.
       placeholder: F1234, F5678
     validations:
