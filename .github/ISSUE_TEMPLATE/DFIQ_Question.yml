@@ -1,0 +1,88 @@
+name: New DFIQ Question
+description: A template for new DFIQ Questions with fields and descriptions 
+title: "[New Question]: "
+labels: ["DFIQ Question", "📝 Triage"]
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Questions are the fundamental "building blocks" of DFIQ. All other DFIQ 
+        components are relative to Questions: Approaches describe how to answer 
+        the Questions, and Scenarios and Facets organize the Questions logically.
+
+        A Question should be specific enough that it can be readily answered 
+        and not easily divided into multiple parts (if it can be, it likely 
+        should be multiple Questions). A single Question can be reused in 
+        multiple different Facets.
+  - type: input
+    id: display_name
+    attributes:
+      label: Display Name
+      description: The Question, in natural language.
+      placeholder: example: What files were downloaded using a web browser?
+    validations:
+      required: true
+  - type: input
+    id: description
+    attributes:
+      label: Description
+      description: A description of the question. Markdown syntax MAY be used for rich text representation.
+      placeholder: 
+    validations:
+      required: false
+  - type: input
+    id: dfiq_version
+    attributes:
+      label: DFIQ Version
+      description: The [DFIQ Specification](https://dfiq.org/spec) version in teh major.minor.patch scheme (probably leave this as-is).
+      value: "1.0.0"
+    validations:
+      required: true
+  - type: dropdown
+    id: type
+    attributes:
+      label: DFIQ Component Type
+      description: "Represent the type of DFIQ object. Should be `question` for questions."
+      multiple: false
+      options:
+        - question
+    validations:
+      required: true
+  - type: input
+    id: id
+    attributes:
+      label: DFIQ ID
+      description: "DFIQ Identifier using the format defined in [identifiers](https://dfiq.org/contributing/specification/#identifiers). It's ok to leave this blank for now."
+      placeholder: Q1234
+    validations:
+      required: false
+  - type: input
+    id: tags
+    attributes:
+      label: List of tags
+      description: A list of tags (categories or keywords) that apply to this Question. Optional.
+      placeholder: chrome, web browsers, downloads
+    validations:
+      required: false  
+  - type: input
+    id: parent_ids
+    attributes:
+      label: List of tags
+      description: List of DFIQ facet IDs that this question belongs to. Optional.
+      placeholder: F1234, F5678
+    validations:
+      required: false
+- type: textarea
+  id: approach_ideas
+  attributes:
+    label: Ideas for Apporaches to answer this Question
+    description: | 
+      "How would someone answer this Question? Even a sentance or two capturing the key parts of how to answer is very helpful. You can provide multiple different Approach suggestions."
+    placeholder: |
+      (examples below apply to the Question "What files were downloaded using a web browser?")
+      - Parse download records from web browsers' own databases, using one of several open source tools.
+      - Detect browser downloads via file system events (downloads by some web browsers create a specific pattern of events on the file system).
+      - ... 
+  validations:
+    required: false 
