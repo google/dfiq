@@ -1,0 +1,108 @@
+name: "New DFIQ Facet"
+description: A template for new DFIQ Facets with fields and descriptions
+title: "[New Facet]: "
+labels: ["DFIQ Facet", "📝 Triage"]
+body:
+  - type: markdown
+    attributes:
+      value: >
+        # DFIQ: Facets
+
+        
+        Facets are used for intermediate-level grouping in DFIQ. A particular Facet 
+        can be part of multiple different Scenarios and will contain multiple Questions. 
+        A Facet breaks the larger Scenario into smaller logical pieces, but a Facet 
+        is still too broad to answer directly; it must also be broken down (into Questions).
+
+
+        ## Fields from the DFIQ Specification
+
+        
+        The following fields are based on the [DFIQ Specification](https://dfiq.org/spec). 
+        The required fields are marked, but filling out as many as you can now will make 
+        creating the DFIQ YAML file easier later.
+  - type: input
+    id: display_name
+    attributes:
+      label: Display Name
+      description: "The Facet, in natural language. Example: _Are there signs of staging data for future exfiltration?_"
+    validations:
+      required: true
+  - type: input
+    id: description
+    attributes:
+      label: Description
+      description: A description of the Facet. Markdown syntax may be used for rich text representation.
+    validations:
+      required: false
+  - type: input
+    id: dfiq_version
+    attributes:
+      label: DFIQ Version
+      description: The [DFIQ Specification](https://dfiq.org/spec) version in the major.minor.patch scheme (probably leave this as-is).
+      value: "1.0.0"
+    validations:
+      required: true
+  - type: dropdown
+    id: type
+    attributes:
+      label: DFIQ Component Type
+      description: "Represent the type of DFIQ object. Should be `facet` for Facets."
+      multiple: false
+      options:
+        - facet
+    validations:
+      required: true
+  - type: input
+    id: id
+    attributes:
+      label: DFIQ ID
+      description: "DFIQ Identifier using the format defined in [identifiers](https://dfiq.org/contributing/specification/#identifiers). It's ok to leave this blank for now."
+      placeholder: F1234
+    validations:
+      required: false
+  - type: input
+    id: tags
+    attributes:
+      label: List of tags
+      description: A list of tags (categories or keywords) that apply to this Facet. Optional.
+      placeholder: chrome, web browsers, downloads
+    validations:
+      required: false  
+  - type: input
+    id: parent_ids
+    attributes:
+      label: Parent IDs
+      description: List of DFIQ Scenario IDs that this Facet belongs to. Optional.
+      placeholder: S1234, S5678
+    validations:
+      required: false
+  - type: markdown
+    attributes:
+      value: >
+        ## Helpful Additional Information
+        
+        
+        The following fields are not part of the DFIQ Specification, but
+        are extra information that may be useful.
+  - type: textarea
+    id: references
+    attributes:
+      label: Links to any references
+      description: |
+        Links to any research papers, blog posts, presentations, or other resources useful 
+        for either providing background or prior art.
+      placeholder: |
+        - https://example.com/exampe
+        - "[Example using Markdown](https://another.example.com/paper)."
+        - ... 
+    validations:
+      required: false
+  - type: textarea
+    id: comments
+    attributes:
+      label: Anything else?
+      description: |
+        Any extra information that you'd like to provide - questions, comments, feedback, etc.
+    validations:
+      required: false

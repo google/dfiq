@@ -29,15 +29,14 @@ body:
     id: display_name
     attributes:
       label: Display Name
-      description: "The question, in natural language. Example: _What files were downloaded using a web browser?_"
+      description: "The Question, in natural language. Example: _What files were downloaded using a web browser?_"
     validations:
       required: true
   - type: input
     id: description
     attributes:
       label: Description
-      description: A description of the question. Markdown syntax MAY be used for rich text representation.
-      placeholder: 
+      description: A description of the Question. Markdown syntax may be used for rich text representation.
     validations:
       required: false
   - type: input
@@ -52,7 +51,7 @@ body:
     id: type
     attributes:
       label: DFIQ Component Type
-      description: "Represent the type of DFIQ object. Should be `question` for questions."
+      description: "Represent the type of DFIQ object. Should be `question` for Questions."
       multiple: false
       options:
         - question
@@ -78,14 +77,16 @@ body:
     id: parent_ids
     attributes:
       label: Parent IDs
-      description: List of DFIQ facet IDs that this question belongs to. Optional.
+      description: List of DFIQ Facet IDs that this Question belongs to. Optional.
       placeholder: F1234, F5678
     validations:
       required: false
   - type: markdown
     attributes:
-      value: |
+      value: >
         ## Helpful Additional Information
+        
+        
         The following fields are not part of the DFIQ Specification for Questions, but
         are extra information that's useful when building out the Approaches to answer
         the proposed Question. 
@@ -94,7 +95,8 @@ body:
     attributes:
       label: Ideas for Approaches to answer this Question
       description: >
-        How would someone answer this Question? Even a sentance or two capturing the key parts of how to answer is very helpful. You can provide multiple different Approach suggestions.
+        How would someone answer this Question? Even a sentence or two capturing the key
+        parts of how to answer is very helpful. You can provide multiple different Approach suggestions.
 
 
         Examples above apply to the Question "What files were downloaded using a web browser?")
@@ -109,8 +111,9 @@ body:
     attributes:
       label: Links to any references
       description: |
-        Links to any research papers, blog posts, presentations, or other resources useful for either providing background for the Question,
-        or potentially useful when creating an Approach to answer the Question.
+        Links to any research papers, blog posts, presentations, or other resources
+        useful for either providing background for the Question, or potentially
+        useful when creating an Approach to answer the Question.
       placeholder: |
         - https://example.com/exampe
         - "[Example using Markdown](https://another.example.com/paper)."
