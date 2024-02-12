@@ -29,6 +29,7 @@ description:
   references:
     - "[Prefetch on the ForensicsWiki](https://forensics.wiki/prefetch/)"
     - "[PsExec on MITRE ATT&CK](https://attack.mitre.org/software/S0029/)"
+    - "[Detecting PsExec Usage by 13Cubed](https://www.youtube.com/watch?v=oVM1nQhDZQc)"
 view:
   data:
     - type: ForensicArtifact

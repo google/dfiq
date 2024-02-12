@@ -29,6 +29,7 @@ description:
   references:
     - "[4688(S): A new process has been created](https://learn.microsoft.com/en-us/windows/security/threat-protection/auditing/event-4688)"
     - "[PsExec on MITRE ATT&CK](https://attack.mitre.org/software/S0029/)"
+    - "[Detecting PsExec Usage by 13Cubed](https://www.youtube.com/watch?v=oVM1nQhDZQc)"
 view:
   data:
     - type: ForensicArtifact

@@ -23,3 +23,4 @@ for question in dfiq_instance.questions():
     dfiq_instance.generate_question_md(question.id)
 
 dfiq_instance.generate_question_index_md()
+dfiq_instance.generate_approach_glossary_md()
