@@ -24,7 +24,7 @@ hide:
 
 {% for approach in question.approaches %}
 {%   if components[approach].is_internal == False or allow_internal == True %}
--  [{{ components[approach].name }} [{{ approach }}]](#{{ components[approach].name.replace(' ','-').lower() }})
+-  [{{ components[approach].name }} [{{ approach }}]](#{{ components[approach].name.replace(' ','-').replace('(','').replace(')','').lower() }})
     - {{ components[approach]['description']['summary'] }}
     - Tags: <span class="dfiqTag">{{ components[approach]['tags']|join('</span> <span class="dfiqTag">') }}</span>
 {%   endif  %}
@@ -106,7 +106,7 @@ The following data source(s) are needed for this approach to the question.
 ```googlesql
 {{ data['value'] }}
 ```
-{%     elif data['type'] == 'artifact' %}
+{%     elif data['type'] == 'ForensicArtifact' %}
 
 **Type**
 :  [ForensicArtifact](https://github.com/ForensicArtifacts/artifacts#digital-forensics-artifacts-repository)
@@ -135,7 +135,7 @@ relevant configuration options are.
 
 {%     for processor in approach.view['processors'] %}
 === "{{ processor.name.title() }}"
-    More information on [{{ processor['name'].title() }}](https://forensics.wiki/{{ processor.name }}).
+    More information on [{{ processor['name'].title() }}](https://forensics.wiki/{{ processor.name|lower }}).
 
 {%       if processor.get('options') %}
     Recommended options:

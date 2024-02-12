@@ -32,7 +32,7 @@ A DFIQ document that conforms to the DFIQ Specification is represented in YAML.
 Both the 4- and 2-digit numbers start with a 1 (or higher) for components appropriate for external use. Numbers 
 starting with a 0 are reserved for internal use (think of it like private IP address space). Users of DFIQ can use 
 these IDs for their internal components without worrying about collisions with public components. 
-[DFIQ on GitHub](https://github.com/google/dfiq) will serve as the "definitive" central repository to manage
+[DFIQ on GitHub](https://github.com/google/dfiq) will serve as the definitive central repository to manage
 public DFIQ components (and their IDs).
 
 ## Schema

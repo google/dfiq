@@ -1,0 +1,115 @@
+{# templates/approach_glossary #}
+# Approach Glossary
+
+DFIQ's Approaches contain the important "how" to answer the Questions. Approaches are also the most complicated
+part of DFIQ, due to the amount of structured information they contain. DFIQ has a detailed
+[specification](https://dfiq.org/contributing/specification) that is a useful reference for
+creating new Approaches. However, some parts of Approaches need user-defined values that are beyond the specification.
+This page is a glossary of currently-used values, generated from the
+[DFIQ YAML files](https://github.com/google/dfiq/tree/main/data).
+
+When writing new Approaches, check this glossary first to see if there's already an existing term that fits with what
+you're trying to do. If not, you are free to create a new one, but trying to reuse existing terms first will increase
+consistency throughout DFIQ. These concepts (data type, processors, analysis steps) also may not be straight-forward at
+first; the hope is that seeing some common values (and the linked usages) will help make them more clear.
+
+## Data
+
+This section (`view.data`) can have multiple ways describing the data needed for this approach. They should be thought
+of as complementary or as alternates to each other (they can be "OR"d together, they do not need to be "AND"d).
+Each is specified by a pair of `type` and `value`.
+
+Example (from [Q1001.10](https://github.com/google/dfiq/blob/main/data/approaches/Q1001.10.yaml#L39)):
+
+```
+view:
+  data:
+    - type: ForensicArtifact
+      value: BrowserHistory
+```
+
+Below are the current values of `type`, along with the `value`s set for each.
+
+
+{% for data_type, values in data_type_and_value.items() | sort %}
+#### {{ data_type }}
+{%   if descriptions.get(data_type) %}
+**Description**: {{ descriptions.get(data_type) }}
+{%   endif %}
+
+For `type: {{ data_type }}`, current entries for `value`:
+
+{%   for value in values | sort %}
+- {{ value }}
+{%   endfor %}
+
+{% endfor %}
+
+## Processors
+
+A processor is what takes the data collected and processes it in some way to produce structured data an investigator
+reviews. Multiple processors can be defined, as there are often multiple programs capable of doing similar processing
+(example: log2timeline, Magnet Axiom, and Hindsight can all process browser history artifacts and deliver similar
+results).
+
+Example (from [Q1001.10](https://github.com/google/dfiq/blob/main/data/approaches/Q1001.10.yaml#L58)):
+
+```
+  processors:
+    - name: Plaso
+```
+
+Below are the currently-defined processors:
+
+{% for processor in processor_and_analysis_names | sort %}
+- {{ processor }} [🔎](https://github.com/google/dfiq/search?q="name:%20{{ processor | urlencode }}"+language%3AYAML)
+{% endfor %}
+
+## Analysis Steps
+
+Under each analysis method will be a sequence of one or more maps with keys `description`, `type`, and `value`.
+If there is more than one map, they should be processed in sequence in the analysis method (if applicable). In this
+way, we can describe multiple chained steps of analysis (with the `description` being a way to communicate to the user
+what exactly each "step" is doing, enabling a "show-your-work"-type capability).
+
+Example (from [Q1001.10](https://github.com/google/dfiq/blob/main/data/approaches/Q1001.10.yaml#L63)):
+
+```
+      analysis:
+        - name: OpenSearch
+          steps:
+            - description: &filter-desc Filter the results to just file downloads
+              type: opensearch-query
+              value: data_type:("chrome:history:file_downloaded" OR "safari:downloads:entry")
+        - name: Python Notebook
+          steps:
+            - description: *filter-desc
+              type: pandas
+              value: query('data_type in ("chrome:history:file_downloaded", "safari:downloads:entry")')
+```
+
+#### `type`
+
+The contents of the `description` and `value` fields will vary wildly with little repetition, depending on what the
+analysis step is doing, but the step `type` should be one of a few common values.
+
+Below are the currently-defined values of `type`:
+
+{% for step in analysis_step_types | sort %}
+- {{ step }} [🔎](https://github.com/google/dfiq/search?q="type:%20{{ step | urlencode }}"+language%3AYAML)
+{% endfor %}
+
+#### Variable Substitution in step `value`
+
+The step's `value` may benefit from some using a specific term to make the step more precise. Common examples of this
+include adding time bounds and filtering down to a specific identifier (user name, host, FQDN, or PID, for example).
+
+DFIQ's convention for denoting a variable to be substituted when used is to wrap the term in **{ }**.
+
+==More standardization is needed here to define common variables (such as timestamps in a particular format).==
+
+Below are the currently-used variables in analysis steps:
+
+{% for variable in step_variables | sort %}
+- {{ variable }} [🔎](https://github.com/google/dfiq/search?q="{{ variable | urlencode }}"+language%3AYAML)
+{% endfor %}
