@@ -575,50 +575,52 @@ class DFIQ:
             if not allow_internal and component.is_internal:
                 continue
 
-            for d in component.view.get('data'):
-                if not data_type_and_value.get(d['type']):
-                    data_type_and_value[d['type']] = set()
-                data_type_and_value[d['type']].add(d['value'])
+            for d in component.view.get("data"):
+                if not data_type_and_value.get(d["type"]):
+                    data_type_and_value[d["type"]] = set()
+                data_type_and_value[d["type"]].add(d["value"])
 
-            for p in component.view.get('processors'):
-                if not processor_and_analysis_names.get(p['name']):
-                    processor_and_analysis_names[p['name']] = set()
+            for p in component.view.get("processors"):
+                if not processor_and_analysis_names.get(p["name"]):
+                    processor_and_analysis_names[p["name"]] = set()
 
-                for analysis in p['analysis']:
-                    processor_and_analysis_names[p['name']].add(analysis['name'])
+                for analysis in p["analysis"]:
+                    processor_and_analysis_names[p["name"]].add(analysis["name"])
 
-                    for step in analysis['steps']:
-                        analysis_step_types.add(step['type'])
-                        m = re.findall(r'\{.*?\}', step['value'])
+                    for step in analysis["steps"]:
+                        analysis_step_types.add(step["type"])
+                        m = re.findall(r"\{.*?\}", step["value"])
                         if m:
                             step_variables.update(m)
 
         if not self.markdown_output_path:
-            raise ValueError('Markdown output path not specified')
+            raise ValueError("Markdown output path not specified")
 
         descriptions = {
-            'ForensicArtifact': 'This corresponds to the name of a ForensicArtifact, an existing repository of '
-                                'machine-readable digital forensic artifacts ('
-                                'https://github.com/ForensicArtifacts/artifacts). Using this type is preferred when '
-                                'the data is a host-based file/artifact, but other methods are available as well (if '
-                                'there isn\'t an existing relevant ForensicArtifact).',
-            'description': 'Text description of the data type. `description` is often using in conjunction with '
-                           'another data type to provide more context. It can also be used alone, either as a '
-                           'placeholder or when more robust, programmatic data types do not fit.',
+            "ForensicArtifact": "This corresponds to the name of a ForensicArtifact, an existing repository of "
+            "machine-readable digital forensic artifacts ("
+            "https://github.com/ForensicArtifacts/artifacts). Using this type is preferred when "
+            "the data is a host-based file/artifact, but other methods are available as well (if "
+            "there isn't an existing relevant ForensicArtifact).",
+            "description": "Text description of the data type. `description` is often using in conjunction with "
+            "another data type to provide more context. It can also be used alone, either as a "
+            "placeholder or when more robust, programmatic data types do not fit.",
         }
 
-        template = self.jinja_env.get_template('approach_glossary.jinja2')
+        template = self.jinja_env.get_template("approach_glossary.jinja2")
         context = {
-            'data_type_and_value': data_type_and_value,
-            'processor_and_analysis_names': processor_and_analysis_names,
-            'analysis_step_types': analysis_step_types,
-            'step_variables': step_variables,
-            'descriptions': descriptions,
-            'components': self.components
+            "data_type_and_value": data_type_and_value,
+            "processor_and_analysis_names": processor_and_analysis_names,
+            "analysis_step_types": analysis_step_types,
+            "step_variables": step_variables,
+            "descriptions": descriptions,
+            "components": self.components,
         }
         content = template.render(context)
-        with open(os.path.join(
-                self.markdown_output_path,
-                'contributing',
-                'approach_glossary.md'), mode='w') as file:
+        with open(
+            os.path.join(
+                self.markdown_output_path, "contributing", "approach_glossary.md"
+            ),
+            mode="w",
+        ) as file:
             file.write(content)
