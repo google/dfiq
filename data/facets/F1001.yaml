@@ -14,12 +14,12 @@
 
 ---
 display_name: >
-  Are any ExternalCompany-related files on the actor’s assigned Company
+  Are any ExternalCompany-related files on the actor's assigned Company
   assets?
 type: facet
 description: >
   An actor may bring unauthorized external intellectual property onto Company
-  “end user” devices (like laptops or desktops). Depending on the time frame
+  "end user" devices (like laptops or desktops). Depending on the time frame
   under consideration, past devices that the actor no longer actively uses may
   need to be examined as well.
 id: F1001
