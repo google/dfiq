@@ -12,6 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+import importlib.resources
 import jinja2
 import logging
 import networkx as nx
@@ -19,6 +20,8 @@ import os
 import re
 import yamale
 import yaml
+from pathlib import Path
+
 
 logging.basicConfig(
     level=logging.DEBUG, format="%(filename)s | %(levelname)s | %(message)s"
@@ -71,9 +74,8 @@ class Component(object):
         if not self.parent_ids:
             self.parent_ids = set()
 
-        if description:
-            if isinstance(description, str):
-                self.description = description.rstrip()
+        if isinstance(description, str):
+            self.description = description.rstrip()
 
         if self.id[1] == "0":
             self.is_internal = True
@@ -202,8 +204,8 @@ class DFIQ:
     relationships.
 
     Attributes:
-        yaml_data_path (str): The path to the directory containing the DFIQ YAML files.
-        markdown_output_path (str, optional): The path to the directory where the
+        yaml_data_path (Path): The path to the directory containing the DFIQ YAML files.
+        markdown_output_path (Path, optional): The path to the directory where the
             generated Markdown files should be saved.
         plural_map (dict): A dictionary mapping from DFIQ component types to their
             plural forms.
@@ -217,9 +219,9 @@ class DFIQ:
 
     def __init__(
         self,
-        yaml_data_path: str = "data",
-        markdown_output_path: str | None = None,
-        templates_path: str = "templates",
+        yaml_data_path: Path = Path("../../data"),
+        markdown_output_path: Path | None = None,
+        templates_path: Path = Path("../templates"),
     ) -> None:
         self.yaml_data_path = yaml_data_path
         self.markdown_output_path = markdown_output_path
@@ -362,7 +364,7 @@ class DFIQ:
     ) -> dict:
         """Load all DFIQ YAML files of a given type from the appropriate path.
 
-        Given the yaml_data_path, locate the correct sub-directory for that
+        Given the yaml_data_path, locate the correct subdirectory for that
         dfiq_type, validate any YAML files there, and load them into a dict.
 
         Args:
@@ -410,12 +412,24 @@ class DFIQ:
                 return False
             return True
 
+    @staticmethod
+    def _get_dfiq_file(subdirectory, file_name=None):
+        """Load a data file bundled in the dfiq package. If multiple subdirectories are needed, use . to separate them."""
+        if file_name:
+            return importlib.resources.files(f'dfiq.{subdirectory}').joinpath(file_name)
+        else:
+            return importlib.resources.files(f'dfiq.{subdirectory}')
+
+    def _get_dfiq_directory(self, subdirectory):
+        return importlib.resources.as_file(self._get_dfiq_file(subdirectory))
+
     def _load_dfiq_schema(self) -> None:
         """Load Yamale 'spec' files to use for validation."""
-        self.schemas["Scenario"] = yamale.make_schema("utils/scenario_spec.yaml")
-        self.schemas["Facet"] = yamale.make_schema("utils/facet_spec.yaml")
-        self.schemas["Question"] = yamale.make_schema("utils/question_spec.yaml")
-        self.schemas["Approach"] = yamale.make_schema("utils/approach_spec.yaml")
+
+        self.schemas["Scenario"] = yamale.make_schema(self._get_dfiq_file('utils', 'scenario_spec.yaml'))
+        self.schemas["Facet"] = yamale.make_schema(self._get_dfiq_file('utils', 'facet_spec.yaml'))
+        self.schemas["Question"] = yamale.make_schema(self._get_dfiq_file('utils', 'question_spec.yaml'))
+        self.schemas["Approach"] = yamale.make_schema(self._get_dfiq_file('utils', 'approach_spec.yaml'))
 
     def validate_dfiq_schema(self, yaml_file_path: str, component_type: str) -> bool:
         """Validate that a YAML file adheres to the appropriate DFIQ Schema."""
@@ -470,7 +484,7 @@ class DFIQ:
         scenario = self.components.get(scenario_id)
 
         if not scenario:
-            raise Exception(f"Unable to find {scenario_id} in components dictionary")
+            raise ValueError(f"Unable to find {scenario_id} in components dictionary")
 
         if scenario.is_internal and not allow_internal:
             logging.warning(
@@ -484,12 +498,12 @@ class DFIQ:
             "components": self.components,
             "allow_internal": allow_internal,
         }
+
         content = template.render(context)
-        with open(
-            os.path.join(self.markdown_output_path, "scenarios", f"{scenario_id}.md"),
-            mode="w",
-        ) as file:
-            file.write(content)
+        output_path = Path(self.markdown_output_path, "scenarios", f"{scenario_id}.md")
+        output_file = Path(output_path)
+        output_file.parent.mkdir(exist_ok=True, parents=True)
+        output_file.write_text(content, encoding='utf-8')
 
     def generate_question_md(
         self,
@@ -511,7 +525,7 @@ class DFIQ:
         question = self.components.get(question_id)
 
         if not question:
-            raise Exception(f"Unable to find {question_id} in components dictionary")
+            raise ValueError(f"Unable to find {question_id} in components dictionary")
 
         if question.is_internal and not allow_internal:
             logging.warning(
@@ -531,14 +545,17 @@ class DFIQ:
             "components": self.components,
             "allow_internal": allow_internal,
         }
-        content = template.render(context)
-        output_path = os.path.join(
-            self.markdown_output_path, "questions", f"{question_id}.md"
-        )
-        with open(output_path, mode="w") as file:
-            file.write(content)
 
+        content = template.render(context)
+        output_path = Path(self.markdown_output_path, "questions", f"{question_id}.md")
+        self.write_content_to_file(content, output_path)
         logging.info(f"Wrote Markdown for Question {question_id} to {output_path}")
+
+    @staticmethod
+    def write_content_to_file(content: str, file_path: Path) -> None:
+        output_file = Path(file_path)
+        output_file.parent.mkdir(exist_ok=True, parents=True)
+        output_file.write_text(content, encoding='utf-8')
 
     def generate_question_index_md(self, allow_internal: bool = False) -> None:
         """Generates Markdown for the index page listing all Questions.
@@ -553,10 +570,9 @@ class DFIQ:
         template = self.jinja_env.get_template("questions_index.jinja2")
         context = {"components": self.components, "allow_internal": allow_internal}
         content = template.render(context)
-        with open(
-            os.path.join(self.markdown_output_path, "questions", "index.md"), mode="w"
-        ) as file:
-            file.write(content)
+        output_path = Path(self.markdown_output_path, "questions", "index.md")
+        self.write_content_to_file(content, output_path)
+        logging.info(f"Wrote Markdown for Question Index to {output_path}")
 
     def generate_approach_glossary_md(self, allow_internal: bool = False) -> None:
         """Generates Markdown for the Approach Glossary page, listing common items in Approaches.
@@ -617,10 +633,5 @@ class DFIQ:
             "components": self.components,
         }
         content = template.render(context)
-        with open(
-            os.path.join(
-                self.markdown_output_path, "contributing", "approach_glossary.md"
-            ),
-            mode="w",
-        ) as file:
-            file.write(content)
+        output_path = Path(self.markdown_output_path, "contributing", "approach_glossary.md")
+        self.write_content_to_file(content, output_path)
