@@ -10,4 +10,4 @@ consistent, thorough, and explainable investigations.
 
 * DFIQ is a catalog of investigative knowledge, centered on [Questions](https://dfiq.org/questions)
 * Uses the concept of [Scenarios](https://dfiq.org/scenarios) to logically group Questions and help structure investigations
-* Stores [data](/data) in an easily-readable, tool-agnostic format (YAML) to be used by others
+* Stores [data](/dfiq/data) in an easily-readable, tool-agnostic format (YAML) to be used by others
