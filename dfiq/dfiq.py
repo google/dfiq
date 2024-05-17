@@ -384,7 +384,9 @@ class DFIQ:
                 f"dfiq.data.{self.plural_map.get(dfiq_type)}"
             )
             for data_file_path in dfiq_data_files.iterdir():
-                if data_file_path.match("*[!-]*.yaml"):
+                # Cast the path from Traversable -> str -> Path; I could not
+                # find a more elegant way to satisfy pytype.
+                if Path(str(data_file_path)).match("*[!-]*.yaml"):
                     yaml_file_paths.append(str(data_file_path))
 
         if yaml_data_path:
