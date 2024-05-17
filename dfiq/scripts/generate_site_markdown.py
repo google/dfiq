@@ -14,7 +14,7 @@
 
 from dfiq import DFIQ
 
-dfiq_instance = DFIQ(markdown_output_path=f"site/docs")
+dfiq_instance = DFIQ(markdown_output_path="../../site/docs")
 
 for scenario in dfiq_instance.scenarios():
     dfiq_instance.generate_scenario_md(scenario.id)
