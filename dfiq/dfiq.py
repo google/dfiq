@@ -235,6 +235,8 @@ class DFIQ:
         }
         self.components = {}
         self.graph = None
+        self.templates_path = Path(templates_path)
+        logging.debug(f'"templates_path" set to "{self.templates_path.resolve()}"')
         self.jinja_env = jinja2.Environment(
             loader=jinja2.FileSystemLoader(templates_path), trim_blocks=True
         )
@@ -584,6 +586,27 @@ class DFIQ:
         output_file.parent.mkdir(exist_ok=True, parents=True)
         output_file.write_text(content, encoding="utf-8")
 
+    def generate_scenario_sitemap_md(self, allow_internal: bool = False) -> None:
+        """Generates a Markdown sitemap for the Scenarios.
+
+        Args:
+            allow_internal (bool): Check if generating internal items is allowed.
+        """
+        if not self.markdown_output_path:
+            raise ValueError("Markdown output path not specified")
+
+        template = self.jinja_env.get_template("scenario_sitemap.jinja2")
+        context = {
+            "components": self.components,
+            "allow_internal": allow_internal,
+        }
+
+        content = template.render(context)
+        output_path = Path(self.markdown_output_path, "scenarios", "sitemap.md")
+        output_file = Path(output_path)
+        output_file.parent.mkdir(exist_ok=True, parents=True)
+        output_file.write_text(content, encoding="utf-8")
+
     def generate_question_index_md(self, allow_internal: bool = False) -> None:
         """Generates Markdown for the index page listing all Questions.
 
@@ -632,7 +655,7 @@ class DFIQ:
 
                     for step in analysis["steps"]:
                         analysis_step_types.add(step["type"])
-                        m = re.findall(r"\{.*?\}", step["value"])
+                        m = re.findall(r"\{[A-z0-9_ -]{2,}?\}", step["value"])
                         if m:
                             step_variables.update(m)
 
