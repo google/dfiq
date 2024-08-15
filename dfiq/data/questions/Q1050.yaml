@@ -17,8 +17,10 @@ display_name: >
   Are there any GCS buckets within the cloud project shared externally?
 type: question
 description:
+uuid: 02838bbd-63b7-45b4-a5cb-65350eb93495
+internal: false
 id: Q1050
-dfiq_version: 1.0.0
+dfiq_version: 1.1.0
 tags:
 parent_ids:
  - F1017

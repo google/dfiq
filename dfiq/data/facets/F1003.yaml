@@ -18,8 +18,10 @@ display_name: >
   removable storage devices?
 type: facet
 description:
+uuid: a32311a0-0673-4921-855f-65a305756495
+internal: false
 id: F1003
-dfiq_version: 1.0.0
+dfiq_version: 1.1.0
 tags:
 parent_ids:
  - S1002

@@ -16,8 +16,10 @@
 display_name: Are there any indications of dynamic linker hijacking?
 type: question
 description:
+uuid: bdd4d96c-106f-4312-85b9-67aa35b72a40
+internal: false
 id: Q1071
-dfiq_version: 1.0.0
+dfiq_version: 1.1.0
 tags:
  - T1574.006
  - macOS

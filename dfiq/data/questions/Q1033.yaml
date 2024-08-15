@@ -16,8 +16,10 @@
 display_name: Was shell history cleared?
 type: question
 description:
+uuid: d01e9643-f68c-4eb8-b021-f4b1a116171f
+internal: false
 id: Q1033
-dfiq_version: 1.0.0
+dfiq_version: 1.1.0
 tags:
 parent_ids:
  - F1007

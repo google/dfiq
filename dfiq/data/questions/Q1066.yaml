@@ -16,8 +16,10 @@
 display_name: What items are in startup folders?
 type: question
 description:
+uuid: 847e2914-bba5-4e74-93b8-cf2cdd730d02
+internal: false
 id: Q1066
-dfiq_version: 1.0.0
+dfiq_version: 1.1.0
 tags:
  - T1547.001
  - Windows

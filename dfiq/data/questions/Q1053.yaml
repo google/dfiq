@@ -16,8 +16,10 @@
 display_name: What Launch Agents are configured?
 type: question
 description:
+uuid: 7463f6b0-fbaa-4d3a-a337-2d4b21e0d6c8
+internal: false
 id: Q1053
-dfiq_version: 1.0.0
+dfiq_version: 1.1.0
 tags:
  - T1543.001
  - macOS

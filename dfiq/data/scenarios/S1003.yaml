@@ -20,8 +20,10 @@ description: >
   on a host. If a domain has been marked as malicious, an investigator may be
   tasked with determining what caused the DNS query (or response) and if it
   indicates the host has been compromised.
+uuid: 5305f225-b274-4fc4-b60f-a87d9e2a7c11
+internal: false
 id: S1003
-dfiq_version: 1.0.0
+dfiq_version: 1.1.0
 tags:
  - Network
  - Malware

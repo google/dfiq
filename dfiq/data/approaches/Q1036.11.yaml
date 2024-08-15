@@ -15,14 +15,18 @@
 ---
 display_name: Examine Windows Event Logs for PsExec executions
 type: approach
+uuid: c84d7c5e-585b-44bd-a2f8-5317923fbae8
+internal: false
 id: Q1036.11
-dfiq_version: 1.0.0
+dfiq_version: 1.1.0
+parent_id: Q1036
 tags:
   - Windows
   - Event Logs
 description:
-  summary: Parse the Windows Security Event Log and look for PsExec processes being created.
-  details: >
+  details: |
+    Parse the Windows Security Event Log and look for PsExec processes being created.
+
     Windows systems can be set to log new process creation events to the Security event log. The
     logs contain the new process name, process ID, parent process name, process creation time, and
     many more useful fields.

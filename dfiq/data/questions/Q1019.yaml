@@ -16,8 +16,10 @@
 display_name: What web browsers were running at a given time?
 type: question
 description:
+uuid: ee3ccd42-9b45-4071-8a8d-c11bf00ddd0f
+internal: false
 id: Q1019
-dfiq_version: 1.0.0
+dfiq_version: 1.1.0
 tags:
  - Web Browser
 parent_ids:

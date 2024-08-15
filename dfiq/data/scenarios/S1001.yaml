@@ -19,6 +19,8 @@ description: >
   An employee is suspected of unauthorized copying of sensitive data (code,
   trade secrets, etc) from internal systems to those outside of the company's
   control.
+uuid: aba6b02b-2ee7-49ab-9cbe-20b7259d4661
+internal: false
 id: S1001
-dfiq_version: 1.0.0
+dfiq_version: 1.1.0
 tags:

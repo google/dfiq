@@ -15,14 +15,18 @@
 ---
 display_name: Examine Windows Prefetch for evidence of PsExeSvc
 type: approach
+uuid: f4efdcac-ed79-4081-ba08-7b7d0a091d6f
+internal: false
 id: Q1037.10
-dfiq_version: 1.0.0
+dfiq_version: 1.1.0
+parent_id: Q1037
 tags:
   - Windows
   - Prefetch
 description:
-  summary: Parse Windows Prefetch files and look for PsExeSvc.
-  details: >
+  details: |
+    Parse Windows Prefetch files and look for PsExeSvc.
+
     Windows Prefetch files are designed to speed up application start times. To do this, they
     store information about recently launched applications, including the file name of the
     executable and the number of times it has been run. 

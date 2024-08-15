@@ -16,8 +16,10 @@
 display_name: What process made the DNS query?
 type: question
 description:
+uuid: 9f9d6a06-d4de-4abd-a5b7-0ac9964cf707
+internal: false
 id: Q1018
-dfiq_version: 1.0.0
+dfiq_version: 1.1.0
 tags:
  - DNS
 parent_ids:

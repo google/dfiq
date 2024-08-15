@@ -16,8 +16,10 @@
 display_name: Was an Incognito/Private browser session used?
 type: question
 description:
+uuid: 74753f61-48e7-4f61-9357-018589fdfa5b
+internal: false
 id: Q1024
-dfiq_version: 1.0.0
+dfiq_version: 1.1.0
 tags:
  - Web Browser
 parent_ids:

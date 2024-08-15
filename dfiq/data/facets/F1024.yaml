@@ -16,8 +16,10 @@
 display_name:  Has a system process been created or modified?
 type: facet
 description:
+uuid: c1458d1a-5ef7-4bf9-bb4f-755ee3228d15
+internal: false
 id: F1024
-dfiq_version: 1.0.0
+dfiq_version: 1.1.0
 tags:
  - T1543
 parent_ids:

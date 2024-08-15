@@ -15,16 +15,20 @@
 ---
 display_name: Detect browser downloads via file system event logs
 type: approach
+uuid: caad7d7c-4cbc-42cb-8f5d-34cd7c32a81f
+internal: false
 id: Q1001.11
-dfiq_version: 1.0.0
+dfiq_version: 1.1.0
+parent_id: Q1001
 tags:
   - Web Browser
   - macOS
 description:
-  summary: File downloads by some web browsers create a specific pattern of events
+  details: |
+    File downloads by some web browsers create a specific pattern of events
     on the file system. We can use this to see browser downloads using file system
     logs (like Santa).
-  details: |
+
     Chrome downloads on macOS create a specific pattern of file system events:
 
     1.  **Download starts with a `WRITE` event to a temp file named like

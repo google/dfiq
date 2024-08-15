@@ -19,7 +19,9 @@ description: >
   Once an attacker is on a system, a main goal becomes trying to maintain that
   access. Persistence mechanisms give the attacker the ability to run malware
   that will survive reboots and credential changes.
+uuid: e8539ec2-53c2-492c-9070-6e4955d38f11
+internal: false
 id: S1007
-dfiq_version: 1.0.0
+dfiq_version: 1.1.0
 tags:
  - TA0003

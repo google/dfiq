@@ -18,7 +18,9 @@ type: scenario
 description: >
   An employee is suspected of taking confidential information or trade secrets
   from a prior employer and introducing it to internal systems.
+uuid: 7c4066fb-526b-43ea-9850-6fa1f797cdc4
+internal: false
 id: S1002
-dfiq_version: 1.0.0
+dfiq_version: 1.1.0
 tags:
  - Insider

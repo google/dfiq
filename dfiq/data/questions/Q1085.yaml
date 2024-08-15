@@ -16,8 +16,10 @@
 display_name: What DNS requests have been made from a system?
 type: question
 description:
+uuid: 7244ca6f-3ff4-4c2d-b033-602b2cc81a21
+internal: false
 id: Q1085
-dfiq_version: 1.0.0
+dfiq_version: 1.1.0
 tags:
 parent_ids:
  - F1029

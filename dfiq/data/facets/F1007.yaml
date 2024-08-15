@@ -16,8 +16,10 @@
 display_name: Are there any indications of anti-forensic efforts?
 type: facet
 description:
+uuid: e92b7c63-ec96-41b7-91a2-e7613c7e7b66
+internal: false
 id: F1007
-dfiq_version: 1.0.0
+dfiq_version: 1.1.0
 tags:
 parent_ids:
  - S1001

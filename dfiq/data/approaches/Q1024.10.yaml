@@ -15,15 +15,19 @@
 ---
 display_name: Search CrowdStrike logs for Incognito Chrome processes
 type: approach
+uuid: e24d84a7-b4ed-4938-a9e9-899847a83acf
+internal: false
 id: Q1024.10
-dfiq_version: 1.0.0
+dfiq_version: 1.1.0
+parent_id: Q1024
 tags:
   - CrowdStrike
   - Process Execution
   - Web Browser
 description:
-  summary: CrowdStrike records the source process ID (ContextProcessId) for ProcessRollup events.
-  details: >
+  details: |
+    CrowdStrike records the source process ID (ContextProcessId) for ProcessRollup events.
+
     Crowdstrike is a detection platform, not a logging platform, so not all executions are logged.
     We cannot always connect a running browser process with observed DNS requests. When we do see
     DNS requests coming from a browser process, yet we don't see browsing history, there are 

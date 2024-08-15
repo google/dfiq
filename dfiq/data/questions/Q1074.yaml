@@ -16,8 +16,10 @@
 display_name: Were any system event logs cleared?
 type: question
 description:
+uuid: b85d4036-8c25-49c1-ab1a-04a45c57bf5a
+internal: false
 id: Q1074
-dfiq_version: 1.0.0
+dfiq_version: 1.1.0
 tags:
  - T1070.001
  - T1070.002

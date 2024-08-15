@@ -15,14 +15,18 @@
 ---
 display_name: Examine Windows Event Logs for Audit Log cleared
 type: approach
+uuid: 0c525f73-9b7e-4234-9670-e924c905b460
+internal: false
 id: Q1074.11
-dfiq_version: 1.0.0
+dfiq_version: 1.1.0
+parent_id: Q1074
 tags:
   - Windows
   - Event Logs
 description:
-  summary: Parse the Windows Security Event Log and look for "the audit log was cleared" event.
-  details: >
+  details: |
+    Parse the Windows Security Event Log and look for "the audit log was cleared" event.
+
     On Windows systems, log clearance events for Security event log will be logged with event ID
     1102. The logs contain the actor account name, domain name, logon id fields.
   references:

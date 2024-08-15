@@ -16,8 +16,10 @@
 display_name: Are there any indications of dylib proxying?
 type: question
 description:
+uuid: bd7931d3-9e36-45b9-b010-dd44b09268b7
+internal: false
 id: Q1070
-dfiq_version: 1.0.0
+dfiq_version: 1.1.0
 tags:
  - macOS
 parent_ids:

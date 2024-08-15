@@ -15,14 +15,18 @@
 ---
 display_name: Collect process executions in Crowdstrike event search
 type: approach
+uuid: 56d69ae0-c077-4457-acb0-cbb1804f5536
+internal: false
 id: Q1019.10
-dfiq_version: 1.0.0
+dfiq_version: 1.1.0
+parent_id: Q1019
 tags:
   - CrowdStrike
   - Process Execution
 description:
-  summary: CrowdStrike records process executions in ProcessRollup event.
-  details: >
+  details: |
+    CrowdStrike records process executions in ProcessRollup event.
+
     CrowdStrike is a detection platform, not a logging platform, so not all ProcessRollup events might be logged.
   references:
     - https://www.crowdstrike.com/blog/understanding-indicators-attack-ioas-power-event-stream-processing-crowdstrike-falcon/

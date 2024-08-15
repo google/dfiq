@@ -18,8 +18,10 @@ type: question
 description: >
   Information about the volume, type, and sources/destinations of network data
   transferred to/from a host can give insights into activity on that host.
+uuid: ddf374f6-a908-46da-a559-c4607fc48c65
+internal: false
 id: Q1031
-dfiq_version: 1.0.0
+dfiq_version: 1.1.0
 tags:
 parent_ids:
  - F1002

@@ -15,14 +15,18 @@
 ---
 display_name: Examine Windows Event Logs for PsExeSvc Service Installations 
 type: approach
+uuid: 06a781fe-d72f-4ef6-9993-835b8a8b9346
+internal: false
 id: Q1037.12
-dfiq_version: 1.0.0
+dfiq_version: 1.1.0
+parent_id: Q1037
 tags:
   - Windows
   - Event Logs
 description:
-  summary: Parse the Windows Security Event Log and look for the PsExeSvc service being installed.
-  details: >
+  details: |
+    Parse the Windows Security Event Log and look for the PsExeSvc service being installed.
+
     Windows systems can be set to log new service installations to the System event log. The
     logs contain the new service name, service file name, and more. When used to access a remote
     system, PsExec installs a service (by default named `PSEXESVC`) on the target system.

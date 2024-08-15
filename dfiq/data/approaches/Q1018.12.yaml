@@ -15,15 +15,19 @@
 ---
 display_name: Use Sysmon (Event ID 22) to link source processes to DNS queries 
 type: approach
+uuid: c21f4e36-c841-431c-8b9c-a48bfc48e55f
+internal: false
 id: Q1018.12
-dfiq_version: 1.0.0
+dfiq_version: 1.1.0
+parent_id: Q1018
 tags:
   - Sysmon
   - DNS
   - Windows
 description:
-  summary: Sysmon Event ID 22 DnsQuery stores source process ID
-  details: >
+  details: |
+    Sysmon Event ID 22 DnsQuery stores source process ID
+
     DNS Query, event ID 22, records a DNS query being issued by a specific host and the originating process.
   references:
     - https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/event.aspx?eventid=90022

@@ -17,8 +17,10 @@ display_name: >
    Are there any suspicious files running at system boot or login autoruns?
 type: facet
 description:
+uuid: f8f76c75-71f4-44cc-b5dc-8b7b5f35fb73
+internal: false
 id: F1023
-dfiq_version: 1.0.0
+dfiq_version: 1.1.0
 tags:
  - T1547
 parent_ids:

@@ -23,8 +23,10 @@ description: >
   computer and then executing the specified command. The command can be
   anything that you would normally run on a local computer, such as a batch
   file, a PowerShell script, or a simple command-line instruction.
+uuid: b557f2d1-ecba-4660-992e-2d714398499f
+internal: false
 id: Q1036
-dfiq_version: 1.0.0
+dfiq_version: 1.1.0
 tags:
  - Windows
 parent_ids:

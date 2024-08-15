@@ -16,8 +16,10 @@
 display_name: Is there a history of communication with the recipients?
 type: question
 description:
+uuid: c70ba182-f3f1-4d10-9b27-33c6fdab1a15
+internal: false
 id: Q1079
-dfiq_version: 1.0.0
+dfiq_version: 1.1.0
 tags:
 parent_ids:
  - F1009

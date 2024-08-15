@@ -16,8 +16,10 @@
 display_name: What system services are installed?
 type: question
 description:
+uuid: 8082b8bc-ff3d-4a50-b4fa-b876ce510285
+internal: false
 id: Q1067
-dfiq_version: 1.0.0
+dfiq_version: 1.1.0
 tags:
  - Windows
  - Linux

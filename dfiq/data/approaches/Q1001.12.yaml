@@ -15,18 +15,22 @@
 ---
 display_name: Detect browser downloads via change journal records
 type: approach
+uuid: 0c1c8c15-fca4-452e-bedb-89d64ff84c38
+internal: false
 id: Q1001.12
-dfiq_version: 1.0.0
+dfiq_version: 1.1.0
+parent_id: Q1001
 tags:
   - Web Browser
   - Windows
   - USN Journal
   - NTFS
 description:
-  summary: File downloads by some web browsers create a specific pattern of events
+  details: |
+    File downloads by some web browsers create a specific pattern of events
     on the file system. We can use this to see browser downloads using NTFS change
     journal (USN journal) records.
-  details: |
+
     Chrome downloads on Windows create a specific pattern of events on the file system:
 
     1.  **Download starts with a `FILE CREATE` event to `.tmp` file; older Chrome versions

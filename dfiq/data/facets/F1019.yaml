@@ -16,8 +16,10 @@
 display_name: Was a browser extension used to maintain a foothold?
 type: facet
 description:
+uuid: 4a3b1b7a-dda6-4047-9bd2-a57bb2515110
+internal: false
 id: F1019
-dfiq_version: 1.0.0
+dfiq_version: 1.1.0
 tags:
  - T1176
  - Web Browser

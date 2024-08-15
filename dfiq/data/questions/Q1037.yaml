@@ -23,8 +23,10 @@ description: >
   computer and then executing the specified command. In order to do this, it
   copies an executable to the target system and installs a service to run that
   executable.
+uuid: 4c06449b-33bb-414b-a877-d902710fbd3a
+internal: false
 id: Q1037
-dfiq_version: 1.0.0
+dfiq_version: 1.1.0
 tags:
  - Windows
 parent_ids:

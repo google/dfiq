@@ -21,8 +21,10 @@ description: >
   query is related to the user's actions, closer scrutiny of their browser
   activity may make sense. If the DNS doesn't appear related, you may need to
   look into the actions of other non-browser processes.
+uuid: b4ae098f-bc9a-404c-89a3-0e61279ba75f
+internal: false
 id: F1005
-dfiq_version: 1.0.0
+dfiq_version: 1.1.0
 tags:
  - Web Browser
 parent_ids:

@@ -18,8 +18,10 @@ type: question
 description: >
   Chrome's DNS prefetching feature can cause DNS queries for domains that a
   user has not visited.
+uuid: 0a7d2434-f29c-43b7-93f2-084e000b577e
+internal: false
 id: Q1072
-dfiq_version: 1.0.0
+dfiq_version: 1.1.0
 tags:
  - Web Browser
  - DNS

@@ -15,16 +15,20 @@
 ---
 display_name: Search CrowdStrike logs for indicator removal on host
 type: approach
+uuid: 6da1f849-ebff-40c9-ad83-00dcbbc40b32
+internal: false
 id: Q1074.10
-dfiq_version: 1.0.0
+dfiq_version: 1.1.0
+parent_id: Q1074
 tags:
   - CrowdStrike
   - Linux
   - Windows
   - macOS
 description:
-  summary: CrowdStrike has built-in detections for "indicator removal on host" events.
-  details: >
+  details: |
+    CrowdStrike has built-in detections for "indicator removal on host" events.
+
     Clearance/deletion of system logs would be recorded in CrowdStrike as a part of their
     "indicator removal on host" detections.
   references:

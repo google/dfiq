@@ -18,8 +18,10 @@ type: question
 description: >
   Sudden changes (increases or decreases) in the number of files may be
   indicitive of mass file transfers (either to or from the device).
+uuid: 733873c2-164e-404e-be8c-6d8e038542ac
+internal: false
 id: Q1027
-dfiq_version: 1.0.0
+dfiq_version: 1.1.0
 tags:
 parent_ids:
  - F1001

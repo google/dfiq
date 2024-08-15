@@ -16,8 +16,10 @@
 display_name: What login hooks are configured?
 type: question
 description:
+uuid: 3586dd10-2b20-44ea-ba27-b20500a3d4f6
+internal: false
 id: Q1056
-dfiq_version: 1.0.0
+dfiq_version: 1.1.0
 tags:
  - T1037.002
  - macOS

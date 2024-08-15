@@ -15,14 +15,18 @@
 ---
 display_name: Use Crowdstrike "Bulk Domains" to link source processes to DNS queries
 type: approach
+uuid: eec339ca-7477-4200-85f6-7c3946af296a
+internal: false
 id: Q1018.10
-dfiq_version: 1.0.0
+dfiq_version: 1.1.0
+parent_id: Q1018
 tags:
   - CrowdStrike
   - DNS
 description:
-  summary: CrowdStrike records the source process ID (ContextProcessId) for DNSRequest event.
-  details: >
+  details: |
+    CrowdStrike records the source process ID (ContextProcessId) for DNSRequest event.
+
     Crowdstrike is a detection platform, not a logging platform, so not all DNS requests are logged.
     Content Filter needs to be enabled to capture DNS request queries.
   references:

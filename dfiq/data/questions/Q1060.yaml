@@ -16,8 +16,10 @@
 display_name: What AT jobs are configured?
 type: question
 description:
+uuid: 8341947c-2184-455f-bee1-294207fa35d0
+internal: false
 id: Q1060
-dfiq_version: 1.0.0
+dfiq_version: 1.1.0
 tags:
  - T1053.002
  - macOS
