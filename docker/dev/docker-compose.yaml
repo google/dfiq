@@ -1,0 +1,12 @@
+services:
+
+  dfiq:
+    build:
+      context: ../../
+      dockerfile: ./docker/dev/Dockerfile
+    entrypoint:
+      - /docker-entrypoint.sh
+    volumes:
+      - ../../:/app/
+    stdin_open: true # docker run -i
+    tty: true        # docker run -t
