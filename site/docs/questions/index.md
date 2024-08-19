@@ -18,13 +18,13 @@ Some quick facts about Questions in DFIQ:
 !!! Note
     Not all the Questions have Approaches defined; in fact, most don't at the moment.
     If you'd like to contribute an idea for a new Question, or a new Approach for answering an
-    existing Question, please [open an issue on GitHub](https://github.com/google/dfiq/issues).
+    existing Question, please [open an issue on GitHub](https://github.com/google/dfiq/issues/new/choose).
 
 ## Questions Index
 
 | ID          | Question                             | Tags | Approaches |
 | ----------- | ------------------------------------ | ---- | ---------- |
-| <span class="dfiqIdTag">Q1001</span> | <a href="/questions/Q1001">What files were downloaded using a web browser?</a> | <span class="dfiqTag">NTFS</span> <span class="dfiqTag">macOS</span> <span class="dfiqTag">Chrome</span> <span class="dfiqTag">Web Browser</span> <span class="dfiqTag">USN Journal</span> <span class="dfiqTag">Windows</span> <span class="dfiqTag">Safari</span> <span class="dfiqTag">SQLite</span> <span class="dfiqTag">Edge</span> | 3 |
+| <span class="dfiqIdTag">Q1001</span> | <a href="/questions/Q1001">What files were downloaded using a web browser?</a> | <span class="dfiqTag">Safari</span> <span class="dfiqTag">Windows</span> <span class="dfiqTag">Edge</span> <span class="dfiqTag">macOS</span> <span class="dfiqTag">NTFS</span> <span class="dfiqTag">SQLite</span> <span class="dfiqTag">USN Journal</span> <span class="dfiqTag">Chrome</span> <span class="dfiqTag">Web Browser</span> | 3 |
 | <span class="dfiqIdTag">Q1002</span> | What USB devices were attached to a computer? |  | 0 |
 | <span class="dfiqIdTag">Q1003</span> | What files were copied from a computer to a USB device? |  | 0 |
 | <span class="dfiqIdTag">Q1004</span> | What screenshots were taken on a computer? |  | 0 |
@@ -41,13 +41,13 @@ Some quick facts about Questions in DFIQ:
 | <span class="dfiqIdTag">Q1015</span> | What syncing activities did external "cloud storage" applications do on a computer? |  | 0 |
 | <span class="dfiqIdTag">Q1016</span> | What files were sent externally via email attachments? |  | 0 |
 | <span class="dfiqIdTag">Q1017</span> | Were any files collected into a container? |  | 0 |
-| <span class="dfiqIdTag">Q1018</span> | <a href="/questions/Q1018">What process made the DNS query?</a> | <span class="dfiqTag">Sysmon</span> <span class="dfiqTag">DNS</span> <span class="dfiqTag">Windows</span> <span class="dfiqTag">CrowdStrike</span> | 3 |
-| <span class="dfiqIdTag">Q1019</span> | <a href="/questions/Q1019">What web browsers were running at a given time?</a> | <span class="dfiqTag">Process Execution</span> <span class="dfiqTag">Web Browser</span> <span class="dfiqTag">CrowdStrike</span> | 1 |
-| <span class="dfiqIdTag">Q1020</span> | <a href="/questions/Q1020">What pages did web browsers visit?</a> | <span class="dfiqTag">Internet Explorer</span> <span class="dfiqTag">Firefox</span> <span class="dfiqTag">Chrome</span> <span class="dfiqTag">SQLite</span> <span class="dfiqTag">Web Browser</span> <span class="dfiqTag">Edge</span> <span class="dfiqTag">Safari</span> | 1 |
+| <span class="dfiqIdTag">Q1018</span> | <a href="/questions/Q1018">What process made the DNS query?</a> | <span class="dfiqTag">DNS</span> <span class="dfiqTag">CrowdStrike</span> <span class="dfiqTag">Windows</span> <span class="dfiqTag">Sysmon</span> | 3 |
+| <span class="dfiqIdTag">Q1019</span> | <a href="/questions/Q1019">What web browsers were running at a given time?</a> | <span class="dfiqTag">Process Execution</span> <span class="dfiqTag">CrowdStrike</span> <span class="dfiqTag">Web Browser</span> | 1 |
+| <span class="dfiqIdTag">Q1020</span> | <a href="/questions/Q1020">What pages did web browsers visit?</a> | <span class="dfiqTag">Safari</span> <span class="dfiqTag">Edge</span> <span class="dfiqTag">SQLite</span> <span class="dfiqTag">Internet Explorer</span> <span class="dfiqTag">Chrome</span> <span class="dfiqTag">Web Browser</span> <span class="dfiqTag">Firefox</span> | 1 |
 | <span class="dfiqIdTag">Q1021</span> | What Chrome extensions are installed? | <span class="dfiqTag">Web Browser</span> | 0 |
 | <span class="dfiqIdTag">Q1022</span> | What actions did a Chrome extension perform? | <span class="dfiqTag">Chrome</span> <span class="dfiqTag">Browser Extension</span> <span class="dfiqTag">Web Browser</span> | 0 |
 | <span class="dfiqIdTag">Q1023</span> | Is a given Chrome extension associated with a given domain? | <span class="dfiqTag">Chrome</span> <span class="dfiqTag">T1176</span> | 0 |
-| <span class="dfiqIdTag">Q1024</span> | <a href="/questions/Q1024">Was an Incognito/Private browser session used?</a> | <span class="dfiqTag">Process Execution</span> <span class="dfiqTag">Web Browser</span> <span class="dfiqTag">CrowdStrike</span> | 1 |
+| <span class="dfiqIdTag">Q1024</span> | <a href="/questions/Q1024">Was an Incognito/Private browser session used?</a> | <span class="dfiqTag">Process Execution</span> <span class="dfiqTag">CrowdStrike</span> <span class="dfiqTag">Web Browser</span> | 1 |
 | <span class="dfiqIdTag">Q1025</span> | What external accounts has the actor used in their web browser? |  | 0 |
 | <span class="dfiqIdTag">Q1026</span> | What files were downloaded from messaging apps? |  | 0 |
 | <span class="dfiqIdTag">Q1027</span> | Are there any sudden changes in the number of files on a device? |  | 0 |
@@ -59,8 +59,8 @@ Some quick facts about Questions in DFIQ:
 | <span class="dfiqIdTag">Q1033</span> | Was shell history cleared? |  | 0 |
 | <span class="dfiqIdTag">Q1034</span> | Was content copied from a file? |  | 0 |
 | <span class="dfiqIdTag">Q1035</span> | Were any copies made of sensitive files? |  | 0 |
-| <span class="dfiqIdTag">Q1036</span> | <a href="/questions/Q1036">Have there been any executions of PsExec?</a> | <span class="dfiqTag">Prefetch</span> <span class="dfiqTag">Windows</span> <span class="dfiqTag">Event Logs</span> | 2 |
-| <span class="dfiqIdTag">Q1037</span> | <a href="/questions/Q1037">Have there been any executions of PsExeSrv?</a> | <span class="dfiqTag">Prefetch</span> <span class="dfiqTag">Windows</span> <span class="dfiqTag">Event Logs</span> | 3 |
+| <span class="dfiqIdTag">Q1036</span> | <a href="/questions/Q1036">Have there been any executions of PsExec?</a> | <span class="dfiqTag">Event Logs</span> <span class="dfiqTag">Prefetch</span> <span class="dfiqTag">Windows</span> | 2 |
+| <span class="dfiqIdTag">Q1037</span> | <a href="/questions/Q1037">Have there been any executions of PsExeSrv?</a> | <span class="dfiqTag">Event Logs</span> <span class="dfiqTag">Prefetch</span> <span class="dfiqTag">Windows</span> | 3 |
 | <span class="dfiqIdTag">Q1038</span> | Were any files sent via CLI utilities? |  | 0 |
 | <span class="dfiqIdTag">Q1039</span> | Are there any detections of exposed service account credentials? |  | 0 |
 | <span class="dfiqIdTag">Q1040</span> | Are there any interaction with the cloud project resources from an unknown external IP address (including Tor Exit nodes, C2 tagged addresses)? |  | 0 |
@@ -76,28 +76,28 @@ Some quick facts about Questions in DFIQ:
 | <span class="dfiqIdTag">Q1050</span> | Are there any GCS buckets within the cloud project shared externally? |  | 0 |
 | <span class="dfiqIdTag">Q1051</span> | Are there any signs of data within the cloud project being transferred externally? |  | 0 |
 | <span class="dfiqIdTag">Q1052</span> | What browser extensions (non-Chrome) are installed? | <span class="dfiqTag">Web Browser</span> | 0 |
-| <span class="dfiqIdTag">Q1053</span> | What Launch Agents are configured? | <span class="dfiqTag">T1543.001</span> <span class="dfiqTag">macOS</span> | 0 |
-| <span class="dfiqIdTag">Q1054</span> | What Launch Daemons are configured? | <span class="dfiqTag">T1543.004</span> <span class="dfiqTag">macOS</span> | 0 |
+| <span class="dfiqIdTag">Q1053</span> | What Launch Agents are configured? | <span class="dfiqTag">macOS</span> <span class="dfiqTag">T1543.001</span> | 0 |
+| <span class="dfiqIdTag">Q1054</span> | What Launch Daemons are configured? | <span class="dfiqTag">macOS</span> <span class="dfiqTag">T1543.004</span> | 0 |
 | <span class="dfiqIdTag">Q1055</span> | What Windows logon scripts are configured? | <span class="dfiqTag">T1037.001</span> <span class="dfiqTag">Windows</span> | 0 |
 | <span class="dfiqIdTag">Q1056</span> | What login hooks are configured? | <span class="dfiqTag">T1037.002</span> <span class="dfiqTag">macOS</span> | 0 |
 | <span class="dfiqIdTag">Q1057</span> | What network logon scripts are configured? | <span class="dfiqTag">T1037.003</span> <span class="dfiqTag">Windows</span> | 0 |
 | <span class="dfiqIdTag">Q1058</span> | What domain accounts have been created? | <span class="dfiqTag">T1136.002</span> <span class="dfiqTag">Windows</span> | 0 |
-| <span class="dfiqIdTag">Q1059</span> | What local accounts have been created? | <span class="dfiqTag">T1136.001</span> <span class="dfiqTag">Linux</span> <span class="dfiqTag">Windows</span> <span class="dfiqTag">macOS</span> | 0 |
-| <span class="dfiqIdTag">Q1060</span> | What AT jobs are configured? | <span class="dfiqTag">Linux</span> <span class="dfiqTag">T1053.002</span> <span class="dfiqTag">macOS</span> | 0 |
+| <span class="dfiqIdTag">Q1059</span> | What local accounts have been created? | <span class="dfiqTag">T1136.001</span> <span class="dfiqTag">macOS</span> <span class="dfiqTag">Windows</span> <span class="dfiqTag">Linux</span> | 0 |
+| <span class="dfiqIdTag">Q1060</span> | What AT jobs are configured? | <span class="dfiqTag">T1053.002</span> <span class="dfiqTag">macOS</span> <span class="dfiqTag">Linux</span> | 0 |
 | <span class="dfiqIdTag">Q1061</span> | What Scheduled Tasks are configured? | <span class="dfiqTag">T1053.005</span> <span class="dfiqTag">Windows</span> | 0 |
-| <span class="dfiqIdTag">Q1062</span> | What cron jobs are configured? | <span class="dfiqTag">T1053.003</span> <span class="dfiqTag">Linux</span> <span class="dfiqTag">macOS</span> | 0 |
+| <span class="dfiqIdTag">Q1062</span> | What cron jobs are configured? | <span class="dfiqTag">T1053.003</span> <span class="dfiqTag">macOS</span> <span class="dfiqTag">Linux</span> | 0 |
 | <span class="dfiqIdTag">Q1063</span> | What periodic scripts are configured? | <span class="dfiqTag">macOS</span> | 0 |
-| <span class="dfiqIdTag">Q1064</span> | What systemd timers are configured? | <span class="dfiqTag">Linux</span> <span class="dfiqTag">T1053.006</span> | 0 |
-| <span class="dfiqIdTag">Q1065</span> | What files are referenced in Registry "Run" keys? | <span class="dfiqTag">Windows</span> <span class="dfiqTag">T1547.001</span> | 0 |
-| <span class="dfiqIdTag">Q1066</span> | What items are in startup folders? | <span class="dfiqTag">Windows</span> <span class="dfiqTag">T1547.001</span> | 0 |
-| <span class="dfiqIdTag">Q1067</span> | What system services are installed? | <span class="dfiqTag">Linux</span> <span class="dfiqTag">Windows</span> <span class="dfiqTag">macOS</span> | 0 |
-| <span class="dfiqIdTag">Q1068</span> | When were system services last modified? | <span class="dfiqTag">Linux</span> <span class="dfiqTag">Windows</span> <span class="dfiqTag">macOS</span> | 0 |
-| <span class="dfiqIdTag">Q1069</span> | Are there any indications of dylib hijacking? | <span class="dfiqTag">T1574.004</span> <span class="dfiqTag">macOS</span> | 0 |
+| <span class="dfiqIdTag">Q1064</span> | What systemd timers are configured? | <span class="dfiqTag">T1053.006</span> <span class="dfiqTag">Linux</span> | 0 |
+| <span class="dfiqIdTag">Q1065</span> | What files are referenced in Registry "Run" keys? | <span class="dfiqTag">T1547.001</span> <span class="dfiqTag">Windows</span> | 0 |
+| <span class="dfiqIdTag">Q1066</span> | What items are in startup folders? | <span class="dfiqTag">T1547.001</span> <span class="dfiqTag">Windows</span> | 0 |
+| <span class="dfiqIdTag">Q1067</span> | What system services are installed? | <span class="dfiqTag">macOS</span> <span class="dfiqTag">Windows</span> <span class="dfiqTag">Linux</span> | 0 |
+| <span class="dfiqIdTag">Q1068</span> | When were system services last modified? | <span class="dfiqTag">macOS</span> <span class="dfiqTag">Windows</span> <span class="dfiqTag">Linux</span> | 0 |
+| <span class="dfiqIdTag">Q1069</span> | Are there any indications of dylib hijacking? | <span class="dfiqTag">macOS</span> <span class="dfiqTag">T1574.004</span> | 0 |
 | <span class="dfiqIdTag">Q1070</span> | Are there any indications of dylib proxying? | <span class="dfiqTag">macOS</span> | 0 |
-| <span class="dfiqIdTag">Q1071</span> | Are there any indications of dynamic linker hijacking? | <span class="dfiqTag">T1574.006</span> <span class="dfiqTag">Linux</span> <span class="dfiqTag">macOS</span> | 0 |
-| <span class="dfiqIdTag">Q1072</span> | Did Chrome's DNS Prefetching cause a DNS query? | <span class="dfiqTag">Web Browser</span> <span class="dfiqTag">DNS</span> | 0 |
+| <span class="dfiqIdTag">Q1071</span> | Are there any indications of dynamic linker hijacking? | <span class="dfiqTag">T1574.006</span> <span class="dfiqTag">macOS</span> <span class="dfiqTag">Linux</span> | 0 |
+| <span class="dfiqIdTag">Q1072</span> | Did Chrome's DNS Prefetching cause a DNS query? | <span class="dfiqTag">DNS</span> <span class="dfiqTag">Web Browser</span> | 0 |
 | <span class="dfiqIdTag">Q1073</span> | Have there been any modifications to the "hosts" file? |  | 0 |
-| <span class="dfiqIdTag">Q1074</span> | <a href="/questions/Q1074">Were any system event logs cleared?</a> | <span class="dfiqTag">T1070.001</span> <span class="dfiqTag">CrowdStrike</span> <span class="dfiqTag">T1070.002</span> <span class="dfiqTag">macOS</span> <span class="dfiqTag">Linux</span> <span class="dfiqTag">Windows</span> <span class="dfiqTag">Event Logs</span> | 2 |
+| <span class="dfiqIdTag">Q1074</span> | <a href="/questions/Q1074">Were any system event logs cleared?</a> | <span class="dfiqTag">Event Logs</span> <span class="dfiqTag">CrowdStrike</span> <span class="dfiqTag">Windows</span> <span class="dfiqTag">Linux</span> <span class="dfiqTag">macOS</span> <span class="dfiqTag">T1070.002</span> <span class="dfiqTag">T1070.001</span> | 2 |
 | <span class="dfiqIdTag">Q1075</span> | Is the recipient account controlled by the sender? |  | 0 |
 | <span class="dfiqIdTag">Q1076</span> | Were the files screenshots? |  | 0 |
 | <span class="dfiqIdTag">Q1077</span> | Were there bulk downloads from Google Drive? |  | 0 |
