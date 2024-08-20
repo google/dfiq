@@ -13,7 +13,7 @@
 # limitations under the License.
 
 ---
-display_name: Use Crowdstrike "Bulk Domains" to link source processes to DNS queries
+name: Use Crowdstrike "Bulk Domains" to link source processes to DNS queries
 type: approach
 uuid: eec339ca-7477-4200-85f6-7c3946af296a
 internal: false
@@ -24,11 +24,13 @@ tags:
   - CrowdStrike
   - DNS
 description:
-  details: |
-    CrowdStrike records the source process ID (ContextProcessId) for DNSRequest event.
+  details: >
+    CrowdStrike records the source process ID (ContextProcessId) for DNSRequest
+    event.
 
-    Crowdstrike is a detection platform, not a logging platform, so not all DNS requests are logged.
-    Content Filter needs to be enabled to capture DNS request queries.
+    Crowdstrike is a detection platform, not a logging platform, so not all DNS
+    requests are logged. Content Filter needs to be enabled to capture DNS
+    request queries.
   references:
     - https://www.crowdstrike.com/blog/hunt-threat-activity-falcon-host-endpoint-protection/bulk-domain-search-results/
 view:
@@ -48,6 +50,6 @@ view:
             - description: UI steps in Investigate Bulk domains
               type: GUI
               value: >
-                In the second table, `Process that looked up specified Domain(s)` the columns 
-                `PID`, `Process ID`, and `File Name` give the source process information for the 
-                DNS query.
+                In the second table, `Process that looked up specified
+                Domain(s)` the columns `PID`, `Process ID`, and `File Name` give
+                the source process information for the DNS query.

@@ -13,7 +13,7 @@
 # limitations under the License.
 
 ---
-display_name: Suspicious DNS Query
+name: Suspicious DNS Query
 type: scenario
 description: >
   A DNS query to an unexpected domain can be an indicator of abnormal activity
@@ -25,6 +25,6 @@ internal: false
 id: S1003
 dfiq_version: 1.1.0
 tags:
- - Network
- - Malware
- - Triage
+  - Network
+  - Malware
+  - Triage

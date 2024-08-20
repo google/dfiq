@@ -13,7 +13,7 @@
 # limitations under the License.
 
 ---
-display_name: Are there any indications of dynamic linker hijacking?
+name: Are there any indications of dynamic linker hijacking?
 type: question
 description:
 uuid: bdd4d96c-106f-4312-85b9-67aa35b72a40
@@ -21,8 +21,8 @@ internal: false
 id: Q1071
 dfiq_version: 1.1.0
 tags:
- - T1574.006
- - macOS
- - Linux
+  - T1574.006
+  - macOS
+  - Linux
 parent_ids:
- - F1025
+  - F1025

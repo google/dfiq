@@ -13,7 +13,7 @@
 # limitations under the License.
 
 ---
-display_name: Collect download records from local browser artifacts
+name: Collect download records from local browser artifacts
 type: approach
 uuid: f35d103a-ab59-4faf-a114-cfd45c735715
 internal: false
@@ -27,31 +27,33 @@ tags:
   - Safari
   - Edge
 description:
-  details: |
+  details: >
     Parse download records from web browsers' own databases.
 
     Most web browsers track file downloads (at least in non-Incognito/private
-    sessions) in local artifacts on the system. We can collect and review
-    these records. This approach is useful when you have remote access to a
-    system (via GRR for example) or a disk image.
+    sessions) in local artifacts on the system. We can collect and review these
+    records. This approach is useful when you have remote access to a system
+    (via GRR for example) or a disk image.
   references:
     - "[Chrome](https://forensics.wiki/google_chrome/#downloadsstart_time),
       [Firefox](https://forensics.wiki/mozilla_firefox/#downloads), and
       [Safari](https://forensics.wiki/apple_safari/#downloads) downloads on
       ForensicsWiki"
-    - "[Web Browsers on ForensicArtifacts](https://github.com/ForensicArtifacts/artifacts/blob/main/data/webbrowser.yaml)"
+    - "[Web Browsers on
+      ForensicArtifacts](https://github.com/ForensicArtifacts/artifacts/blob/main/data/webbrowser.yaml)"
 view:
   data:
     - type: ForensicArtifact
       value: BrowserHistory
     - type: description
-      value: Collect local browser history artifacts. These are often in the
-        form of SQLite databases and JSON files in multiple directories.
+      value:
+        Collect local browser history artifacts. These are often in the form of
+        SQLite databases and JSON files in multiple directories.
   notes:
     covered:
-      - Chrome downloads. Beyond "stable" Chrome, this also includes
-        Chromium, Chrome Canary, Chrome Beta, and other Chromium-based browsers
-        (Microsoft Edge, Brave, and Opera) on Windows, macOS, and Linux
+      - Chrome downloads. Beyond "stable" Chrome, this also includes Chromium,
+        Chrome Canary, Chrome Beta, and other Chromium-based browsers (Microsoft
+        Edge, Brave, and Opera) on Windows, macOS, and Linux
       - Safari downloads
       - Includes downloads from all Chrome profiles
     not_covered:
@@ -67,14 +69,19 @@ view:
       analysis:
         - name: OpenSearch
           steps:
-            - description: &filter-desc Filter the results to just file downloads
+            - description:
+                &filter-desc Filter the results to just file downloads
               type: opensearch-query
-              value: data_type:("chrome:history:file_downloaded" OR "safari:downloads:entry")
+              value:
+                data_type:("chrome:history:file_downloaded" OR
+                "safari:downloads:entry")
         - name: Python Notebook
           steps:
             - description: *filter-desc
               type: pandas
-              value: query('data_type in ("chrome:history:file_downloaded", "safari:downloads:entry")')
+              value:
+                query('data_type in ("chrome:history:file_downloaded",
+                "safari:downloads:entry")')
     - name: Hindsight
       options:
         - type: format
@@ -82,9 +89,10 @@ view:
       analysis:
         - name: OpenSearch
           steps:
-            - description: &filter-desc-hindsight > 
-                Filter the results to just file downloads. Hindsight only supports Chromium-based
-                browsers (including Microsoft Edge) and not Firefox or Safari.
+            - description: &filter-desc-hindsight >
+                Filter the results to just file downloads. Hindsight only
+                supports Chromium-based browsers (including Microsoft Edge) and
+                not Firefox or Safari.
               type: opensearch-query
               value: data_type:"chrome:history:file_downloaded"
         - name: Python Notebook

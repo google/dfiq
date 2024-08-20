@@ -13,7 +13,7 @@
 # limitations under the License.
 
 ---
-display_name: >
+name: >
   Was there specialized "anti-forensic" (or "privacy") software on a computer?
 type: question
 description:
@@ -23,4 +23,4 @@ id: Q1028
 dfiq_version: 1.1.0
 tags:
 parent_ids:
- - F1007
+  - F1007

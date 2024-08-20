@@ -13,7 +13,7 @@
 # limitations under the License.
 
 ---
-display_name: Collect URL visit records from local browser artifacts
+name: Collect URL visit records from local browser artifacts
 type: approach
 uuid: 9cb0f6d8-21c0-40ef-8556-9237b07558a6
 internal: false
@@ -29,31 +29,33 @@ tags:
   - Edge
   - Internet Explorer
 description:
-  details: |
+  details: >
     Parse URL visit records from web browsers' own databases.
 
     Most web browsers track URL visits (at least in non-Incognito/private
-    sessions) in local artifacts on the system. We can collect and review
-    these records. This approach is useful when you have remote access to a
-    system (via GRR for example) or a disk image.
+    sessions) in local artifacts on the system. We can collect and review these
+    records. This approach is useful when you have remote access to a system
+    (via GRR for example) or a disk image.
   references:
     - "[Chrome](https://forensics.wiki/google_chrome/#history),
       [Firefox](https://forensics.wiki/mozilla_firefox/#history), and
       [Safari](https://forensics.wiki/apple_safari/#history) History on
       ForensicsWiki"
-    - "[Web Browsers on ForensicArtifacts](https://github.com/ForensicArtifacts/artifacts/blob/main/data/webbrowser.yaml)"
+    - "[Web Browsers on
+      ForensicArtifacts](https://github.com/ForensicArtifacts/artifacts/blob/main/data/webbrowser.yaml)"
 view:
   data:
     - type: ForensicArtifact
       value: BrowserHistory
     - type: description
-      value: Collect local browser history artifacts. These are often in the
-        form of SQLite databases and JSON files in multiple directories.
+      value:
+        Collect local browser history artifacts. These are often in the form of
+        SQLite databases and JSON files in multiple directories.
   notes:
     covered:
-      - Chrome URL visits. Beyond "stable" Chrome, this also includes
-        Chromium, Chrome Canary, Chrome Beta, and other Chromium-based browsers
-        (Microsoft Edge, Brave, and Opera) on Windows, macOS, and Linux
+      - Chrome URL visits. Beyond "stable" Chrome, this also includes Chromium,
+        Chrome Canary, Chrome Beta, and other Chromium-based browsers (Microsoft
+        Edge, Brave, and Opera) on Windows, macOS, and Linux
       - Includes URL visits from all Chrome profiles
       - Firefox URL visits
       - Safari URL visits on Windows and macOS
@@ -70,14 +72,19 @@ view:
       analysis:
         - name: OpenSearch
           steps:
-            - description: &filter-desc Filter the results to just URL page visits
+            - description:
+                &filter-desc Filter the results to just URL page visits
               type: opensearch-query
-              value: data_type:("chrome:history:page_visited" OR "firefox:places:page_visited" OR "safari:history:visit_sqlite")
+              value:
+                data_type:("chrome:history:page_visited" OR
+                "firefox:places:page_visited" OR "safari:history:visit_sqlite")
         - name: Python Notebook
           steps:
             - description: *filter-desc
               type: pandas
-              value: query('data_type in ("chrome:history:page_visited", "firefox:places:page_visited", "safari:history:visit_sqlite")')
+              value:
+                query('data_type in ("chrome:history:page_visited",
+                "firefox:places:page_visited", "safari:history:visit_sqlite")')
     - name: Hindsight
       options:
         - type: format
@@ -86,8 +93,9 @@ view:
         - name: OpenSearch
           steps:
             - description: &filter-desc-hindsight >
-                Filter the results to just URL page visits. Hindsight only supports Chromium-based
-                browsers (including Microsoft Edge) and not Firefox or Safari.
+                Filter the results to just URL page visits. Hindsight only
+                supports Chromium-based browsers (including Microsoft Edge) and
+                not Firefox or Safari.
               type: opensearch-query
               value: data_type:"chrome:history:page_visited"
         - name: Python Notebook

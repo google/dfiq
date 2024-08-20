@@ -13,7 +13,7 @@
 # limitations under the License.
 
 ---
-display_name: Were the files screenshots?
+name: Were the files screenshots?
 type: question
 description:
 uuid: 962efb5b-b987-4096-a90c-76fa4d36c88b
@@ -22,4 +22,4 @@ id: Q1076
 dfiq_version: 1.1.0
 tags:
 parent_ids:
- - F1009
+  - F1009

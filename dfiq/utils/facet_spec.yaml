@@ -1,5 +1,5 @@
 ---
-display_name: str()
+name: str()
 type: enum('facet')
 description: str(required=False)
 id: regex('^F\d{4}$')

@@ -13,7 +13,7 @@
 # limitations under the License.
 
 ---
-display_name: Detect browser downloads via change journal records
+name: Detect browser downloads via change journal records
 type: approach
 uuid: 0c1c8c15-fca4-452e-bedb-89d64ff84c38
 internal: false
@@ -26,46 +26,55 @@ tags:
   - USN Journal
   - NTFS
 description:
-  details: |
-    File downloads by some web browsers create a specific pattern of events
-    on the file system. We can use this to see browser downloads using NTFS change
+  details: >
+    File downloads by some web browsers create a specific pattern of events on
+    the file system. We can use this to see browser downloads using NTFS change
     journal (USN journal) records.
 
-    Chrome downloads on Windows create a specific pattern of events on the file system:
+    Chrome downloads on Windows create a specific pattern of events on the file
+    system:
 
-    1.  **Download starts with a `FILE CREATE` event to `.tmp` file; older Chrome versions
+    1.  **Download starts with a `FILE CREATE` event to `.tmp` file; older
+    Chrome versions
         have been observed creating four character file names (like `7DEE.tmp`)
         while newer versions use file names consistent with Version 4 UUIDs
         (like `183011a0-f96c-4c98-b71b-ab8754fb0e0e.tmp`).
-    1.  That `.tmp` file might be `RENAME`d to `Unconfirmed [6 digits].crdownload`. 
-    1.  If [2] `Unconfirmed...crdownload` `RENAME` didn't happen, the `.tmp` file is
-        renamed to the eventual filename (with extension) with `.crdownload` appended
-        at the end (like `cat.jpg.crdownload`). **In either case ([2] or [3]), at
+    1.  That `.tmp` file might be `RENAME`d to `Unconfirmed [6
+    digits].crdownload`. 1.  If [2] `Unconfirmed...crdownload` `RENAME` didn't
+    happen, the `.tmp` file is
+        renamed to the eventual filename (with extension) with `.crdownload`
+    appended
+        at the end (like `cat.jpg.crdownload`). **In either case ([2] or [3]),
+    at
         this point we have a file ending in .crdownload.**
     1.  Once the download completes, the `.crdownload` suffix is removed via a
-        `USN_REASON_RENAME_OLD_NAME` event, leaving the downloaded file with its final name.
+        `USN_REASON_RENAME_OLD_NAME` event, leaving the downloaded file with its
+    final name.
 
     Since [4] above captures the key information about the file download, we can
     search change journal records for it.
   references:
-    - "[Change Journals](https://learn.microsoft.com/en-gb/windows/win32/fileio/change-journals)"
+    - "[Change
+      Journals](https://learn.microsoft.com/en-gb/windows/win32/fileio/change-journals)"
 view:
   data:
     - type: ForensicArtifact
       value: NTFSUSNJournal
     - type: description
-      value: The NTFS $UsnJnrl file system metadata file. This ForensicArtifact definition
-        does not include the $J alternate data stream, but many tools collect it anyway. 
+      value:
+        The NTFS $UsnJnrl file system metadata file. This ForensicArtifact
+        definition does not include the $J alternate data stream, but many tools
+        collect it anyway.
   notes:
     covered:
       - Chrome downloads to an NTFS volume
     not_covered:
       - All other browsers.
-      - Downloads from other Chromium/Chrome-based browsers _might_ be collected via this
-        method, but testing is necessary to confirm.
+      - Downloads from other Chromium/Chrome-based browsers _might_ be collected
+        via this method, but testing is necessary to confirm.
       - Downloads on file systems other than NTFS.
-      - Downloads that would be covered, but happened long enough ago that the USN Journal
-        records that would show it have been deleted.
+      - Downloads that would be covered, but happened long enough ago that the
+        USN Journal records that would show it have been deleted.
   processors:
     - name: Plaso
       options:
@@ -74,12 +83,19 @@ view:
       analysis:
         - name: OpenSearch
           steps:
-            - description: Filter the results to file system rename events where the original
-                file name ended with `.crdownload`.
+            - description:
+                Filter the results to file system rename events where the
+                original file name ended with `.crdownload`.
               type: opensearch-query
-              value: data_type:"fs:ntfs:usn_change" filename:crdownload "USN_REASON_RENAME_OLD_NAME"
-            - description: Select and search for the `file_reference` value for an event of interest
-                from the previous query. There should be one with the same timestamp as your
-                previous event and its `filename` value is the download's final name.
+              value:
+                data_type:"fs:ntfs:usn_change" filename:crdownload
+                "USN_REASON_RENAME_OLD_NAME"
+            - description:
+                Select and search for the `file_reference` value for an event of
+                interest from the previous query. There should be one with the
+                same timestamp as your previous event and its `filename` value
+                is the download's final name.
               type: opensearch-query
-              value: data_type:"fs:ntfs:usn_change" {file_reference value} "USN_REASON_RENAME_NEW_NAME"
+              value:
+                data_type:"fs:ntfs:usn_change" {file_reference value}
+                "USN_REASON_RENAME_NEW_NAME"

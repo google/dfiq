@@ -13,7 +13,7 @@
 # limitations under the License.
 
 ---
-display_name: What browser extensions (non-Chrome) are installed?
+name: What browser extensions (non-Chrome) are installed?
 type: question
 description:
 uuid: d7607752-896c-43b0-baca-0ce5d15ddbc0
@@ -21,6 +21,6 @@ internal: false
 id: Q1052
 dfiq_version: 1.1.0
 tags:
- - Web Browser
+  - Web Browser
 parent_ids:
- - F1019
+  - F1019

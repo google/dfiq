@@ -13,7 +13,7 @@
 # limitations under the License.
 
 ---
-display_name: >
+name: >
   Are there any signs of an attacker trying to maintain access to the cloud
   project? (Persistence)
 type: facet
@@ -23,6 +23,6 @@ internal: false
 id: F1014
 dfiq_version: 1.1.0
 tags:
- - TA0003
+  - TA0003
 parent_ids:
- - S1005
+  - S1005

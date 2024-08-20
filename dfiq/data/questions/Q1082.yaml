@@ -13,7 +13,7 @@
 # limitations under the License.
 
 ---
-display_name: Were any files sent via AirDrop?
+name: Were any files sent via AirDrop?
 type: question
 description:
 uuid: 73b2c385-e0e5-4779-844b-28e0aef1d56d
@@ -22,4 +22,4 @@ id: Q1082
 dfiq_version: 1.1.0
 tags:
 parent_ids:
- - F1026
+  - F1026

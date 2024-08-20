@@ -13,7 +13,7 @@
 # limitations under the License.
 
 ---
-display_name:  Are there any scheduled/automated tasks that ran?
+name: Are there any scheduled/automated tasks that ran?
 type: facet
 description:
 uuid: 9b1ce9b8-089b-4749-af57-2e828659af75
@@ -21,6 +21,6 @@ internal: false
 id: F1022
 dfiq_version: 1.1.0
 tags:
- - T1053
+  - T1053
 parent_ids:
- - S1007
+  - S1007

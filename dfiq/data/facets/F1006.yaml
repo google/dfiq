@@ -13,7 +13,7 @@
 # limitations under the License.
 
 ---
-display_name: Was a browser extension responsible for a DNS query?
+name: Was a browser extension responsible for a DNS query?
 type: facet
 description: >
   A malicious (or potentially unwanted) extension may generate DNS queries
@@ -24,7 +24,7 @@ internal: false
 id: F1006
 dfiq_version: 1.1.0
 tags:
- - Browser Extension
- - DNS
+  - Browser Extension
+  - DNS
 parent_ids:
- - S1003
+  - S1003

@@ -13,7 +13,7 @@
 # limitations under the License.
 
 ---
-display_name: >
+name: >
   What actions were taken in an Incognito (or "private") browser session?
 type: question
 description:
@@ -23,4 +23,4 @@ id: Q1032
 dfiq_version: 1.1.0
 tags:
 parent_ids:
- - F1007
+  - F1007

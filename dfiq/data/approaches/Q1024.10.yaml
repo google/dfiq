@@ -13,7 +13,7 @@
 # limitations under the License.
 
 ---
-display_name: Search CrowdStrike logs for Incognito Chrome processes
+name: Search CrowdStrike logs for Incognito Chrome processes
 type: approach
 uuid: e24d84a7-b4ed-4938-a9e9-899847a83acf
 internal: false
@@ -25,13 +25,15 @@ tags:
   - Process Execution
   - Web Browser
 description:
-  details: |
-    CrowdStrike records the source process ID (ContextProcessId) for ProcessRollup events.
+  details: >
+    CrowdStrike records the source process ID (ContextProcessId) for
+    ProcessRollup events.
 
-    Crowdstrike is a detection platform, not a logging platform, so not all executions are logged.
-    We cannot always connect a running browser process with observed DNS requests. When we do see
-    DNS requests coming from a browser process, yet we don't see browsing history, there are 
-    several possible explanations, including browser extensions or private browsing.
+    Crowdstrike is a detection platform, not a logging platform, so not all
+    executions are logged. We cannot always connect a running browser process
+    with observed DNS requests. When we do see DNS requests coming from a
+    browser process, yet we don't see browsing history, there are several
+    possible explanations, including browser extensions or private browsing.
   references:
     - https://www.crowdstrike.com/blog/tech-center/hunt-threat-activity-falcon-endpoint-protection/
 view:
@@ -49,6 +51,10 @@ view:
       analysis:
         - name: Splunk-Query
           steps:
-            - description: Query searching for browser processes executed in private mode
+            - description:
+                Query searching for browser processes executed in private mode
               type: splunk-query
-              value: ComputerName="{hostname}" event_simpleName=ProcessRollup* CommandLine IN ("*chrome*") CommandLine IN (*disable-databases*) | table _time, DomainName, CommandLine
+              value:
+                ComputerName="{hostname}" event_simpleName=ProcessRollup*
+                CommandLine IN ("*chrome*") CommandLine IN (*disable-databases*)
+                | table _time, DomainName, CommandLine

@@ -13,7 +13,7 @@
 # limitations under the License.
 
 ---
-display_name: Examine Windows Event Logs for PsExeSvc executions
+name: Examine Windows Event Logs for PsExeSvc executions
 type: approach
 uuid: 5a2147ee-52fd-4c34-a7f1-aed156631bb7
 internal: false
@@ -24,16 +24,19 @@ tags:
   - Windows
   - Event Logs
 description:
-  details: |
-    Parse the Windows Security Event Log and look for PsExeSvc processes being created.
+  details: >
+    Parse the Windows Security Event Log and look for PsExeSvc processes being
+    created.
 
-    Windows systems can be set to log new process creation events to the Security event log. The
-    logs contain the new process name, process ID, parent process name, process creation time, and
-    many more useful fields.
+    Windows systems can be set to log new process creation events to the
+    Security event log. The logs contain the new process name, process ID,
+    parent process name, process creation time, and many more useful fields.
   references:
-    - "[4688(S): A new process has been created](https://learn.microsoft.com/en-us/windows/security/threat-protection/auditing/event-4688)"
+    - "[4688(S): A new process has been
+      created](https://learn.microsoft.com/en-us/windows/security/threat-protection/auditing/event-4688)"
     - "[PsExec on MITRE ATT&CK](https://attack.mitre.org/software/S0029/)"
-    - "[Detecting PsExec Usage by 13Cubed](https://www.youtube.com/watch?v=oVM1nQhDZQc)"
+    - "[Detecting PsExec Usage by
+      13Cubed](https://www.youtube.com/watch?v=oVM1nQhDZQc)"
 view:
   data:
     - type: ForensicArtifact
@@ -44,8 +47,8 @@ view:
     covered:
       - Executions of PsExeSvc on Windows systems with logging enabled.
     not_covered:
-      - Many factors can impact log retention; if the event log containing the relevant event has
-        been deleted, it won't be found by this approach.
+      - Many factors can impact log retention; if the event log containing the
+        relevant event has been deleted, it won't be found by this approach.
       - Instances when the PsExeSvc executable has been renamed.
   processors:
     - name: Plaso
@@ -55,6 +58,11 @@ view:
       analysis:
         - name: OpenSearch
           steps:
-            - description: &filter-desc Filter the results to Process Creation events containing "psexesvc.exe"
+            - description:
+                &filter-desc Filter the results to Process Creation events
+                containing "psexesvc.exe"
               type: opensearch-query
-              value: data_type:"windows:evtx:record" event_identifier:4688 source_name:Microsoft-Windows-Security-Auditing xml_string:"psexesvc.exe"
+              value:
+                data_type:"windows:evtx:record" event_identifier:4688
+                source_name:Microsoft-Windows-Security-Auditing
+                xml_string:"psexesvc.exe"

@@ -13,7 +13,7 @@
 # limitations under the License.
 
 ---
-display_name: What files are present on a computer?
+name: What files are present on a computer?
 type: question
 description:
 uuid: c3971f0b-9f21-4564-8ae6-cf717bee5f2b
@@ -22,5 +22,5 @@ id: Q1006
 dfiq_version: 1.1.0
 tags:
 parent_ids:
- - F1001
- - F1008
+  - F1001
+  - F1008

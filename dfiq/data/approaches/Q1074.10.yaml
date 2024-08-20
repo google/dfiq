@@ -13,7 +13,7 @@
 # limitations under the License.
 
 ---
-display_name: Search CrowdStrike logs for indicator removal on host
+name: Search CrowdStrike logs for indicator removal on host
 type: approach
 uuid: 6da1f849-ebff-40c9-ad83-00dcbbc40b32
 internal: false
@@ -26,14 +26,15 @@ tags:
   - Windows
   - macOS
 description:
-  details: |
+  details: >
     CrowdStrike has built-in detections for "indicator removal on host" events.
 
-    Clearance/deletion of system logs would be recorded in CrowdStrike as a part of their
-    "indicator removal on host" detections.
+    Clearance/deletion of system logs would be recorded in CrowdStrike as a part
+    of their "indicator removal on host" detections.
   references:
     - https://www.crowdstrike.com/blog/tech-center/hunt-threat-activity-falcon-endpoint-protection/
-    - "[Indicator Removal on MITRE ATT&CK](https://attack.mitre.org/techniques/T1070/)"
+    - "[Indicator Removal on MITRE
+      ATT&CK](https://attack.mitre.org/techniques/T1070/)"
 view:
   data:
     - type: CrowdStrike
@@ -42,7 +43,8 @@ view:
     covered:
       - CrowdStrike's built-in detection for "indicator removal on host" events.
     not_covered:
-      - CrowdStrike may not have all log clear/delete events as part of this detection.
+      - CrowdStrike may not have all log clear/delete events as part of this
+        detection.
   processors:
     - name: Splunk
       analysis:
@@ -50,4 +52,5 @@ view:
           steps:
             - description: Query searching for indicator removal on host events.
               type: splunk-query
-              value: ComputerName="{hostname}" Technique="Indicator Removal on Host"
+              value:
+                ComputerName="{hostname}" Technique="Indicator Removal on Host"

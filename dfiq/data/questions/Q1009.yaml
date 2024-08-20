@@ -13,7 +13,7 @@
 # limitations under the License.
 
 ---
-display_name: >
+name: >
   What interactions with external cloud storage sites did the actor have using
   their web browser?
 type: question
@@ -24,5 +24,5 @@ id: Q1009
 dfiq_version: 1.1.0
 tags:
 parent_ids:
- - F1002
- - F1011
+  - F1002
+  - F1011

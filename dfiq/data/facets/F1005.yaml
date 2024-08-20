@@ -13,7 +13,7 @@
 # limitations under the License.
 
 ---
-display_name: Was a user's web browsing the cause of a given DNS query?
+name: Was a user's web browsing the cause of a given DNS query?
 type: facet
 description: >
   Understanding if a user's actions in a web browser caused a particular DNS
@@ -26,6 +26,6 @@ internal: false
 id: F1005
 dfiq_version: 1.1.0
 tags:
- - Web Browser
+  - Web Browser
 parent_ids:
- - S1003
+  - S1003

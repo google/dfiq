@@ -13,7 +13,7 @@
 # limitations under the License.
 
 ---
-display_name: Lateral Movement
+name: Lateral Movement
 type: scenario
 description: >
   Lateral movement is the process of an attacker moving from one system to
@@ -26,5 +26,5 @@ internal: false
 id: S1008
 dfiq_version: 1.1.0
 tags:
- - TA0008
- - Windows
+  - TA0008
+  - Windows

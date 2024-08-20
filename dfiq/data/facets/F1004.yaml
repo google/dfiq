@@ -13,18 +13,18 @@
 # limitations under the License.
 
 ---
-display_name: What application was responsible for the DNS query?
+name: What application was responsible for the DNS query?
 type: facet
 description: >
   What application made a DNS request is important for determining if it is
-  likely legitimate or not. The source also impacts further investigative
-  steps (depending on if `powershell.exe` or `chrome.exe` were responsible,
-  different artifacts would be useful).
+  likely legitimate or not. The source also impacts further investigative steps
+  (depending on if `powershell.exe` or `chrome.exe` were responsible, different
+  artifacts would be useful).
 uuid: 77127779-a6b7-4dc9-81ce-c0959563b0ff
 internal: false
 id: F1004
 dfiq_version: 1.1.0
 tags:
- - DNS
+  - DNS
 parent_ids:
- - S1003
+  - S1003

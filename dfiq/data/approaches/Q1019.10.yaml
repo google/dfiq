@@ -13,7 +13,7 @@
 # limitations under the License.
 
 ---
-display_name: Collect process executions in Crowdstrike event search
+name: Collect process executions in Crowdstrike event search
 type: approach
 uuid: 56d69ae0-c077-4457-acb0-cbb1804f5536
 internal: false
@@ -24,10 +24,11 @@ tags:
   - CrowdStrike
   - Process Execution
 description:
-  details: |
+  details: >
     CrowdStrike records process executions in ProcessRollup event.
 
-    CrowdStrike is a detection platform, not a logging platform, so not all ProcessRollup events might be logged.
+    CrowdStrike is a detection platform, not a logging platform, so not all
+    ProcessRollup events might be logged.
   references:
     - https://www.crowdstrike.com/blog/understanding-indicators-attack-ioas-power-event-stream-processing-crowdstrike-falcon/
 view:
@@ -46,6 +47,10 @@ view:
       analysis:
         - name: Splunk-Query
           steps:
-            - description: Query filtering the known browsers in execution event logs.
+            - description:
+                Query filtering the known browsers in execution event logs.
               type: splunk-query
-              value: ComputerName="{hostname}" event_simpleName=ProcessRollup* ImageFileName IN ("*chrome*", "*firefox*", "*safari*", "*edge*") | table _time, CommandLine, ImageFileName
+              value:
+                ComputerName="{hostname}" event_simpleName=ProcessRollup*
+                ImageFileName IN ("*chrome*", "*firefox*", "*safari*", "*edge*")
+                | table _time, CommandLine, ImageFileName

@@ -13,7 +13,7 @@
 # limitations under the License.
 
 ---
-display_name: Are there any sudden changes in the number of files on a device?
+name: Are there any sudden changes in the number of files on a device?
 type: question
 description: >
   Sudden changes (increases or decreases) in the number of files may be
@@ -24,4 +24,4 @@ id: Q1027
 dfiq_version: 1.1.0
 tags:
 parent_ids:
- - F1001
+  - F1001

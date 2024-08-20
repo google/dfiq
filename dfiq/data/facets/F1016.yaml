@@ -13,7 +13,7 @@
 # limitations under the License.
 
 ---
-display_name: Are there indications of an attacker moving between resources?
+name: Are there indications of an attacker moving between resources?
 type: facet
 description: >
   This may take the form of an attacker moving between cloud resources within
@@ -23,7 +23,7 @@ internal: false
 id: F1016
 dfiq_version: 1.1.0
 tags:
- - TA0008
- - Cloud
+  - TA0008
+  - Cloud
 parent_ids:
- - S1005
+  - S1005

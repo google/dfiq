@@ -13,7 +13,7 @@
 # limitations under the License.
 
 ---
-display_name: Are there any unknown accounts created?
+name: Are there any unknown accounts created?
 type: question
 description:
 uuid: 3bc36189-2025-41f7-bf0e-362450a2bb5e
@@ -22,4 +22,4 @@ id: Q1045
 dfiq_version: 1.1.0
 tags:
 parent_ids:
- - F1014
+  - F1014

@@ -13,7 +13,7 @@
 # limitations under the License.
 
 ---
-display_name: System Information
+name: System Information
 type: facet
 description:
 uuid: f4c0c37c-68a2-4030-b9f9-6c2c999348b1
@@ -22,4 +22,4 @@ id: F1012
 dfiq_version: 1.1.0
 tags:
 parent_ids:
- - S1001
+  - S1001

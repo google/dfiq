@@ -13,7 +13,7 @@
 # limitations under the License.
 
 ---
-display_name: Examine Windows Event Logs for Audit Log cleared
+name: Examine Windows Event Logs for Audit Log cleared
 type: approach
 uuid: 0c525f73-9b7e-4234-9670-e924c905b460
 internal: false
@@ -24,14 +24,18 @@ tags:
   - Windows
   - Event Logs
 description:
-  details: |
-    Parse the Windows Security Event Log and look for "the audit log was cleared" event.
+  details: >
+    Parse the Windows Security Event Log and look for "the audit log was
+    cleared" event.
 
-    On Windows systems, log clearance events for Security event log will be logged with event ID
-    1102. The logs contain the actor account name, domain name, logon id fields.
+    On Windows systems, log clearance events for Security event log will be
+    logged with event ID 1102. The logs contain the actor account name, domain
+    name, logon id fields.
   references:
-    - "[1102(S): The audit log was cleared.](https://learn.microsoft.com/en-us/windows/security/threat-protection/auditing/event-1102)"
-    - "[Indicator Removal: Clear Windows Event Logs on MITRE ATT&CK](https://attack.mitre.org/techniques/T1070/001/)"
+    - "[1102(S): The audit log was
+      cleared.](https://learn.microsoft.com/en-us/windows/security/threat-protection/auditing/event-1102)"
+    - "[Indicator Removal: Clear Windows Event Logs on MITRE
+      ATT&CK](https://attack.mitre.org/techniques/T1070/001/)"
 view:
   data:
     - type: ForensicArtifact
@@ -42,7 +46,8 @@ view:
     covered:
       - Security event log clearance events on Windows systems.
     not_covered:
-      - If the log is deleted or otherwise altered, this event may not be logged.
+      - If the log is deleted or otherwise altered, this event may not be
+        logged.
       - Only applies to Windows Security audit logs.
   processors:
     - name: Plaso
@@ -52,6 +57,9 @@ view:
       analysis:
         - name: OpenSearch
           steps:
-            - description: Filter the results to events containing audit log clearance.
+            - description:
+                Filter the results to events containing audit log clearance.
               type: opensearch-query
-              value: data_type:"windows:evtx:record" event_identifier:1102 source_name:"Microsoft-Windows-Security-Auditing"
+              value:
+                data_type:"windows:evtx:record" event_identifier:1102
+                source_name:"Microsoft-Windows-Security-Auditing"

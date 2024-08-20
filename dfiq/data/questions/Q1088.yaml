@@ -13,7 +13,7 @@
 # limitations under the License.
 
 ---
-display_name: >
+name: >
   Did the user connect to any non-Company systems using the command line?
 type: question
 description:
@@ -23,4 +23,4 @@ id: Q1088
 dfiq_version: 1.1.0
 tags:
 parent_ids:
- - F1030
+  - F1030

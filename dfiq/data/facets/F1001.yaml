@@ -13,9 +13,8 @@
 # limitations under the License.
 
 ---
-display_name: >
-  Are any ExternalCompany-related files on the actor's assigned Company
-  assets?
+name: >
+  Are any ExternalCompany-related files on the actor's assigned Company assets?
 type: facet
 description: >
   An actor may bring unauthorized external intellectual property onto Company
@@ -28,4 +27,4 @@ id: F1001
 dfiq_version: 1.1.0
 tags:
 parent_ids:
- - S1002
+  - S1002

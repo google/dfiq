@@ -13,7 +13,7 @@
 # limitations under the License.
 
 ---
-display_name: Use Sysmon (Event ID 22) to link source processes to DNS queries 
+name: Use Sysmon (Event ID 22) to link source processes to DNS queries
 type: approach
 uuid: c21f4e36-c841-431c-8b9c-a48bfc48e55f
 internal: false
@@ -25,10 +25,11 @@ tags:
   - DNS
   - Windows
 description:
-  details: |
+  details: >
     Sysmon Event ID 22 DnsQuery stores source process ID
 
-    DNS Query, event ID 22, records a DNS query being issued by a specific host and the originating process.
+    DNS Query, event ID 22, records a DNS query being issued by a specific host
+    and the originating process.
   references:
     - https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/event.aspx?eventid=90022
 view:
@@ -45,33 +46,45 @@ view:
       analysis:
         - name: Splunk-Query
           steps:
-            - description: Query for Sysmon Event ID 22 and extracting the parent process ID and path.
+            - description:
+                Query for Sysmon Event ID 22 and extracting the parent process
+                ID and path.
               type: splunk-query
-              value: source="xmlwineventlog:microsoft-windows-sysmon/operational" EventCode=22 | table _time, host, process_id, process_path
+              value:
+                source="xmlwineventlog:microsoft-windows-sysmon/operational"
+                EventCode=22 | table _time, host, process_id, process_path
     - name: Plaso
       analysis:
         - name: OpenSearch
           steps:
             - description: Query for Sysmon Event ID 22 events
               type: opensearch-query
-              value: data_type:"windows:evtx:record" source_name:"Microsoft-Windows-Sysmon" event_identifier:22
+              value:
+                data_type:"windows:evtx:record"
+                source_name:"Microsoft-Windows-Sysmon" event_identifier:22
             - description: Determine the source process in relevant event(s)
               type: manual
               value: >
-                Plaso (as of v20230717) doesn't parse the `xml_string` into attributes. Examine the
-                `xml_string`; the value after `<Data Name="Image">` is the process that made the
-                DNS query.
+                Plaso (as of v20230717) doesn't parse the `xml_string` into
+                attributes. Examine the `xml_string`; the value after `<Data
+                Name="Image">` is the process that made the DNS query.
         - name: Python Notebook
           steps:
             - description: Query for Sysmon Event ID 22 events
               type: pandas
-              value: df.query('data_type == "windows:evtx:record" and source_name == "Microsoft-Windows-Sysmon" and event_identifier == 22')
+              value:
+                df.query('data_type == "windows:evtx:record" and source_name ==
+                "Microsoft-Windows-Sysmon" and event_identifier == 22')
             - description: Extract `Image` attribute
               type: pandas
-              value: df['process'] = df['xml_string'].str.extract(r'<Data Name="Image">(.*?)</Data>')
+              value:
+                df['process'] = df['xml_string'].str.extract(r'<Data
+                Name="Image">(.*?)</Data>')
             - description: Extract `QueryName` attribute
               type: pandas
-              value: df['query'] = df['xml_string'].str.extract(r'<Data Name="QueryName">(.*?)</Data>')
+              value:
+                df['query'] = df['xml_string'].str.extract(r'<Data
+                Name="QueryName">(.*?)</Data>')
             - description: Filter down to DNS query of interest
               type: pandas
               value: df[df.query.str.contains('<domain>')]

@@ -13,16 +13,16 @@
 # limitations under the License.
 
 ---
-display_name: Were any copies made of sensitive files?
+name: Were any copies made of sensitive files?
 type: question
 description: >
   Copying a file may appear differently than downloading a file from a server;
-  the copy may be from a mounted drive or share, or a copy within an
-  application (such as Google Drive).
+  the copy may be from a mounted drive or share, or a copy within an application
+  (such as Google Drive).
 uuid: 9d6a03a6-b8a7-4d68-94a9-dc4e21bd9534
 internal: false
 id: Q1035
 dfiq_version: 1.1.0
 tags:
 parent_ids:
- - F1008
+  - F1008

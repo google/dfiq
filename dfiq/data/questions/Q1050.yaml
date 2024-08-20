@@ -13,7 +13,7 @@
 # limitations under the License.
 
 ---
-display_name: >
+name: >
   Are there any GCS buckets within the cloud project shared externally?
 type: question
 description:
@@ -23,4 +23,4 @@ id: Q1050
 dfiq_version: 1.1.0
 tags:
 parent_ids:
- - F1017
+  - F1017

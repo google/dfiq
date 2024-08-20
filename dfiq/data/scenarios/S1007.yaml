@@ -13,7 +13,7 @@
 # limitations under the License.
 
 ---
-display_name: Host Persistence Audit
+name: Host Persistence Audit
 type: scenario
 description: >
   Once an attacker is on a system, a main goal becomes trying to maintain that
@@ -24,4 +24,4 @@ internal: false
 id: S1007
 dfiq_version: 1.1.0
 tags:
- - TA0003
+  - TA0003
