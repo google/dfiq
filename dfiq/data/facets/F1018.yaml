@@ -14,8 +14,8 @@
 
 ---
 name: >
-  Are there any detections of potentially suspicious activity related to the
-  cloud project from detection tools?
+  Are there any detections of potentially suspicious activity related to the cloud
+  project from detection tools?
 type: facet
 description:
 uuid: a3e3de2e-5105-4a17-87d4-072b1be90f3d
@@ -23,4 +23,4 @@ id: F1018
 dfiq_version: 1.1.0
 tags:
 parent_ids:
-  - S1005
+- S1005

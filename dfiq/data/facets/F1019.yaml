@@ -20,7 +20,7 @@ uuid: 4a3b1b7a-dda6-4047-9bd2-a57bb2515110
 id: F1019
 dfiq_version: 1.1.0
 tags:
-  - T1176
-  - Web Browser
+- T1176
+- Web Browser
 parent_ids:
-  - S1007
+- S1007

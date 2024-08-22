@@ -14,14 +14,14 @@
 
 ---
 name: >
-  Are there any signs of interference with cloud project protective measures?
-  (Defense Evasion)
+  Are there any signs of interference with cloud project protective measures? (Defense
+  Evasion)
 type: facet
 description:
 uuid: 1adfe0d1-da4a-4b40-bb22-e45171812097
 id: F1015
 dfiq_version: 1.1.0
 tags:
-  - TA0005
+- TA0005
 parent_ids:
-  - S1005
+- S1005

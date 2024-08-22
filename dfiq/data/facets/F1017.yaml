@@ -14,14 +14,14 @@
 
 ---
 name: >
-  Are there any signs of data exfiltration from resources inside the cloud
-  project? (Data Exfil)
+  Are there any signs of data exfiltration from resources inside the cloud project?
+  (Data Exfil)
 type: facet
 description:
 uuid: 243ba7af-3f1d-4015-8d2e-c01d83ccb2d6
 id: F1017
 dfiq_version: 1.1.0
 tags:
-  - TA0010
+- TA0010
 parent_ids:
-  - S1005
+- S1005

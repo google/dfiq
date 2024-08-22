@@ -20,6 +20,6 @@ uuid: 04f1cffb-313d-44b6-bd57-4a397afb5889
 id: F1020
 dfiq_version: 1.1.0
 tags:
-  - T1037
+- T1037
 parent_ids:
-  - S1007
+- S1007

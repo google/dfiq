@@ -14,14 +14,14 @@
 
 ---
 name: >
-  Are there any signs of an attacker trying to maintain access to the cloud
-  project? (Persistence)
+  Are there any signs of an attacker trying to maintain access to the cloud project?
+  (Persistence)
 type: facet
 description:
 uuid: da1d6410-918f-40da-bb25-b80459322d39
 id: F1014
 dfiq_version: 1.1.0
 tags:
-  - TA0003
+- TA0003
 parent_ids:
-  - S1005
+- S1005
