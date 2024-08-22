@@ -17,7 +17,6 @@ name: What Chrome extensions are installed?
 type: question
 description:
 uuid: c6aa5cb7-d44b-4008-b5fe-0fb56e9ad80f
-internal: false
 id: Q1021
 dfiq_version: 1.1.0
 tags:

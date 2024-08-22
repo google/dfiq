@@ -17,7 +17,6 @@ name: What files were copied from a USB device to a computer?
 type: question
 description:
 uuid: 8e8807a8-191d-47d6-8760-6e734bbc9a89
-internal: false
 id: Q1012
 dfiq_version: 1.1.0
 tags:

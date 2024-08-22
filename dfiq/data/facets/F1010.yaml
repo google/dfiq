@@ -17,7 +17,6 @@ name: Was any sensitive data exfiltrated via a physical medium?
 type: facet
 description:
 uuid: eb42bb63-cbb6-442e-a73d-ce16fa799b4d
-internal: false
 id: F1010
 dfiq_version: 1.1.0
 tags:

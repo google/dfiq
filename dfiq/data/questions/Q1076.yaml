@@ -17,7 +17,6 @@ name: Were the files screenshots?
 type: question
 description:
 uuid: 962efb5b-b987-4096-a90c-76fa4d36c88b
-internal: false
 id: Q1076
 dfiq_version: 1.1.0
 tags:

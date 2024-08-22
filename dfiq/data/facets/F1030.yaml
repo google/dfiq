@@ -20,7 +20,6 @@ description: >
   An actor may be connecting to services or systems associated with
   ExternalCompany, possibly through a client, a terminal, or a web browser.
 uuid: e4d3dc78-005e-4dd2-a15b-14f92a67a24a
-internal: false
 id: F1030
 dfiq_version: 1.1.0
 tags:

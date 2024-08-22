@@ -23,7 +23,6 @@ description: >
   facet examines a host for indications it was the **destination** host, meaning
   an attacker moved **TO** it from a different system.
 uuid: 54bec51c-6697-4dc8-8b89-f174a8b98776
-internal: false
 id: F1028
 dfiq_version: 1.1.0
 tags:

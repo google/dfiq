@@ -17,7 +17,6 @@ name: Were any security or monitoring agents tampered with or disabled?
 type: question
 description:
 uuid: f84b865f-de6e-4a82-a1c6-39b759a41994
-internal: false
 id: Q1030
 dfiq_version: 1.1.0
 tags:

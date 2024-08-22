@@ -17,7 +17,6 @@ name: What browser extensions (non-Chrome) are installed?
 type: question
 description:
 uuid: d7607752-896c-43b0-baca-0ce5d15ddbc0
-internal: false
 id: Q1052
 dfiq_version: 1.1.0
 tags:

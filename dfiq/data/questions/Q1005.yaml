@@ -17,7 +17,6 @@ name: What files have ever been on a computer?
 type: question
 description:
 uuid: 188fcc98-51ec-4b16-8ffc-1009b8e24a4c
-internal: false
 id: Q1005
 dfiq_version: 1.1.0
 tags:

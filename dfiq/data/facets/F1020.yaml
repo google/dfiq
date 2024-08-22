@@ -17,7 +17,6 @@ name: Are there any interesting logon or boot initialization scripts?
 type: facet
 description:
 uuid: 04f1cffb-313d-44b6-bd57-4a397afb5889
-internal: false
 id: F1020
 dfiq_version: 1.1.0
 tags:

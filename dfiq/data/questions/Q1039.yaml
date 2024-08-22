@@ -17,7 +17,6 @@ name: Are there any detections of exposed service account credentials?
 type: question
 description:
 uuid: 455564a5-c444-40c1-be55-a3dbe72c5f30
-internal: false
 id: Q1039
 dfiq_version: 1.1.0
 tags:

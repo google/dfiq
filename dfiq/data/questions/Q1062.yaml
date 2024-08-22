@@ -17,7 +17,6 @@ name: What cron jobs are configured?
 type: question
 description:
 uuid: e7511bd4-c2dd-4d0a-9d82-aac691877902
-internal: false
 id: Q1062
 dfiq_version: 1.1.0
 tags:

@@ -17,7 +17,6 @@ name: What domain accounts have been created?
 type: question
 description:
 uuid: f6368d73-1490-4927-b325-33d50d055c6b
-internal: false
 id: Q1058
 dfiq_version: 1.1.0
 tags:

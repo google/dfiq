@@ -17,7 +17,6 @@ name: Are there any new accounts that have been created?
 type: facet
 description:
 uuid: cc0cbc64-c376-49b8-981a-0c059490ebe4
-internal: false
 id: F1021
 dfiq_version: 1.1.0
 tags:

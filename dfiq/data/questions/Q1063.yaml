@@ -17,7 +17,6 @@ name: What periodic scripts are configured?
 type: question
 description:
 uuid: 7be8c27a-a340-4df1-93e3-5ffaa02ae4f7
-internal: false
 id: Q1063
 dfiq_version: 1.1.0
 tags:

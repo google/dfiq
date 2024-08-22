@@ -17,7 +17,6 @@ name: Were any files sent via CLI utilities?
 type: question
 description:
 uuid: 7b757e75-f86d-48c0-9b4b-f04516586f61
-internal: false
 id: Q1038
 dfiq_version: 1.1.0
 tags:

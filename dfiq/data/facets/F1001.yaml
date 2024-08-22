@@ -22,7 +22,6 @@ description: >
   under consideration, past devices that the actor no longer actively uses may
   need to be examined as well.
 uuid: 5896cdb6-69bc-4994-8a65-97d76fca66b7
-internal: false
 id: F1001
 dfiq_version: 1.1.0
 tags:

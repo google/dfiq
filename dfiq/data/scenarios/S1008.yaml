@@ -22,7 +22,6 @@ description: >
   vulnerabilities in software, using stolen credentials, installing their own
   remote access tools, or using native system utilities.
 uuid: 098db976-2553-4df2-b1c1-f341652a0549
-internal: false
 id: S1008
 dfiq_version: 1.1.0
 tags:

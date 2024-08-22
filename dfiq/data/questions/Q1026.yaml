@@ -19,7 +19,6 @@ description: >
   Message apps, such as Slack, Telegram, or WhatsApp, have file transfer
   capabilities. Were any files downloaded from these applications?
 uuid: 532284f9-dd0b-407b-9e2d-6939795dc15c
-internal: false
 id: Q1026
 dfiq_version: 1.1.0
 tags:

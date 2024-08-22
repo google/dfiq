@@ -17,7 +17,6 @@ name: Are there any indications of dylib hijacking?
 type: question
 description:
 uuid: fc1b5010-50b5-4d78-bc99-444642cdb5d4
-internal: false
 id: Q1069
 dfiq_version: 1.1.0
 tags:

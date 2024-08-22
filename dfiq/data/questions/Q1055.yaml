@@ -17,7 +17,6 @@ name: What Windows logon scripts are configured?
 type: question
 description:
 uuid: c840d923-065d-474e-89fd-b6c69828569a
-internal: false
 id: Q1055
 dfiq_version: 1.1.0
 tags:

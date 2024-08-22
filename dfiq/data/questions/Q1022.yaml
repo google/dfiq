@@ -17,7 +17,6 @@ name: What actions did a Chrome extension perform?
 type: question
 description:
 uuid: ad3c9dcb-b062-4118-bcac-ed0140bea127
-internal: false
 id: Q1022
 dfiq_version: 1.1.0
 tags:

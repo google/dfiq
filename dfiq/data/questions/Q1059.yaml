@@ -17,7 +17,6 @@ name: What local accounts have been created?
 type: question
 description:
 uuid: 15f74c50-2453-4066-b45b-168be1097668
-internal: false
 id: Q1059
 dfiq_version: 1.1.0
 tags:

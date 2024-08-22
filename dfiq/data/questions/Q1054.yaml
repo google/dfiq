@@ -17,7 +17,6 @@ name: What Launch Daemons are configured?
 type: question
 description:
 uuid: b7b21310-7adb-4ab9-8a34-7494bfd3d854
-internal: false
 id: Q1054
 dfiq_version: 1.1.0
 tags:

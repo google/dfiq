@@ -17,7 +17,6 @@ name: Were any files sent via other network media?
 type: facet
 description:
 uuid: ec5e5312-a936-4318-ad12-6361a283f5ec
-internal: false
 id: F1026
 dfiq_version: 1.1.0
 tags:

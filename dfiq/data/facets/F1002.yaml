@@ -19,7 +19,6 @@ name: >
 type: facet
 description:
 uuid: a45391e8-b6bf-4b46-90e3-aad245b6ef66
-internal: false
 id: F1002
 dfiq_version: 1.1.0
 tags:

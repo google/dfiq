@@ -17,7 +17,6 @@ name: What programs are installed on a computer?
 type: question
 description:
 uuid: f548f991-9180-4ed5-b14f-a7cdbca3a548
-internal: false
 id: Q1008
 dfiq_version: 1.1.0
 tags:

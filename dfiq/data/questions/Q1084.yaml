@@ -21,7 +21,6 @@ description: >
   attachments on a website or pasting blocks of content (text, images, etc) into
   a web application.
 uuid: bdedced1-c88b-498f-bab5-7a93041fd08a
-internal: false
 id: Q1084
 dfiq_version: 1.1.0
 tags:

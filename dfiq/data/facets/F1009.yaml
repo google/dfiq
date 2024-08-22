@@ -17,7 +17,6 @@ name: Was any sensitive data sent externally via email?
 type: facet
 description:
 uuid: 789588f7-2c6d-4a2c-93b0-ef447f03e8db
-internal: false
 id: F1009
 dfiq_version: 1.1.0
 tags:

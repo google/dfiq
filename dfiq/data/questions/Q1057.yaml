@@ -17,7 +17,6 @@ name: What network logon scripts are configured?
 type: question
 description:
 uuid: 511f8172-63ae-4f33-8c4d-88158895331e
-internal: false
 id: Q1057
 dfiq_version: 1.1.0
 tags:

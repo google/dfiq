@@ -17,7 +17,6 @@ name: What files were sent externally via email attachments?
 type: question
 description:
 uuid: 1555eb17-37e1-456e-8801-eecacbb4956b
-internal: false
 id: Q1016
 dfiq_version: 1.1.0
 tags:

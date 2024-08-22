@@ -20,7 +20,6 @@ description: >
   resource, then exfiltrate the copy, rather than performing the action on the
   source file itself.
 uuid: fe33df58-46c6-476d-a6c6-3aa5e6c857b4
-internal: false
 id: Q1078
 dfiq_version: 1.1.0
 tags:

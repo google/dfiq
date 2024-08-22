@@ -17,7 +17,6 @@ name: What USB devices were attached to a computer?
 type: question
 description:
 uuid: a3c893ed-99e7-4f86-8ffc-c768f3e27b75
-internal: false
 id: Q1002
 dfiq_version: 1.1.0
 tags:

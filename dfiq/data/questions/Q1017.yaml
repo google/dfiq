@@ -17,7 +17,6 @@ name: Were any files collected into a container?
 type: question
 description:
 uuid: a9cc111f-d97c-4354-acdd-c49c5d2f5996
-internal: false
 id: Q1017
 dfiq_version: 1.1.0
 tags:

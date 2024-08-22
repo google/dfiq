@@ -19,7 +19,6 @@ name: >
 type: question
 description:
 uuid: d2d25020-8a5d-4ee2-ba77-89c7035a1aa9
-internal: false
 id: Q1048
 dfiq_version: 1.1.0
 tags:

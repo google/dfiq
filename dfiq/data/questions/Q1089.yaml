@@ -17,7 +17,6 @@ name: Did the user download any Citrix configuration (.ica) files?
 type: question
 description:
 uuid: 976ce1cf-1adb-4499-ab7a-13ef3d078dcb
-internal: false
 id: Q1089
 dfiq_version: 1.1.0
 tags:

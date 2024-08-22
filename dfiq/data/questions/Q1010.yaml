@@ -17,7 +17,6 @@ name: What was printed from a computer?
 type: question
 description:
 uuid: 11fa196a-a194-4f74-b003-30b826e9d203
-internal: false
 id: Q1010
 dfiq_version: 1.1.0
 tags:

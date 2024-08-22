@@ -17,7 +17,6 @@ name: Are there any unknown role bindings created?
 type: question
 description:
 uuid: e242a32e-1b0f-4d22-9d45-f9d09cae0f24
-internal: false
 id: Q1046
 dfiq_version: 1.1.0
 tags:
