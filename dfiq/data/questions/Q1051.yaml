@@ -14,8 +14,7 @@
 
 ---
 name: >
-  Are there any signs of data within the cloud project being transferred
-  externally?
+  Are there any signs of data within the cloud project being transferred externally?
 type: question
 description:
 uuid: bae49212-439f-450f-9674-1d65aeaa495b
@@ -23,4 +22,4 @@ id: Q1051
 dfiq_version: 1.1.0
 tags:
 parent_ids:
-  - F1017
+- F1017

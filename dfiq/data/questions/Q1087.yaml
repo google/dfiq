@@ -21,4 +21,4 @@ id: Q1087
 dfiq_version: 1.1.0
 tags:
 parent_ids:
-  - F1030
+- F1030

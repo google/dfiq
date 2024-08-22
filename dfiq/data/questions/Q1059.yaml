@@ -20,9 +20,9 @@ uuid: 15f74c50-2453-4066-b45b-168be1097668
 id: Q1059
 dfiq_version: 1.1.0
 tags:
-  - T1136.001
-  - Windows
-  - macOS
-  - Linux
+- T1136.001
+- Windows
+- macOS
+- Linux
 parent_ids:
-  - F1021
+- F1021

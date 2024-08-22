@@ -14,8 +14,8 @@
 
 ---
 name: >
-  What interactions with external cloud storage sites did the actor have using
-  their web browser?
+  What interactions with external cloud storage sites did the actor have using their
+  web browser?
 type: question
 description:
 uuid: 8016ae18-97b4-4527-8cae-9014185b3cbf
@@ -23,5 +23,5 @@ id: Q1009
 dfiq_version: 1.1.0
 tags:
 parent_ids:
-  - F1002
-  - F1011
+- F1002
+- F1011

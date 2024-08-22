@@ -21,5 +21,5 @@ id: Q1025
 dfiq_version: 1.1.0
 tags:
 parent_ids:
-  - F1002
-  - F1011
+- F1002
+- F1011

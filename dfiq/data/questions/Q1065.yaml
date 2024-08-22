@@ -20,7 +20,7 @@ uuid: 63f7c058-0280-43d5-bb49-ab64c99d5ce6
 id: Q1065
 dfiq_version: 1.1.0
 tags:
-  - T1547.001
-  - Windows
+- T1547.001
+- Windows
 parent_ids:
-  - F1023
+- F1023

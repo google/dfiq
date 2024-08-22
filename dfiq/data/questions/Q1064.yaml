@@ -20,7 +20,7 @@ uuid: 38b73d12-f617-4115-a820-d833884983e9
 id: Q1064
 dfiq_version: 1.1.0
 tags:
-  - T1053.006
-  - Linux
+- T1053.006
+- Linux
 parent_ids:
-  - F1022
+- F1022
