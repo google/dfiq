@@ -12,9 +12,16 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+import os
 from dfiq import DFIQ
 
-dfiq_instance = DFIQ(markdown_output_path="../../site/docs")
+
+# This file should be called from the repository root:
+# PYTHONPATH=. python dfiq/scripts/generate_site_markdown.py
+
+file_path = os.path.abspath(__file__)
+templates_dir = os.path.join(os.path.dirname(os.path.dirname(file_path)), 'templates')
+dfiq_instance = DFIQ(templates_path=templates_dir, markdown_output_path="site/docs")
 
 for scenario in dfiq_instance.scenarios():
     dfiq_instance.generate_scenario_md(scenario.id)

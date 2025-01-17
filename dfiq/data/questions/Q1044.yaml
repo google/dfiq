@@ -13,12 +13,13 @@
 # limitations under the License.
 
 ---
-display_name: >
+name: >
   Are there any unexpected resources created under the cloud project?
 type: question
 description:
+uuid: b40bead3-472a-4a5d-ae3d-ed27a1ba112e
 id: Q1044
-dfiq_version: 1.0.0
+dfiq_version: 1.1.0
 tags:
 parent_ids:
- - F1014
+- F1014

@@ -13,16 +13,17 @@
 # limitations under the License.
 
 ---
-display_name: Suspicious DNS Query
+name: Suspicious DNS Query
 type: scenario
 description: >
-  A DNS query to an unexpected domain can be an indicator of abnormal activity
-  on a host. If a domain has been marked as malicious, an investigator may be
-  tasked with determining what caused the DNS query (or response) and if it
-  indicates the host has been compromised.
+  A DNS query to an unexpected domain can be an indicator of abnormal activity on
+  a host. If a domain has been marked as malicious, an investigator may be tasked
+  with determining what caused the DNS query (or response) and if it indicates the
+  host has been compromised.
+uuid: 5305f225-b274-4fc4-b60f-a87d9e2a7c11
 id: S1003
-dfiq_version: 1.0.0
+dfiq_version: 1.1.0
 tags:
- - Network
- - Malware
- - Triage
+- Network
+- Malware
+- Triage

@@ -13,14 +13,14 @@
 # limitations under the License.
 
 ---
-display_name: Were the files copies?
+name: Were the files copies?
 type: question
 description: >
-  As a method of obfuscation, an actor might make a copy of a sensitive
-  resource, then exfiltrate the copy, rather than performing the action on the
-  source file itself.
+  As a method of obfuscation, an actor might make a copy of a sensitive resource,
+  then exfiltrate the copy, rather than performing the action on the source file itself.
+uuid: fe33df58-46c6-476d-a6c6-3aa5e6c857b4
 id: Q1078
-dfiq_version: 1.0.0
+dfiq_version: 1.1.0
 tags:
 parent_ids:
- - F1009
+- F1009

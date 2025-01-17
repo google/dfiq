@@ -14,6 +14,7 @@ hide:
 
 # {{ question.name }}
 
+**UUID**: {{ question.uuid }}
 **ID**: {{ question.id }}
 
 {% if question.description %}
@@ -25,7 +26,8 @@ hide:
 {% for approach in question.approaches %}
 {%   if components[approach].is_internal == False or allow_internal == True %}
 -  [{{ components[approach].name }} [{{ approach }}]](#{{ components[approach].name.replace(' ','-').replace('(','').replace(')','').lower() }})
-    - {{ components[approach]['description']['summary'] }}
+    {% if components[approach]['description']['details'].split('\n\n')[0] %}- {{ components[approach]['description']['details'].split('\n\n')[0] }}
+{% endif %}
     - Tags: <span class="dfiqTag">{{ components[approach]['tags']|join('</span> <span class="dfiqTag">') }}</span>
 {%   endif  %}
 {% endfor %}

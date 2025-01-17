@@ -13,12 +13,13 @@
 # limitations under the License.
 
 ---
-display_name: What periodic scripts are configured?
+name: What periodic scripts are configured?
 type: question
 description:
+uuid: 7be8c27a-a340-4df1-93e3-5ffaa02ae4f7
 id: Q1063
-dfiq_version: 1.0.0
+dfiq_version: 1.1.0
 tags:
- - macOS
+- macOS
 parent_ids:
- - F1022
+- F1022

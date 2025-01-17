@@ -13,13 +13,14 @@
 # limitations under the License.
 
 ---
-display_name: >
-  Are there any interaction with the cloud project resources from an unknown
-  external IP address (including Tor Exit nodes, C2 tagged addresses)?
+name: >
+  Are there any interaction with the cloud project resources from an unknown external
+  IP address (including Tor Exit nodes, C2 tagged addresses)?
 type: question
 description:
+uuid: 7328193e-321e-488d-836b-0401796a1640
 id: Q1040
-dfiq_version: 1.0.0
+dfiq_version: 1.1.0
 tags:
 parent_ids:
- - F1013
+- F1013

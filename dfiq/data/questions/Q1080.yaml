@@ -13,11 +13,12 @@
 # limitations under the License.
 
 ---
-display_name: How many external recipients does the email have?
+name: How many external recipients does the email have?
 type: question
 description:
+uuid: 3f44c359-87b7-4d07-9b4b-0ded68f17334
 id: Q1080
-dfiq_version: 1.0.0
+dfiq_version: 1.1.0
 tags:
 parent_ids:
- - F1009
+- F1009

@@ -1,10 +1,10 @@
 [build-system]
-requires = ["setuptools>=61", "setuptools-scm>=8.0"]
-build-backend = "setuptools.build_meta"
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
 
 [project]
 name = "dfiq"
-authors = [{name = "Ryan Benson", email = "ryan@dfir.blog"}]
+authors = [{name = "Ryan Benson", email = "ryan@dfir.blog"}, {name = "Thomas Chopitea", email = "tomchop@gmail.com"}]
 readme = "README.md"
 requires-python = ">=3.10"
 license = {file = "LICENSE"}
@@ -16,24 +16,21 @@ dynamic = ["dependencies", "version"]
 description = "DFIQ is a collection of investigative questions and the approaches for answering them"
 keywords=["dfiq", "forensics", "dfir", "investigative questions", "security", "digital forensics"]
 
-[tool.setuptools]
-packages = [
-    "dfiq",
-    "dfiq.data.approaches",
-    "dfiq.data.facets",
-    "dfiq.data.questions",
-    "dfiq.data.scenarios",
-    "dfiq.scripts",
-    "dfiq.templates",
-    "dfiq.utils"
-]
-
-[tool.setuptools_scm]
-
-[tool.setuptools.dynamic]
-dependencies = { file = ["requirements.txt"] }
-version = { attr = "dfiq.__version__" }
-
 [project.urls]
 Homepage = "https://dfiq.org"
 Repository = "https://github.com/google/dfiq"
+
+[tool.poetry]
+name = "dfiq"
+version = "1.1"
+description = "DFIQ is a collection of investigative questions and the approaches for answering them"
+authors = ["Ryan  Benson <ryan@dfir.blog>, Thomas Chopitea <tomchop@gmail.com>"]
+readme = "README.md"
+keywords=["dfiq", "forensics", "dfir", "investigative questions", "security", "digital forensics"]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+networkx = "^3.3"
+pyyaml = "^6.0.2"
+jinja2 = "^3.1.4"
+yamale = "^5.2.1"

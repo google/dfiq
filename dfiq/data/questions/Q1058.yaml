@@ -13,13 +13,14 @@
 # limitations under the License.
 
 ---
-display_name: What domain accounts have been created?
+name: What domain accounts have been created?
 type: question
 description:
+uuid: f6368d73-1490-4927-b325-33d50d055c6b
 id: Q1058
-dfiq_version: 1.0.0
+dfiq_version: 1.1.0
 tags:
- - T1136.002
- - Windows
+- T1136.002
+- Windows
 parent_ids:
- - F1021
+- F1021

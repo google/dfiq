@@ -13,11 +13,12 @@
 # limitations under the License.
 
 ---
-display_name: What USB devices were attached to a computer?
+name: What USB devices were attached to a computer?
 type: question
 description:
+uuid: a3c893ed-99e7-4f86-8ffc-c768f3e27b75
 id: Q1002
-dfiq_version: 1.0.0
+dfiq_version: 1.1.0
 tags:
 parent_ids:
- - F1003
+- F1003

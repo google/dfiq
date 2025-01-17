@@ -13,19 +13,20 @@
 # limitations under the License.
 
 ---
-display_name: >
+name: >
   Are the indications of an attacker moving FROM this host to another?
 type: facet
 description: >
-  Once an attacker has access to a system, they may want to use it to pivot to
-  a different system. This movement, from a source host to a destination host,
-  leaves traces on both the source and destination hosts. A given system may
-  be both the source and destination of lateral movement at different times.
-  This facet examines a host for indications it was the **source** host,
-  meaning an attacker moved **FROM** it to a different destination system.
+  Once an attacker has access to a system, they may want to use it to pivot to a different
+  system. This movement, from a source host to a destination host, leaves traces on
+  both the source and destination hosts. A given system may be both the source and
+  destination of lateral movement at different times. This facet examines a host for
+  indications it was the **source** host, meaning an attacker moved **FROM** it to
+  a different destination system.
+uuid: 9d582625-e789-4e80-a6d2-e31c63927517
 id: F1027
-dfiq_version: 1.0.0
+dfiq_version: 1.1.0
 tags:
- - TA0008
+- TA0008
 parent_ids:
- - S1008
+- S1008

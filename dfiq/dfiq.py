@@ -52,12 +52,14 @@ class Component(object):
     def __init__(
         self,
         dfiq_id: str,
+        uuid: str,
         name: str,
         description: str | None = None,
         tags: set[str] | None = None,
         parent_ids: set[str] | None = None,
     ) -> None:
         self.id = dfiq_id
+        self.uuid = uuid
         self.name = name.rstrip()
         self.description = description
         self.type = None
@@ -101,13 +103,14 @@ class Approach(Component):
     def __init__(
         self,
         dfiq_id: str,
+        uuid: str,
         name: str,
         description: str,
         tags: set[str] | None,
         view: dict,
     ) -> None:
         super().__init__(
-            dfiq_id, name, description, tags, parent_ids={dfiq_id.split(".")[0]}
+            dfiq_id, uuid, name, description, tags, parent_ids={dfiq_id.split(".")[0]}
         )
         self.view = view
         self.type = "approach"
@@ -130,12 +133,13 @@ class Question(Component):
     def __init__(
         self,
         dfiq_id: str,
+        uuid: str,
         name: str,
         description: str | None,
         tags: set[str] | None,
         parent_ids: set[str],
     ) -> None:
-        super().__init__(dfiq_id, name, description, tags, parent_ids)
+        super().__init__(dfiq_id, uuid, name, description, tags, parent_ids)
         self.type = "question"
 
     @property
@@ -159,12 +163,13 @@ class Facet(Component):
     def __init__(
         self,
         dfiq_id: str,
+        uuid: str,
         name: str,
         description: str | None,
         tags: set[str] | None,
         parent_ids: set[str],
     ) -> None:
-        super().__init__(dfiq_id, name, description, tags, parent_ids)
+        super().__init__(dfiq_id, uuid, name, description, tags, parent_ids)
         self.type = "facet"
 
     @property
@@ -185,9 +190,9 @@ class Scenario(Component):
     """
 
     def __init__(
-        self, dfiq_id: str, name: str, description: str, tags: set[str] | None
+        self, dfiq_id: str, uuid: str, name: str, description: str, tags: set[str] | None
     ):
-        super().__init__(dfiq_id, name, description, tags)
+        super().__init__(dfiq_id, uuid, name, description, tags)
         self.type = "scenario"
 
     @property
@@ -330,6 +335,7 @@ class DFIQ:
         if yaml_object["type"] == "scenario":
             return Scenario(
                 yaml_object["id"],
+                yaml_object["uuid"],
                 yaml_object["display_name"],
                 yaml_object.get("description"),
                 yaml_object.get("tags"),
@@ -338,6 +344,7 @@ class DFIQ:
         elif yaml_object["type"] == "facet":
             return Facet(
                 yaml_object["id"],
+                yaml_object["uuid"],
                 yaml_object["display_name"],
                 yaml_object.get("description"),
                 yaml_object.get("tags"),
@@ -347,6 +354,7 @@ class DFIQ:
         elif yaml_object["type"] == "question":
             return Question(
                 yaml_object["id"],
+                yaml_object["uuid"],
                 yaml_object["display_name"],
                 yaml_object.get("description"),
                 yaml_object.get("tags"),
@@ -356,6 +364,7 @@ class DFIQ:
         elif yaml_object["type"] == "approach":
             return Approach(
                 yaml_object["id"],
+                yaml_object["uuid"],
                 yaml_object["display_name"],
                 yaml_object.get("description"),
                 yaml_object.get("tags"),

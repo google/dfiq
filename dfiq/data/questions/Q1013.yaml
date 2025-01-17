@@ -13,11 +13,12 @@
 # limitations under the License.
 
 ---
-display_name: What files are present on a USB device?
+name: What files are present on a USB device?
 type: question
 description:
+uuid: 93678cd8-e0ef-4134-af92-b5116713dd78
 id: Q1013
-dfiq_version: 1.0.0
+dfiq_version: 1.1.0
 tags:
 parent_ids:
- - F1003
+- F1003

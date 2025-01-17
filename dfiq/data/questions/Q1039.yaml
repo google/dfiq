@@ -13,12 +13,13 @@
 # limitations under the License.
 
 ---
-display_name: Are there any detections of exposed service account credentials?
+name: Are there any detections of exposed service account credentials?
 type: question
 description:
+uuid: 455564a5-c444-40c1-be55-a3dbe72c5f30
 id: Q1039
-dfiq_version: 1.0.0
+dfiq_version: 1.1.0
 tags:
 parent_ids:
- - F1013
- - F1018
+- F1013
+- F1018

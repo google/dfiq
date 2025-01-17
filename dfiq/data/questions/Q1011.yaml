@@ -13,11 +13,12 @@
 # limitations under the License.
 
 ---
-display_name: What files were sent or received by a chat application?
+name: What files were sent or received by a chat application?
 type: question
 description:
+uuid: 25e50741-494d-4bcb-b673-7696c06dc366
 id: Q1011
-dfiq_version: 1.0.0
+dfiq_version: 1.1.0
 tags:
 parent_ids:
- - F1011
+- F1011

@@ -1,12 +1,16 @@
 ---
-display_name: str()
+name: str()
 type: enum('approach')
 description:
-  summary: str()
   details: str()
   references: list(str(), required=False)
   references_internal: list(str(), required=False)
 id: regex('^Q\d{4}\.\d{2}$')
+uuid: regex('^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$')
+internal: bool()
+parent_id:
+  regex('^Q\d{4}$|^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$',
+  required=False)
 dfiq_version: regex('\d{1,2}\.\d{1,2}\.\d{1,2}')
 tags: list(str(), required=False)
 contributors: list(str(), required=False)

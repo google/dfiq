@@ -13,14 +13,15 @@
 # limitations under the License.
 
 ---
-display_name: What cron jobs are configured?
+name: What cron jobs are configured?
 type: question
 description:
+uuid: e7511bd4-c2dd-4d0a-9d82-aac691877902
 id: Q1062
-dfiq_version: 1.0.0
+dfiq_version: 1.1.0
 tags:
- - T1053.003
- - macOS
- - Linux
+- T1053.003
+- macOS
+- Linux
 parent_ids:
- - F1022
+- F1022

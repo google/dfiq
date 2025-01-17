@@ -13,12 +13,13 @@
 # limitations under the License.
 
 ---
-display_name: Were any files sent via Bluetooth?
+name: Were any files sent via Bluetooth?
 type: question
 description:
+uuid: a8d41fc8-1b5e-45d2-9e11-7ddfd17137b3
 id: Q1083
-dfiq_version: 1.0.0
+dfiq_version: 1.1.0
 tags:
- - T1011.001
+- T1011.001
 parent_ids:
- - F1026
+- F1026

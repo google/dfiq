@@ -13,13 +13,14 @@
 # limitations under the License.
 
 ---
-display_name: What Windows logon scripts are configured?
+name: What Windows logon scripts are configured?
 type: question
 description:
+uuid: c840d923-065d-474e-89fd-b6c69828569a
 id: Q1055
-dfiq_version: 1.0.0
+dfiq_version: 1.1.0
 tags:
- - T1037.001
- - Windows
+- T1037.001
+- Windows
 parent_ids:
- - F1020
+- F1020

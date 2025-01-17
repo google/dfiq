@@ -13,13 +13,14 @@
 # limitations under the License.
 
 ---
-display_name: What Launch Daemons are configured?
+name: What Launch Daemons are configured?
 type: question
 description:
+uuid: b7b21310-7adb-4ab9-8a34-7494bfd3d854
 id: Q1054
-dfiq_version: 1.0.0
+dfiq_version: 1.1.0
 tags:
- - macOS
- - T1543.004
+- macOS
+- T1543.004
 parent_ids:
- - F1020
+- F1020

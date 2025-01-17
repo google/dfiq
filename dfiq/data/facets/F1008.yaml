@@ -13,16 +13,17 @@
 # limitations under the License.
 
 ---
-display_name: Are there signs of staging data for future exfiltration?
+name: Are there signs of staging data for future exfiltration?
 type: facet
 description: >
-  "Staging" refers to the collection of data of interest onto a local system,
-  as a precursor step for future exfiltration of that data. When reviewing
-  data from Questions in this Facet, look for unusual volumes of results
-  (number or size of files downloaded or sent, for example).
+  "Staging" refers to the collection of data of interest onto a local system, as a
+  precursor step for future exfiltration of that data. When reviewing data from Questions
+  in this Facet, look for unusual volumes of results (number or size of files downloaded
+  or sent, for example).
+uuid: d95ef023-4246-41f5-b33b-73d924649986
 id: F1008
-dfiq_version: 1.0.0
+dfiq_version: 1.1.0
 tags:
- - TA0009
+- TA0009
 parent_ids:
- - S1001
+- S1001

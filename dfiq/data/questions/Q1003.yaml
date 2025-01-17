@@ -13,11 +13,12 @@
 # limitations under the License.
 
 ---
-display_name: What files were copied from a computer to a USB device?
+name: What files were copied from a computer to a USB device?
 type: question
 description:
+uuid: d20315a8-603f-42bc-8acc-5beae578a82e
 id: Q1003
-dfiq_version: 1.0.0
+dfiq_version: 1.1.0
 tags:
 parent_ids:
- - F1010
+- F1010

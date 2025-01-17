@@ -13,13 +13,14 @@
 # limitations under the License.
 
 ---
-display_name: What items are in startup folders?
+name: What items are in startup folders?
 type: question
 description:
+uuid: 847e2914-bba5-4e74-93b8-cf2cdd730d02
 id: Q1066
-dfiq_version: 1.0.0
+dfiq_version: 1.1.0
 tags:
- - T1547.001
- - Windows
+- T1547.001
+- Windows
 parent_ids:
- - F1023
+- F1023

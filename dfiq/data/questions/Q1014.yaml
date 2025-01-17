@@ -13,12 +13,13 @@
 # limitations under the License.
 
 ---
-display_name: What files did the actor open on their computer?
+name: What files did the actor open on their computer?
 type: question
 description:
+uuid: 99805c93-8eec-48d2-a15c-5280e218ee45
 id: Q1014
-dfiq_version: 1.0.0
+dfiq_version: 1.1.0
 tags:
- - File Knowledge
+- File Knowledge
 parent_ids:
- - F1001
+- F1001

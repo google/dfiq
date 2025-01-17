@@ -13,13 +13,14 @@
 # limitations under the License.
 
 ---
-display_name: Is a given Chrome extension associated with a given domain?
+name: Is a given Chrome extension associated with a given domain?
 type: question
 description:
+uuid: 34ed8060-cd99-482a-8223-836fcd860cd4
 id: Q1023
-dfiq_version: 1.0.0
+dfiq_version: 1.1.0
 tags:
- - T1176
- - Chrome
+- T1176
+- Chrome
 parent_ids:
- - F1006
+- F1006

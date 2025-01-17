@@ -13,12 +13,13 @@
 # limitations under the License.
 
 ---
-display_name: Was any sensitive data exfiltrated via a physical medium?
+name: Was any sensitive data exfiltrated via a physical medium?
 type: facet
 description:
+uuid: eb42bb63-cbb6-442e-a73d-ce16fa799b4d
 id: F1010
-dfiq_version: 1.0.0
+dfiq_version: 1.1.0
 tags:
- - T1052
+- T1052
 parent_ids:
- - S1001
+- S1001

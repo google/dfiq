@@ -1,8 +1,10 @@
 ---
-display_name: str()
+name: str()
 type: enum('scenario')
 description: str()
 id: regex('^S\d{4}$')
+uuid: regex('^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$')
+internal: bool()
 dfiq_version: regex('\d{1,2}\.\d{1,2}\.\d{1,2}')
 tags: list(str(), required=False)
 contributors: list(str(), required=False)

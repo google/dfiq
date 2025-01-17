@@ -13,17 +13,18 @@
 # limitations under the License.
 
 ---
-display_name: Was a user's web browsing the cause of a given DNS query?
+name: Was a user's web browsing the cause of a given DNS query?
 type: facet
 description: >
-  Understanding if a user's actions in a web browser caused a particular DNS
-  query is valuable context when investigating a suspicious DNS query. If the
-  query is related to the user's actions, closer scrutiny of their browser
-  activity may make sense. If the DNS doesn't appear related, you may need to
-  look into the actions of other non-browser processes.
+  Understanding if a user's actions in a web browser caused a particular DNS query
+  is valuable context when investigating a suspicious DNS query. If the query is related
+  to the user's actions, closer scrutiny of their browser activity may make sense.
+  If the DNS doesn't appear related, you may need to look into the actions of other
+  non-browser processes.
+uuid: b4ae098f-bc9a-404c-89a3-0e61279ba75f
 id: F1005
-dfiq_version: 1.0.0
+dfiq_version: 1.1.0
 tags:
- - Web Browser
+- Web Browser
 parent_ids:
- - S1003
+- S1003

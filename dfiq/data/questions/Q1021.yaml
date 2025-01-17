@@ -13,13 +13,14 @@
 # limitations under the License.
 
 ---
-display_name: What Chrome extensions are installed?
+name: What Chrome extensions are installed?
 type: question
 description:
+uuid: c6aa5cb7-d44b-4008-b5fe-0fb56e9ad80f
 id: Q1021
-dfiq_version: 1.0.0
+dfiq_version: 1.1.0
 tags:
- - Web Browser
+- Web Browser
 parent_ids:
- - F1006
- - F1019
+- F1006
+- F1019

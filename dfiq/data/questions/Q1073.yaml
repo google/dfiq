@@ -13,11 +13,12 @@
 # limitations under the License.
 
 ---
-display_name: Have there been any modifications to the "hosts" file?
+name: Have there been any modifications to the "hosts" file?
 type: question
 description: Check whether there is suspicious routing in the /etc/hosts file.
+uuid: 50196b9f-72d6-4e8a-b081-fc5d85e0967a
 id: Q1073
-dfiq_version: 1.0.0
+dfiq_version: 1.1.0
 tags:
 parent_ids:
- - F1004
+- F1004
