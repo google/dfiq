@@ -2,6 +2,10 @@
   
 <img src="/site/docs/assets/dfiq-blue.png" width="100" alt="DFIQ Logo">
 
+---
+**Note:** This repository is currently under review for updates to align with DFIQ 1.1 and to ensure the website is up-to-date. (Last reviewed: 2026-03-10)
+---
+
 DFIQ is a collection of Digital Forensics Investigative Questions and the approaches to answering them.
 The goal of the project is to build a comprehensive catalog of investigative knowledge to help drive 
 consistent, thorough, and explainable investigations.
