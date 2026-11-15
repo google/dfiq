@@ -15,19 +15,18 @@
 import os
 from dfiq import DFIQ
 
-
 # This file should be called from the repository root:
 # PYTHONPATH=. python dfiq/scripts/generate_site_markdown.py
 
 file_path = os.path.abspath(__file__)
-templates_dir = os.path.join(os.path.dirname(os.path.dirname(file_path)), 'templates')
+templates_dir = os.path.join(os.path.dirname(os.path.dirname(file_path)), "templates")
 dfiq_instance = DFIQ(templates_path=templates_dir, markdown_output_path="site/docs")
 
 for scenario in dfiq_instance.scenarios():
-    dfiq_instance.generate_scenario_md(scenario.id)
+    dfiq_instance.generate_scenario_md(scenario.id or scenario.uuid)
 
 for question in dfiq_instance.questions():
-    dfiq_instance.generate_question_md(question.id)
+    dfiq_instance.generate_question_md(question.id or question.uuid)
 
 dfiq_instance.generate_question_index_md()
 dfiq_instance.generate_approach_glossary_md()

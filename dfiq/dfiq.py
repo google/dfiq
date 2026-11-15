@@ -22,7 +22,6 @@ import yamale
 import yaml
 from pathlib import Path
 
-
 logging.basicConfig(
     level=logging.DEBUG, format="%(filename)s | %(levelname)s | %(message)s"
 )
@@ -384,8 +383,7 @@ class DFIQ:
 
         elif yaml_object["type"] == "question":
             approaches = [
-                Approach.from_dict(a)
-                for a in (yaml_object.get("approaches") or [])
+                Approach.from_dict(a) for a in (yaml_object.get("approaches") or [])
             ]
             return Question(
                 yaml_object.get("id"),
