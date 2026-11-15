@@ -156,6 +156,7 @@ Approaches are tightly linked to their Question and are defined inline under the
 |-----------------------|------------|--------------------------------------------------------------------------------------------------------------------------|
 | `name`                | `string`   | A human readable name for the approach.                                                                                  |
 | `description`         | `string`   | Optional. A description of the approach. Markdown syntax MAY be used for rich text representation.                       |
+| `internal`            | `boolean`  | Optional. Whether the approach is internal (private) or public.                                                          |
 | `tags`                | `[string]` | Optional. List of tags.                                                                                                  |
 | `references`          | `[string]` | Optional. List of URLs of public references to this approach. Markdown syntax MAY be used for rich text representation.  |
 | `references_internal` | `[string]` | Optional. List of URLs of private references to this approach. Markdown syntax MAY be used for rich text representation. |
@@ -165,7 +166,7 @@ Approaches are tightly linked to their Question and are defined inline under the
 Example ([source](https://github.com/google/dfiq/blob/main/dfiq/data/questions/Q1001.yaml#L153-L205)):
 ```yaml
 - name: Collect download records from local browser artifacts (Plaso)
-  description: >-
+  description: |-
     Parse download records from web browsers' own databases.
 
     Most web browsers track file downloads (at least in non-Incognito/private sessions)

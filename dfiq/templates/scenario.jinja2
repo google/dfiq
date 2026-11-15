@@ -4,10 +4,11 @@
 
 **UUID**: {{ scenario.uuid }}
 {% if scenario.id %}
+
 **ID**: {{ scenario.id }}
 {% endif %}
-
 {% if scenario.description %}
+
 **Description**: {{ scenario.description }}
 {% endif %}
 
@@ -20,7 +21,7 @@
 
 {%     for question in components[child].questions %}
 {%       if not components[question].is_internal or allow_internal == True %}
-{%         if components[question].approaches|length %}
+{%         if components[question].visible_approaches(allow_internal)|length %}
  - <a href="/questions/{{ question }}"><span class="dfiqIdTag">{{ question }}</span> &nbsp;{{ components[question].name }}</a>
 {%         else %}
  - <span class="dfiqIdTag">{{ question }}</span> &nbsp;{{ components[question].name }}
@@ -39,7 +40,7 @@
 ## Questions
 
 {%   for question in direct_questions %}
-{%     if components[question].approaches|length %}
+{%     if components[question].visible_approaches(allow_internal)|length %}
  - <a href="/questions/{{ question }}"><span class="dfiqIdTag">{{ question }}</span> &nbsp;{{ components[question].name }}</a>
 {%     else %}
  - <span class="dfiqIdTag">{{ question }}</span> &nbsp;{{ components[question].name }}

@@ -167,9 +167,21 @@ class Question(Component):
         )
         self.type = "question"
         self.approaches = approaches or []
-        for approach in self.approaches:
+        self.all_tags = self.visible_tags(allow_internal=False)
+
+    def visible_approaches(self, allow_internal: bool = False) -> list[Approach]:
+        """Returns Approaches visible under `allow_internal`."""
+        if allow_internal:
+            return list(self.approaches)
+        return [a for a in self.approaches if not a.is_internal]
+
+    def visible_tags(self, allow_internal: bool = False) -> set[str]:
+        """Returns Question tags combined with tags from visible Approaches."""
+        tags = set(self.tags)
+        for approach in self.visible_approaches(allow_internal):
             if approach.tags:
-                self.all_tags.update(approach.tags)
+                tags.update(approach.tags)
+        return tags
 
 
 class Facet(Component):
@@ -291,7 +303,6 @@ class DFIQ:
         self.load_dfiq_items_from_yaml()
         self.build_graph()
         self.add_child_ids()
-        self.add_child_tags()
 
     def scenarios(self) -> list[Scenario]:
         """Returns a list of all Scenarios in the DFIQ knowledge base."""
@@ -336,14 +347,6 @@ class DFIQ:
         for dfiq_id, component in self.components.items():
             children = sorted(list(nx.DiGraph.successors(self.graph, dfiq_id)))
             self.components[dfiq_id].set_children(children)
-
-    def add_child_tags(self) -> None:
-        """Adds tags from a Question's Approaches to that Question's `all_tags` attribute."""
-        for component in self.components.values():
-            if isinstance(component, Question):
-                for approach in component.approaches:
-                    if approach.tags:
-                        component.all_tags = component.all_tags.union(approach.tags)
 
     @staticmethod
     def convert_yaml_object_to_dfiq_component(
@@ -400,7 +403,7 @@ class DFIQ:
             return None
 
     def load_yaml_files_by_type(
-        self, dfiq_type: str, yaml_data_path: str | None = None
+        self, dfiq_type: str, yaml_data_path: Path | str | None = None
     ) -> dict:
         """Load all DFIQ YAML files of a given type from the appropriate path.
 
@@ -409,7 +412,7 @@ class DFIQ:
 
         Args:
             dfiq_type (str): The component type (Scenario, Facet, or Question).
-            yaml_data_path (str, optional): The base path holding the YAML files.
+            yaml_data_path (Path | str, optional): The base path holding the YAML files.
 
         """
         component_dict = {}
@@ -426,16 +429,15 @@ class DFIQ:
                     yaml_file_paths.append(str(data_file_path))
 
         if yaml_data_path:
-            dfiq_files = os.listdir(
-                os.path.join(yaml_data_path, self.plural_map.get(dfiq_type))
-            )
-            for dfiq_file in dfiq_files:
-                if dfiq_file.endswith(("-template.yaml", "-blank.yaml")):
+            target_dir = os.path.join(yaml_data_path, self.plural_map[dfiq_type])
+            if not os.path.isdir(target_dir):
+                return component_dict
+            for dfiq_file in sorted(os.listdir(target_dir)):
+                if not dfiq_file.endswith(".yaml") or dfiq_file.endswith(
+                    ("-template.yaml", "-blank.yaml")
+                ):
                     continue
-                file_to_open = os.path.join(
-                    yaml_data_path, self.plural_map.get(dfiq_type), dfiq_file
-                )
-                yaml_file_paths.append(file_to_open)
+                yaml_file_paths.append(os.path.join(target_dir, dfiq_file))
 
         for file_to_open in yaml_file_paths:
             if not self.validate_yaml_file(file_to_open):
@@ -500,7 +502,9 @@ class DFIQ:
             return False
         return True
 
-    def load_dfiq_items_from_yaml(self, yaml_data_path: str | None = None) -> None:
+    def load_dfiq_items_from_yaml(
+        self, yaml_data_path: Path | str | None = None
+    ) -> None:
         """Load all types of DFIQ components from a base path."""
         if not yaml_data_path:
             yaml_data_path = self.yaml_data_path
@@ -595,7 +599,7 @@ class DFIQ:
             )
             return
 
-        if skip_if_no_approaches and not question.approaches:
+        if skip_if_no_approaches and not question.visible_approaches(allow_internal):
             logging.debug(
                 f"Skipped writing Markdown for {question_id}; it had no Approaches"
             )
@@ -673,10 +677,7 @@ class DFIQ:
             if not allow_internal and question.is_internal:
                 continue
 
-            for approach in question.approaches:
-                if not allow_internal and approach.is_internal:
-                    continue
-
+            for approach in question.visible_approaches(allow_internal):
                 for step in approach.steps:
                     stage = step.get("stage")
                     step_type = step.get("type")

@@ -29,7 +29,7 @@ parent_ids:
 - F1007
 approaches:
 - name: Examine Windows Event Logs for Audit Log cleared
-  description: >-
+  description: |-
     Parse the Windows Security Event Log and look for "the audit log was cleared"
     event.
 
@@ -66,7 +66,7 @@ approaches:
     type: opensearch-query
     value: data_type:"windows:evtx:record" event_identifier:1102 source_name:"Microsoft-Windows-Security-Auditing"
 - name: Search CrowdStrike logs for indicator removal on host
-  description: >-
+  description: |-
     CrowdStrike has built-in detections for "indicator removal on host" events.
 
     Clearance/deletion of system logs would be recorded in CrowdStrike as a part of

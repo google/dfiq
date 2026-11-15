@@ -26,3 +26,5 @@ jobs:
         poetry run yamale -s dfiq/utils/scenario_spec.yaml ./dfiq/data/scenarios
         poetry run yamale -s dfiq/utils/facet_spec.yaml ./dfiq/data/facets
         poetry run yamale -s dfiq/utils/question_spec.yaml ./dfiq/data/questions
+    - name: Run unit tests
+      run: poetry run python -m unittest discover -s tests -v

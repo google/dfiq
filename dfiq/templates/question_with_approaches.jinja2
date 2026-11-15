@@ -1,8 +1,8 @@
 {# templates/question_with_approaches #}
 ---
-{% if question.all_tags %}
+{% if question.visible_tags(allow_internal) %}
 tags:
-{% for tag in question.all_tags|sort %}
+{% for tag in question.visible_tags(allow_internal)|sort %}
   - {{ tag }}
 {% endfor %}
 {% endif %}
@@ -16,25 +16,24 @@ hide:
 
 **UUID**: {{ question.uuid }}
 {% if question.id %}
+
 **ID**: {{ question.id }}
 {% endif %}
-
 {% if question.description %}
+
 **Description**: {{ question.description }}
 {% endif %}
 
 **Approaches to Answer**
 
-{% for approach in question.approaches %}
-{%   if approach.is_internal == False or allow_internal == True %}
+{% for approach in question.visible_approaches(allow_internal) %}
 -  [{{ approach.name }}](#{{ approach.name.replace(' ','-').replace('(','').replace(')','').replace('"','').lower() }})
-{%     if approach.description and approach.description.split('\n')[0] %}
-    - {{ approach.description.split('\n')[0] }}
-{%     endif %}
-{%     if approach.tags %}
+{%   if approach.description and approach.description.split('\n\n')[0] %}
+    - {{ approach.description.split('\n\n')[0].replace('\n', ' ') }}
+{%   endif %}
+{%   if approach.tags %}
     - Tags: <span class="dfiqTag">{{ approach.tags|join('</span> <span class="dfiqTag">') }}</span>
-{%     endif %}
-{%   endif  %}
+{%   endif %}
 {% endfor %}
 
 # Approaches
@@ -45,29 +44,28 @@ hide:
     benefits or drawbacks to each. All these approaches have different pros
     and cons. They can be used individually or in conjunction.
 
-{% for approach in question.approaches %}
-{%   if approach.is_internal == False or allow_internal == True %}
+{% for approach in question.visible_approaches(allow_internal) %}
 ## {{ approach.name }}
 ### 🗂️ Explanation
-{%     if approach.description %}
+{%   if approach.description %}
 {{ approach.description }}
-{%     endif %}
-{%     if approach.references %}
+{%   endif %}
+{%   if approach.references %}
 
 #### References
-{%       for reference in approach.references %}
+{%     for reference in approach.references %}
  - {{ reference }}
-{%       endfor %}
-{%     endif %}
-{%     if approach.references_internal and allow_internal == True %}
+{%     endfor %}
+{%   endif %}
+{%   if approach.references_internal and allow_internal == True %}
 
 ##### References (Internal)
-{%       for reference in approach.references_internal %}
+{%     for reference in approach.references_internal %}
  - {{ reference }}
-{%       endfor %}
-{%     endif %}
+{%     endfor %}
+{%   endif %}
 
-{%     if approach.notes %}
+{%   if approach.notes %}
 ### 📝 Notes
 
 Each approach comes with certain caveats or limitations. These can often
@@ -76,69 +74,68 @@ don't). This can lead to incorrect assumptions and analysis.
 Explicitly stating what is covered and not covered by the approach reduces
 ambiguity.
 
-{%       if approach.notes.get('covered') %}
+{%     if approach.notes.get('covered') %}
 !!! success "Covered"
 
-{%         for note in approach.notes['covered'] %}
+{%       for note in approach.notes['covered'] %}
      - {{ note }}
-{%         endfor %}
-{%       endif %}
+{%       endfor %}
+{%     endif %}
 
-{%       if approach.notes.get('not_covered') %}
+{%     if approach.notes.get('not_covered') %}
 !!! failure "Not Covered"
 
-{%         for note in approach.notes['not_covered'] %}
+{%       for note in approach.notes['not_covered'] %}
      - {{ note }}
-{%         endfor %}
-{%       endif %}
-
+{%       endfor %}
 {%     endif %}
-{%     if approach.steps %}
+
+{%   endif %}
+{%   if approach.steps %}
 ### ⚙️ Steps
 
-{%       for step in approach.steps %}
+{%     for step in approach.steps %}
 1. <span class="dfiqTag">{{ step.stage }}</span> **{{ step.name }}**
-{%         if step.description %}
+{%       if step.description %}
    - **Description**: {{ step.description }}
-{%         endif %}
-{%         if step.type == 'ForensicArtifact' %}
+{%       endif %}
+{%       if step.type == 'ForensicArtifact' %}
    - **Type**: [ForensicArtifact](https://github.com/ForensicArtifacts/artifacts#digital-forensics-artifacts-repository)
    - **Value**: {{ step.value }} ([view on GitHub](https://github.com/ForensicArtifacts/artifacts/search?q={{ step.value }}))
-{%         elif step.type == 'opensearch-query' %}
+{%       elif step.type == 'opensearch-query' %}
    - **Type**: OpenSearch query
    - **Value**:
 
          ```
-         {{ step.value }}
+         {{ step.value.rstrip() | indent(9) }}
          ```
-{%         elif step.type == 'splunk-query' %}
+{%       elif step.type == 'splunk-query' %}
    - **Type**: Splunk query
    - **Value**:
 
          ```
-         {{ step.value }}
+         {{ step.value.rstrip() | indent(9) }}
          ```
-{%         elif step.type == 'googlesql-query' %}
+{%       elif step.type == 'googlesql-query' %}
    - **Type**: GoogleSQL query
    - **Value**:
 
          ```googlesql
-         {{ step.value }}
+         {{ step.value.rstrip() | indent(9) }}
          ```
-{%         elif step.type == 'pandas' %}
+{%       elif step.type == 'pandas' %}
+{%         set pandas_query = step.value.rstrip() if step.value.startswith('df') else 'df.' ~ step.value.rstrip() %}
    - **Type**: Pandas (`pandas`)
    - **Value**:
 
          ```python
-         {% if step.value.startswith('df') %}{{ step.value }}{% else %}df.{{ step.value }}{% endif %}
-
+         {{ pandas_query | indent(9) }}
          ```
-{%         else %}
+{%       else %}
    - **Type**: {{ step.type }}
    - **Value**: {{ step.value.rstrip() }}
-{%         endif %}
+{%       endif %}
 
-{%       endfor %}
-{%     endif %}
-{%   endif  %}
+{%     endfor %}
+{%   endif %}
 {% endfor %}

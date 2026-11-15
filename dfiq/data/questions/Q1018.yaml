@@ -25,7 +25,7 @@ parent_ids:
 - F1004
 approaches:
 - name: Use Crowdstrike event search to link source processes to DNS queries
-  description: >-
+  description: |-
     CrowdStrike records the source process ID (ContextProcessId) for DNSRequest event.
 
     Crowdstrike is a detection platform, not a logging platform, so not all DNS requests
@@ -62,7 +62,7 @@ approaches:
       event_simpleName=DnsRequest | fields ContextProcessId_decimal, DomainName] |
       table _time, DomainName, ImageFileName
 - name: Use Crowdstrike "Bulk Domains" to link source processes to DNS queries
-  description: >-
+  description: |-
     CrowdStrike records the source process ID (ContextProcessId) for DNSRequest event.
 
     Crowdstrike is a detection platform, not a logging platform, so not all DNS requests
@@ -98,7 +98,7 @@ approaches:
       `PID`, `Process ID`, and `File Name` give the source process information for
       the DNS query.
 - name: Use Sysmon (Event ID 22) to link source processes to DNS queries (Splunk)
-  description: >-
+  description: |-
     Sysmon Event ID 22 DnsQuery stores source process ID
 
     DNS Query, event ID 22, records a DNS query being issued by a specific host and
@@ -133,7 +133,7 @@ approaches:
     value: source="xmlwineventlog:microsoft-windows-sysmon/operational" EventCode=22
       | table _time, host, process_id, process_path
 - name: Use Sysmon (Event ID 22) to link source processes to DNS queries (Plaso)
-  description: >-
+  description: |-
     Sysmon Event ID 22 DnsQuery stores source process ID
 
     DNS Query, event ID 22, records a DNS query being issued by a specific host and

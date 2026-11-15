@@ -14,6 +14,7 @@ approaches: list(include('approach'), required=False)
 approach:
   name: str()
   description: str(required=False)
+  internal: bool(required=False)
   tags: list(str(), required=False)
   references: list(str(), required=False)
   references_internal: list(str(), required=False)
