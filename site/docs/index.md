@@ -5,10 +5,11 @@ hide:
   - toc
 ---
 
-<center>
-# Digital Forensics Investigative Questions
-<img src="assets/dfiq-blue.png" alt="DFIQ Logo" width=600>
-</center>
+# Digital Forensics Investigative Questions { style="text-align: center" }
+
+<p align="center">
+  <img src="assets/dfiq-blue.png" alt="DFIQ Logo" width="600">
+</p>
 
 DFIQ is a collection of Digital Forensics Investigative Questions and the approaches to answering them.
 The goal of the project is to build a comprehensive catalog of investigative knowledge to help drive 
@@ -20,8 +21,7 @@ consistent, thorough, and explainable investigations.
 * Uses the concept of [Scenarios](/scenarios) to logically group Questions and help structure investigations
 * Stores data in an easily-readable, tool-agnostic format (YAML) to be used by others
 
-<center>
-## Get Started!
+## Get Started! { style="text-align: center" }
 
 [View Questions](/questions){ .md-button } &nbsp; [View Scenarios](/scenarios){ .md-button }
-</center>
+{ style="text-align: center" }

@@ -31,7 +31,7 @@ parent_ids:
 - F1027
 approaches:
 - name: Examine Windows Event Logs for PsExec executions
-  description: >-
+  description: |-
     Parse the Windows Security Event Log and look for PsExec processes being created.
 
     Windows systems can be set to log new process creation events to the Security
@@ -70,7 +70,7 @@ approaches:
     value: data_type:"windows:evtx:record" event_identifier:4688 source_name:Microsoft-Windows-Security-Auditing
       xml_string:"psexec.exe"
 - name: Examine Windows Prefetch for evidence of PsExec usage
-  description: >-
+  description: |-
     Parse Windows Prefetch files and look for PsExec.
 
     Windows Prefetch files are designed to speed up application start times. To do

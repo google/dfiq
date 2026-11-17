@@ -13,7 +13,7 @@ is an index of all the Questions that are defined as part of DFIQ.
 Some quick facts about Questions in DFIQ:
 
 - Questions should be small enough in scope that they can be readily answered
-- A single Question can be reused in multiple different Facets
+- A single Question can be reused in multiple different Scenarios or Facets
 - If a Question has any Approaches defined, it will render as a link to the detailed Question page
 
 !!! Note
@@ -26,8 +26,10 @@ Some quick facts about Questions in DFIQ:
 | ID          | Question                             | Tags | Approaches |
 | ----------- | ------------------------------------ | ---- | ---------- |
 {% for id, q in components.items() | sort %}
-{%   if q.type == 'question' and (q.is_internal == False or allow_internal == True) %}
-| <span class="dfiqIdTag">{{ id }}</span> | {% if q.approaches|length %}<a href="/questions/{{ id }}">{{ q.name }}</a>{% else %}{{ q.name }}{% endif %} | {% if q.all_tags|length %}<span class="dfiqTag">{{ q.all_tags|join('</span> <span class="dfiqTag">') }}</span>{% endif %} | {{ q.approaches|length }} |
+{%   if q.type == 'question' and (not q.is_internal or allow_internal == True) %}
+{%     set approaches = q.visible_approaches(allow_internal) %}
+{%     set tags = q.visible_tags(allow_internal)|sort %}
+| <span class="dfiqIdTag">{{ id }}</span> | {% if approaches|length %}<a href="/questions/{{ id }}">{{ q.name }}</a>{% else %}{{ q.name }}{% endif %} | {% if tags|length %}<span class="dfiqTag">{{ tags|join('</span> <span class="dfiqTag">') }}</span>{% endif %} | {{ approaches|length }} |
 {%   endif %}
 {% endfor %}
 

@@ -26,7 +26,7 @@ parent_ids:
 - F1029
 approaches:
 - name: Collect URL visit records from local browser artifacts (Plaso)
-  description: >-
+  description: |-
     Parse URL visit records from web browsers' own databases.
 
     Most web browsers track URL visits (at least in non-Incognito/private sessions)
@@ -84,7 +84,7 @@ approaches:
     value: query('data_type in ("chrome:history:page_visited", "firefox:places:page_visited",
       "safari:history:visit_sqlite")')
 - name: Collect URL visit records from local browser artifacts (Hindsight)
-  description: >-
+  description: |-
     Parse URL visit records from web browsers' own databases.
 
     Most web browsers track URL visits (at least in non-Incognito/private sessions)

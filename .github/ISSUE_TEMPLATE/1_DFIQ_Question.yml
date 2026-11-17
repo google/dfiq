@@ -17,7 +17,7 @@ body:
         A Question should be specific enough that it can be readily answered 
         and not easily divided into multiple parts (if it can be, it likely 
         should be multiple Questions). A single Question can be reused in 
-        multiple different Facets.
+        multiple different Facets or Scenarios.
 
         ## Fields from the DFIQ Specification
 
@@ -26,9 +26,9 @@ body:
         The required fields are marked, but filling out as many as you can now will make 
         creating the DFIQ YAML file easier later.
   - type: input
-    id: display_name
+    id: name
     attributes:
-      label: Display Name
+      label: Name
       description: "The Question, in natural language. Example: _What files were downloaded using a web browser?_"
     validations:
       required: true
@@ -44,7 +44,7 @@ body:
     attributes:
       label: DFIQ Version
       description: The [DFIQ Specification](https://dfiq.org/spec) version in the major.minor.patch scheme (probably leave this as-is).
-      value: "1.0.0"
+      value: "1.1.0"
     validations:
       required: true
   - type: dropdown
@@ -77,8 +77,8 @@ body:
     id: parent_ids
     attributes:
       label: Parent IDs
-      description: List of DFIQ Facet IDs that this Question belongs to. Optional.
-      placeholder: F1234, F5678
+      description: List of DFIQ Facet or Scenario IDs (or UUIDs) that this Question belongs to. Optional.
+      placeholder: F1234, S5678
     validations:
       required: false
   - type: markdown

@@ -25,7 +25,7 @@ parent_ids:
 - F1005
 approaches:
 - name: Collect process executions in Crowdstrike event search
-  description: >-
+  description: |-
     CrowdStrike records process executions in ProcessRollup event.
 
     CrowdStrike is a detection platform, not a logging platform, so not all ProcessRollup

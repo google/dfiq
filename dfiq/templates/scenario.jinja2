@@ -3,28 +3,48 @@
 # {{ scenario.name }}
 
 **UUID**: {{ scenario.uuid }}
-**ID**: {{ scenario.id }}
+{% if scenario.id %}
 
+**ID**: {{ scenario.id }}
+{% endif %}
 {% if scenario.description %}
+
 **Description**: {{ scenario.description }}
 {% endif %}
 
-{% for facet in scenario.facets %}
-{%   if not components[facet].is_internal or allow_internal == True %}
-## {{ components[facet].name }} <span class="dfiqIdTag">{{ facet }}</span>
-{%     if components[facet].description %}
-{{ components[facet].description }}
+{% for child in scenario.facets %}
+{%   if components[child].type == 'facet' and (not components[child].is_internal or allow_internal == True) %}
+## {{ components[child].name }} <span class="dfiqIdTag">{{ child }}</span>
+{%     if components[child].description %}
+{{ components[child].description }}
 {%     endif %}
 
-{%   for question in components[facet].questions %}
-{%     if not components[question].is_internal or allow_internal == True %}
-{%       if components[question].approaches|length %}
+{%     for question in components[child].questions %}
+{%       if not components[question].is_internal or allow_internal == True %}
+{%         if components[question].visible_approaches(allow_internal)|length %}
  - <a href="/questions/{{ question }}"><span class="dfiqIdTag">{{ question }}</span> &nbsp;{{ components[question].name }}</a>
-{%       else %}
+{%         else %}
  - <span class="dfiqIdTag">{{ question }}</span> &nbsp;{{ components[question].name }}
+{%         endif %}
 {%       endif %}
-{%     endif %}
-{%   endfor %}
+{%     endfor %}
 {%   endif %}
 {% endfor %}
+{% set direct_questions = [] %}
+{% for child in scenario.facets %}
+{%   if components[child].type == 'question' and (not components[child].is_internal or allow_internal == True) %}
+{%     set _ = direct_questions.append(child) %}
+{%   endif %}
+{% endfor %}
+{% if direct_questions|length %}
+## Questions
+
+{%   for question in direct_questions %}
+{%     if components[question].visible_approaches(allow_internal)|length %}
+ - <a href="/questions/{{ question }}"><span class="dfiqIdTag">{{ question }}</span> &nbsp;{{ components[question].name }}</a>
+{%     else %}
+ - <span class="dfiqIdTag">{{ question }}</span> &nbsp;{{ components[question].name }}
+{%     endif %}
+{%   endfor %}
+{% endif %}
 {% endif %}

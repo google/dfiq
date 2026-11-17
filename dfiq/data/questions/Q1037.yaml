@@ -31,7 +31,7 @@ parent_ids:
 - F1028
 approaches:
 - name: Examine Windows Event Logs for PsExeSvc Service Installations
-  description: >-
+  description: |-
     Parse the Windows Security Event Log and look for the PsExeSvc service being installed.
 
     Windows systems can be set to log new service installations to the System event
@@ -71,7 +71,7 @@ approaches:
     value: data_type:"windows:evtx:record" event_identifier:7045 source_name:"Service
       Control Manager" xml_string:"Name=\"ServiceName\">PSEXESVC"
 - name: Examine Windows Prefetch for evidence of PsExeSvc
-  description: >-
+  description: |-
     Parse Windows Prefetch files and look for PsExeSvc.
 
     Windows Prefetch files are designed to speed up application start times. To do
@@ -112,7 +112,7 @@ approaches:
     type: opensearch-query
     value: data_type:"windows:prefetch:execution" AND executable:psexesvc\.exe
 - name: Examine Windows Event Logs for PsExeSvc executions
-  description: >-
+  description: |-
     Parse the Windows Security Event Log and look for PsExeSvc processes being created.
 
     Windows systems can be set to log new process creation events to the Security

@@ -25,29 +25,25 @@ parent_ids:
 - F1002
 approaches:
 - name: Detect browser downloads via change journal records
-  description: >-
+  description: |-
     File downloads by some web browsers create a specific pattern of events on the
     file system. We can use this to see browser downloads using NTFS change journal
     (USN journal) records.
 
     Chrome downloads on Windows create a specific pattern of events on the file system:
 
-    1.  **Download starts with a `FILE CREATE` event to `.tmp` file; older Chrome
-    versions
-        have been observed creating four character file names (like `7DEE.tmp`)
+    1.  **Download starts with a `FILE CREATE` event to `.tmp` file**; older Chrome
+        versions have been observed creating four character file names (like `7DEE.tmp`)
         while newer versions use file names consistent with Version 4 UUIDs
         (like `183011a0-f96c-4c98-b71b-ab8754fb0e0e.tmp`).
     1.  That `.tmp` file might be `RENAME`d to `Unconfirmed [6 digits].crdownload`.
-    1.  If [2] `Unconfirmed...crdownload` `RENAME` didn't happen, the `.tmp` file
-    is
-        renamed to the eventual filename (with extension) with `.crdownload`
-    appended
-        at the end (like `cat.jpg.crdownload`). **In either case ([2] or [3]),
-    at
-        this point we have a file ending in .crdownload.**
+    1.  If [2] `Unconfirmed...crdownload` `RENAME` didn't happen, the `.tmp` file is
+        renamed to the eventual filename (with extension) with `.crdownload` appended
+        at the end (like `cat.jpg.crdownload`). **In either case ([2] or [3]), at
+        this point we have a file ending in `.crdownload`.**
     1.  Once the download completes, the `.crdownload` suffix is removed via a
         `USN_REASON_RENAME_OLD_NAME` event, leaving the downloaded file with its
-    final name.
+        final name.
 
     Since [4] above captures the key information about the file download, we can search
     change journal records for it.
@@ -96,7 +92,7 @@ approaches:
     type: opensearch-query
     value: data_type:"fs:ntfs:usn_change" {file_reference value} "USN_REASON_RENAME_NEW_NAME"
 - name: Detect browser downloads via file system event logs
-  description: >-
+  description: |-
     File downloads by some web browsers create a specific pattern of events on the
     file system. We can use this to see browser downloads using file system logs (like
     Santa).
@@ -104,15 +100,14 @@ approaches:
     Chrome downloads on macOS create a specific pattern of file system events:
 
     1.  **Download starts with a `WRITE` event to a temp file named like
-        `.com.google.Chrome.avXx0U`** (the suffix looks to be 6
-    letters/numbers). 1.  That .com.google.Chrome... temp file might be `RENAME`d
-    to `Unconfirmed [6
-        digits].crdownload`.
-    1.  If [2] `Unconfirmed...crdownload` `RENAME` didn't happen, the .com.google.
-        temp file is renamed to the eventual filename (with extension) with
-        `.crdownload` appended at the end (like `cat.jpg.crdownload`). **In
-    either
-        case ([2] or [3]), at this point we have a file ending in .crdownload.**
+        `.com.google.Chrome.avXx0U`** (the suffix looks to be 6 letters/numbers).
+    1.  That `.com.google.Chrome...` temp file might be `RENAME`d to
+        `Unconfirmed [6 digits].crdownload`.
+    1.  If [2] `Unconfirmed...crdownload` `RENAME` didn't happen, the
+        `.com.google.Chrome...` temp file is renamed to the eventual filename (with
+        extension) with `.crdownload` appended at the end (like `cat.jpg.crdownload`).
+        **In either case ([2] or [3]), at this point we have a file ending in
+        `.crdownload`.**
     1.  Once the download completes, the `.crdownload` suffix is removed via a
         `RENAME` event, leaving the downloaded file with its final name.
 
@@ -151,7 +146,7 @@ approaches:
     type: opensearch-query
     value: data_type:"santa:file_system_event" action:RENAME file_path:"*\.crdownload"
 - name: Collect download records from local browser artifacts (Plaso)
-  description: >-
+  description: |-
     Parse download records from web browsers' own databases.
 
     Most web browsers track file downloads (at least in non-Incognito/private sessions)
@@ -204,7 +199,7 @@ approaches:
     type: pandas
     value: query('data_type in ("chrome:history:file_downloaded", "safari:downloads:entry")')
 - name: Collect download records from local browser artifacts (Hindsight)
-  description: >-
+  description: |-
     Parse download records from web browsers' own databases.
 
     Most web browsers track file downloads (at least in non-Incognito/private sessions)

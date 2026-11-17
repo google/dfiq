@@ -40,3 +40,29 @@ extra_javascript:
   - javascripts/tablesort.js
 extra_css:
   - stylesheets/extra.css
+nav:
+  - Home: index.md
+  - Tags: tags.md
+  - Contributing:
+      - Approach Glossary: contributing/approach_glossary.md
+      - DFIQ Specifications:
+          - latest (1.1.0): contributing/specification.md
+          - 1.0.1: contributing/specification_1_0_1.md
+  - Questions:
+      - questions/index.md
+      - questions/Q1001.md
+      - questions/Q1018.md
+      - questions/Q1019.md
+      - questions/Q1020.md
+      - questions/Q1024.md
+      - questions/Q1036.md
+      - questions/Q1037.md
+      - questions/Q1074.md
+  - Scenarios:
+      - scenarios/index.md
+      - scenarios/S1001.md
+      - scenarios/S1002.md
+      - scenarios/S1003.md
+      - scenarios/S1005.md
+      - scenarios/S1007.md
+      - scenarios/S1008.md
